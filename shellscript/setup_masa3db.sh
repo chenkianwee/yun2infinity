@@ -91,7 +91,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	--network "masa3db"\
 	-p $FSPORT1:8080\
 	-p $FSPORT2:1883\
-	-e "serviceRootserviceRootUrl=$ROOTURL"\
+	-e "serviceRootUrl=$ROOTURL"\
       	-e "http_cors_enable=true"\
       	-e "http_cors_allowed.origins=*"\
       	-e "persistence_db_driver=org.postgresql.Driver"\
