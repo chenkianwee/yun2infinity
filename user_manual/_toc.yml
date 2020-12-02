@@ -1,0 +1,12 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+#
+- file: docs/010intro
+- file: docs/020installation
+  sections:
+    - file: docs/021installdocker
+    - file: docs/022setup
+- file: docs/030tutorial
+  sections:
+    - file: docs/031particle
+    - file: docs/032python
