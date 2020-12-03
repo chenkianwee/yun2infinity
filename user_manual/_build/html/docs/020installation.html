@@ -55,7 +55,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install Docker" href="021installdocker.html" />
+    <link rel="next" title="Docker" href="021docker.html" />
     <link rel="prev" title="Introduction to Masa3DB" href="010intro.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -98,12 +98,12 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="021installdocker.html">
-     Install Docker
+    <a class="reference internal" href="021docker.html">
+     Docker
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="022setup.html">
+    <a class="reference internal" href="023setup.html">
      Setup Masa3DB
     </a>
    </li>
@@ -117,13 +117,42 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="031particle.html">
+    <a class="reference internal" href="031postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="032particle.html">
      Masa3DB with Particle Devices
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="032python.html">
+    <a class="reference internal" href="033python.html">
      Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="034citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="035import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="040integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="041docker_image.html">
+     Timescale-3DCityDB
     </a>
    </li>
   </ul>
@@ -220,6 +249,11 @@
                 
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>I am using <a class="reference external" href="https://www.docker.com/">Docker</a> for running the database. So you will have to install Docker on your machine. Refer to the next section to install Docker. Once Docker is installed, I have written a shellscript to automatically fetch all the necessary Docker containers to get the database up and running. Currently, the shellscript has only been tested with an Ubuntu machine. In summary:</p>
+<ol class="simple">
+<li><p>Install Docker</p></li>
+<li><p>Install Masa3DB</p></li>
+</ol>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -253,7 +287,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="010intro.html" title="previous page">Introduction to Masa3DB</a>
-    <a class='right-next' id="next-link" href="021installdocker.html" title="next page">Install Docker</a>
+    <a class='right-next' id="next-link" href="021docker.html" title="next page">Docker</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -4,9 +4,15 @@
 - file: docs/010intro
 - file: docs/020installation
   sections:
-    - file: docs/021installdocker
-    - file: docs/022setup
+    - file: docs/021docker
+    - file: docs/023setup
 - file: docs/030tutorial
   sections:
-    - file: docs/031particle
-    - file: docs/032python
+    - file: docs/031postgres
+    - file: docs/032particle
+    - file: docs/033python
+    - file: docs/034citydb
+    - file: docs/035import_citygml
+- file: docs/040integration
+  sections:
+    - file: docs/041docker_image

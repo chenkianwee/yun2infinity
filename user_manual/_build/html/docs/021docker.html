@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Install Docker &#8212; Masa3DB User Manual</title>
+    <title>Docker &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,7 +55,7 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setup Masa3DB" href="022setup.html" />
+    <link rel="next" title="Setup Masa3DB" href="023setup.html" />
     <link rel="prev" title="Installation" href="020installation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -99,11 +99,11 @@
   <ul class="current collapse-ul">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Install Docker
+     Docker
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="022setup.html">
+    <a class="reference internal" href="023setup.html">
      Setup Masa3DB
     </a>
    </li>
@@ -117,13 +117,42 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="031particle.html">
+    <a class="reference internal" href="031postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="032particle.html">
      Masa3DB with Particle Devices
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="032python.html">
+    <a class="reference internal" href="033python.html">
      Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="034citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="035import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="040integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="041docker_image.html">
+     Timescale-3DCityDB
     </a>
    </li>
   </ul>
@@ -170,7 +199,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/docs/021installdocker.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/docs/021docker.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -190,7 +219,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/021installdocker.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/021docker.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -211,6 +240,39 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install">
+   Install
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#ubuntu-20-04">
+     Ubuntu 20.04
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uninstall">
+   Uninstall
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Ubuntu 20.04
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -218,8 +280,81 @@
         
               <div>
                 
-  <div class="section" id="install-docker">
-<h1>Install Docker<a class="headerlink" href="#install-docker" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="docker">
+<h1>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ubuntu-20-04">
+<h3>Ubuntu 20.04<a class="headerlink" href="#ubuntu-20-04" title="Permalink to this headline">¶</a></h3>
+<p>This is written based on instruction from the <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#installation-methods">Docker official site</a>. For more information refer to the official Docker documentation.</p>
+<ol>
+<li><p>Make sure you do not have any old docker installed. Run this command to remove the old versions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get remove docker docker-engine docker.io containerd runc
+</pre></div>
+</div>
+</li>
+<li><p>Setup the repository.
+a. Run these commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+
+$ sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+gnupg-agent \
+software-properties-common
+</pre></div>
+</div>
+</li>
+<li><p>Add the Docker’s official GPG Key</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+</pre></div>
+</div>
+<p>a. Verify you have the key added with this command. You should see the message generated.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-key fingerprint 0EBFCD88
+
+pub   rsa4096 2017-02-22 [SCEA]
+      9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid           [ unknown] Docker Release (CE deb) &lt;docker@docker.com&gt;
+sub   rsa4096 2017-02-22 [S]
+</pre></div>
+</div>
+</li>
+<li><p>Use this command to setup a stable repository.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo add-apt-repository \
+&quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable&quot;
+</pre></div>
+</div>
+</li>
+<li><p>Install Docker with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="uninstall">
+<h2>Uninstall<a class="headerlink" href="#uninstall" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>Ubuntu 20.04<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Uninstall the Docker Engine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get purge docker-ce docker-ce-cli containerd.io
+</pre></div>
+</div>
+</li>
+<li><p>To delete all images, containers and volumes on the Docker.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo rm -rf /var/lib/docker
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -251,7 +386,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="020installation.html" title="previous page">Installation</a>
-    <a class='right-next' id="next-link" href="022setup.html" title="next page">Setup Masa3DB</a>
+    <a class='right-next' id="next-link" href="023setup.html" title="next page">Setup Masa3DB</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -97,12 +97,12 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="021installdocker.html">
-     Install Docker
+    <a class="reference internal" href="021docker.html">
+     Docker
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="022setup.html">
+    <a class="reference internal" href="023setup.html">
      Setup Masa3DB
     </a>
    </li>
@@ -116,13 +116,42 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="031particle.html">
+    <a class="reference internal" href="031postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="032particle.html">
      Masa3DB with Particle Devices
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="032python.html">
+    <a class="reference internal" href="033python.html">
      Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="034citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="035import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="040integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="041docker_image.html">
+     Timescale-3DCityDB
     </a>
    </li>
   </ul>
@@ -219,6 +248,14 @@
                 
   <div class="section" id="introduction-to-masa3db">
 <h1>Introduction to Masa3DB<a class="headerlink" href="#introduction-to-masa3db" title="Permalink to this headline">¶</a></h1>
+<p>The Masa3DB is a open-source database that can handle spatial time-series data. It is an integration of the following open-source software:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.postgresql.org/">PostgreSQL Database</a> – the core database software.</p></li>
+<li><p><a class="reference external" href="https://docs.timescale.com/latest/main">TimescaleDB</a> – extension of PostgreSQL that can handle time-series data.</p></li>
+<li><p><a class="reference external" href="https://postgis.net/">Postgis</a> – extension of PostgreSQL that can handle spatial data.</p></li>
+<li><p><a class="reference external" href="https://www.3dcitydb.org/3dcitydb/">3DCityDB</a> – extension of PostgreSQL that can handle 3D City data, it uses the data model of CityGML.</p></li>
+<li><p><a class="reference external" href="https://www.iosb.fraunhofer.de/servlet/is/82077/">FROST-Server</a> – PostgreSQL based implementation of the Sensorthings API.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 </div>
