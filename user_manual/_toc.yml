@@ -6,6 +6,7 @@
   sections:
     - file: docs/021docker
     - file: docs/023setup
+    - file: docs/024maintain
 - file: docs/030tutorial
   sections:
     - file: docs/031postgres
@@ -13,6 +14,9 @@
     - file: docs/033python
     - file: docs/034citydb
     - file: docs/035import_citygml
+    - file: docs/036grafana
+    - file: docs/037cesium3d
+    - file: docs/038analysis
 - file: docs/040integration
   sections:
     - file: docs/041docker_image
