@@ -1,8 +1,8 @@
 # Visualisation with Grafana
 ## Install Grafana
 
-1. If you have not installed Docker. Install Docker {doc}`docs/020/021docker`.
-2. If you have not installed Masa3DB. Install Masa3DB {doc}`docs/020/022setup`.
+1. If you have not installed Docker. Install Docker {doc}`here <../020/021docker>`.
+2. If you have not installed Masa3DB. Install Masa3DB {doc}`here <../020/022setup>`.
 3. Run this command to install Grafana.
     ```
     $ sudo docker run -d --network masa3db -p 3000:3000 --name grafana grafana/grafana  

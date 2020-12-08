@@ -1,7 +1,7 @@
 # Masa3DB with Particle Devices
 ## Pre-requisite
 - If you are unfamilar with Particles. Please go through these [tutorials](https://docs.particle.io/tutorials/developer-tools/build/) to familiarise yourself with the service.
-- Configure the 8 webhooks in your particle account shown in {doc}`docs/050/052webhooks`.
+- Configure the 8 webhooks in your particle account shown in {doc}`../050/052webhooks`.
 
 ## Claiming Particle Devices
 1. [Setup your Particle Device](https://setup.particle.io/)
