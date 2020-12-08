@@ -1,0 +1,428 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PostgreSQL &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Masa3DB with Particle Devices" href="042particle.html" />
+    <link rel="prev" title="Task" href="040task.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../020/020installation.html">
+   Installation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/021docker.html">
+     Docker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/022setup.html">
+     Setup Masa3DB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/023maintain.html">
+     Maintenance
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../030/030work.html">
+   Work
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../030/031work1.html">
+     Work Example 1
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="040task.html">
+   Task
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="042particle.html">
+     Masa3DB with Particle Devices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="043python.html">
+     Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="044citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="045import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="046grafana.html">
+     Visualisation with Grafana
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="047cesium3d.html">
+     Visualisation with CesiumJS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="048analysis.html">
+     Analysis
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../050/050integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/051docker_image.html">
+     Timescale-3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/052webhooks.html">
+     Particle Webhooks
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/040/041postgres.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/041postgres.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-postgresql-using-pgadmin">
+   Connecting to PostgreSQL using pgAdmin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-frost-server-authenication">
+   Setting FROST-Server Authenication
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="postgresql">
+<h1>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h1>
+<p>All the open-source software used in Masa3DB is based on the PostgreSQL database. You can access the underlying PostgreSQL to see how the data are stored. This is also necessary for changing the username and passwords of the FROST-Server.</p>
+<div class="section" id="connecting-to-postgresql-using-pgadmin">
+<h2>Connecting to PostgreSQL using pgAdmin<a class="headerlink" href="#connecting-to-postgresql-using-pgadmin" title="Permalink to this headline">¶</a></h2>
+<p>I will use the pgAdmin software, which is a GUI for managing the Postgresql database, to access the database. I am assuming you installed Masa3DB on a server computer. Now with your own laptop/PC you can access the database remotely.</p>
+<ol>
+<li><p>Download and install pgAdmin on your local computer. <a class="reference external" href="https://www.pgadmin.org/download/">Download pgAdmin</a></p></li>
+<li><p>First right click on the servers and create a new server.</p>
+<div class="figure align-default" id="create-server">
+<a class="reference internal image-reference" href="../../_images/create_server.png"><img alt="../../_images/create_server.png" src="../../_images/create_server.png" style="width: 477.0px; height: 270.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Create a new server.</span><a class="headerlink" href="#create-server" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>In the general tab enter a name. In my case, I used the name chaos.</p>
+<div class="figure align-default" id="server-name">
+<a class="reference internal image-reference" href="../../_images/server_name.png"><img alt="../../_images/server_name.png" src="../../_images/server_name.png" style="width: 373.5px; height: 131.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">Fill in the server name.</span><a class="headerlink" href="#server-name" title="Permalink to this image">¶</a></p>
+</div>
+<p>a. In the connection tab key in localhost for your host, and enter the username and password you entered while setting up the masa3db process.</p>
+<div class="figure align-default" id="connection-detail">
+<a class="reference internal image-reference" href="../../_images/connection_detail.png"><img alt="../../_images/connection_detail.png" src="../../_images/connection_detail.png" style="width: 375.0px; height: 232.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Fill in the connection details.</span><a class="headerlink" href="#connection-detail" title="Permalink to this image">¶</a></p>
+</div>
+<p>b. We are using ssh to access the server computer. Key in the necessary parameters to connect to your host computer. The details of how you ssh into your ubuntu server/computer. Click save and you will be able to access the database.</p>
+<div class="figure align-default" id="ssh-tunnel">
+<a class="reference internal image-reference" href="../../_images/ssh_tunnel.png"><img alt="../../_images/ssh_tunnel.png" src="../../_images/ssh_tunnel.png" style="width: 375.5px; height: 412.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Fill in the ssh tunnel details.</span><a class="headerlink" href="#ssh-tunnel" title="Permalink to this image">¶</a></p>
+</div>
+<p>c. As you remember in the Masa3db setup script the database name that we created is spatempdb. Click on the extensions and you will be able to see all the extensions installed in the database. They should include all of the extensions shown below.</p>
+<div class="figure align-default" id="db-extension">
+<a class="reference internal image-reference" href="../../_images/db_extension.png"><img alt="../../_images/db_extension.png" src="../../_images/db_extension.png" style="width: 198.0px; height: 262.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">You can see all the extension that is installed.</span><a class="headerlink" href="#db-extension" title="Permalink to this image">¶</a></p>
+</div>
+<p>d. Go to the schema-&gt;public-&gt;tables. You should see 20 tables based on the sensorthings api data model for modelling your IoT network.</p>
+<div class="figure align-default" id="db-tables">
+<a class="reference internal image-reference" href="../../_images/db_tables.png"><img alt="../../_images/db_tables.png" src="../../_images/db_tables.png" style="width: 216.5px; height: 373.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">You can see all the tables of the Sensorthing API.</span><a class="headerlink" href="#db-tables" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="setting-frost-server-authenication">
+<h2>Setting FROST-Server Authenication<a class="headerlink" href="#setting-frost-server-authenication" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Right click the table USERS -&gt; View/Edit Data -&gt; All Rows. You will see the table with all the information below. There are three users defined in this table:admin, read and write.</p>
+<div class="figure align-default" id="user-pw">
+<a class="reference internal image-reference" href="../../_images/user_pw.png"><img alt="../../_images/user_pw.png" src="../../_images/user_pw.png" style="width: 562.4px; height: 241.60000000000002px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">All the username and their password.</span><a class="headerlink" href="#user-pw" title="Permalink to this image">¶</a></p>
+</div>
+<p>a. I will rename “admin” to my desired username. In this case, I will name it “new_user_name”. Double-click on the cell. Change the name. Then click on the “Save Data Change” button. You can change the password similarly here.</p>
+<div class="figure align-default" id="user-edit">
+<a class="reference internal image-reference" href="../../_images/user_edit.png"><img alt="../../_images/user_edit.png" src="../../_images/user_edit.png" style="width: 500.0px; height: 264.8px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Editing the username and password.</span><a class="headerlink" href="#user-edit" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Now right-click on the table USER_ROLES -&gt; View/Edit Data -&gt; All Rows. The change is reflected in this table. According to the table, the USER_NAME: new_user_name has the ROLES of admin, create, delete, read and update. It means the user new_user_name is able to do all these actions. So you can create new users and their roles for accessing the Sensorthings API by manipulating these two tables.</p>
+<div class="figure align-default" id="user-roles">
+<a class="reference internal image-reference" href="../../_images/user_roles.png"><img alt="../../_images/user_roles.png" src="../../_images/user_roles.png" style="width: 752.0px; height: 320.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">All the username and their roles.</span><a class="headerlink" href="#user-roles" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\040"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="040task.html" title="previous page">Task</a>
+    <a class='right-next' id="next-link" href="042particle.html" title="next page">Masa3DB with Particle Devices</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

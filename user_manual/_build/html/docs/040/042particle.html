@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Masa3DB with Particle Devices &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Masa3DB with Python" href="043python.html" />
+    <link rel="prev" title="PostgreSQL" href="041postgres.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../020/020installation.html">
+   Installation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/021docker.html">
+     Docker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/022setup.html">
+     Setup Masa3DB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/023maintain.html">
+     Maintenance
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../030/030work.html">
+   Work
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../030/031work1.html">
+     Work Example 1
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="040task.html">
+   Task
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="041postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Masa3DB with Particle Devices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="043python.html">
+     Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="044citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="045import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="046grafana.html">
+     Visualisation with Grafana
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="047cesium3d.html">
+     Visualisation with CesiumJS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="048analysis.html">
+     Analysis
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../050/050integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/051docker_image.html">
+     Timescale-3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/052webhooks.html">
+     Particle Webhooks
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/040/042particle.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/042particle.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pre-requisite">
+   Pre-requisite
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#claiming-particle-devices">
+   Claiming Particle Devices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#particle-scripts">
+   Particle Scripts
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="masa3db-with-particle-devices">
+<h1>Masa3DB with Particle Devices<a class="headerlink" href="#masa3db-with-particle-devices" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="pre-requisite">
+<h2>Pre-requisite<a class="headerlink" href="#pre-requisite" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>If you are unfamilar with Particles. Please go through these <a class="reference external" href="https://docs.particle.io/tutorials/developer-tools/build/">tutorials</a> to familiarise yourself with the service.</p></li>
+<li><p>Configure the 8 webhooks in your particle account shown in <span class="xref std std-doc">docs/050/052webhooks</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="claiming-particle-devices">
+<h2>Claiming Particle Devices<a class="headerlink" href="#claiming-particle-devices" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p><a class="reference external" href="https://setup.particle.io/">Setup your Particle Device</a></p></li>
+<li><p>If it doesn’t work. <a class="reference external" href="https://community.particle.io/t/how-to-do-a-factory-reset/2579">Doing a factory reset on the device</a> can help with the registration. Once reset, try step (1) again.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="p">)</span> <span class="n">Begin</span> <span class="n">holding</span> <span class="n">the</span> <span class="n">MODE</span> <span class="n">button</span> <span class="n">down</span><span class="o">.</span>
+<span class="mi">2</span><span class="p">)</span> <span class="n">While</span> <span class="n">holding</span> <span class="n">the</span> <span class="n">MODE</span> <span class="n">button</span> <span class="n">down</span><span class="p">,</span> <span class="n">tap</span> <span class="n">the</span> <span class="n">RESET</span> <span class="n">button</span> <span class="n">briefly</span><span class="o">.</span>
+<span class="mi">3</span><span class="p">)</span> <span class="n">After</span> <span class="mi">3</span> <span class="n">seconds</span> <span class="n">the</span> <span class="n">core</span> <span class="n">will</span> <span class="n">begin</span> <span class="n">blinking</span> <span class="n">yellow</span><span class="p">,</span> <span class="n">KEEP</span> <span class="n">HOLDING</span> <span class="n">the</span> <span class="n">MODE</span> <span class="n">button</span><span class="o">.</span>
+<span class="mi">4</span><span class="p">)</span> <span class="n">After</span> <span class="mi">10</span> <span class="n">seconds</span> <span class="n">the</span> <span class="n">core</span> <span class="n">will</span> <span class="n">begin</span> <span class="n">blinking</span> <span class="n">white</span><span class="o">.</span>
+<span class="n">When</span> <span class="n">this</span> <span class="n">happens</span> <span class="n">the</span> <span class="n">factory</span> <span class="n">reset</span> <span class="n">process</span> <span class="n">has</span> <span class="n">begun</span><span class="o">.</span> <span class="n">Let</span> <span class="n">go</span> <span class="n">of</span> <span class="n">the</span> <span class="n">MODE</span> <span class="n">button</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="particle-scripts">
+<h2>Particle Scripts<a class="headerlink" href="#particle-scripts" title="Permalink to this headline">¶</a></h2>
+<p>6 scripts are written for particle device to work with Sensorthings API. Copy and paste these 6 links onto your browser and login to your particle account.</p>
+<ul class="simple">
+<li><p>STAPI01_isDeviceRegistered:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fc52d84483a480009a2c2fc</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>STAPI02_RegisterDevice:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fcab743e6f0b000172cfbe2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>STAPI03_RegisterNewDeployment:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fc52e37e6f0b000172cc032</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>STAPI04_RegisterSensor:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fcab1dde6f0b000092d09c2</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>STAPI05_RegisterObservedProp:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fce7c68e6f0b000172d22b3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>STAPI06_PostObservations:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">go</span><span class="o">.</span><span class="n">particle</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">shared_apps</span><span class="o">/</span><span class="mi">5</span><span class="n">fcab9d6e6f0b000172cfbfb</span>
+</pre></div>
+</div>
+<p><br/><br/></p>
+<ol>
+<li><p>Check if the device is registered in the database by flashing it with STAPI01_isDeviceRegistered.</p>
+<div class="figure align-default" id="is-reg">
+<a class="reference internal image-reference" href="../../_images/is_reg.png"><img alt="../../_images/is_reg.png" src="../../_images/is_reg.png" style="width: 813.5px; height: 257.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">If the device is not registered you will be asked to register it with STAPI02-RegisterDevice script under the event name ‘NOT_REGISTERED’.</span><a class="headerlink" href="#is-reg" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="is-reg1">
+<a class="reference internal image-reference" href="../../_images/is_reg1.png"><img alt="../../_images/is_reg1.png" src="../../_images/is_reg1.png" style="width: 821.0px; height: 416.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">If the device is registered you will be able to see its details under the event name ‘REGISTRATION_DETAILS’.</span><a class="headerlink" href="#is-reg1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Register the device with STAPI02_RegisterDevice. Fill in the details accordingly. Pay attention to the instructions written in the script to fill in the parameters.</p>
+<div class="figure align-default" id="register-dev">
+<a class="reference internal image-reference" href="../../_images/register_dev.png"><img alt="../../_images/register_dev.png" src="../../_images/register_dev.png" style="width: 703.0px; height: 356.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 18 </span><span class="caption-text">Fill in all the necessary parameters before flashing the script.</span><a class="headerlink" href="#register-dev" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="register-dev2">
+<a class="reference internal image-reference" href="../../_images/register_dev2.png"><img alt="../../_images/register_dev2.png" src="../../_images/register_dev2.png" style="width: 810.5px; height: 418.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 19 </span><span class="caption-text">Details of the registration is published under the event name ‘DETAILS’. Take not of the multi/datastreams id as you will need these ids for the STAPI06_PostObservations scripts.</span><a class="headerlink" href="#register-dev2" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="register-dev1">
+<a class="reference internal image-reference" href="../../_images/register_dev1.png"><img alt="../../_images/register_dev1.png" src="../../_images/register_dev1.png" style="width: 728.0px; height: 289.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 20 </span><span class="caption-text">If this device is already registered, you will be informed duplicates are found and the duplicate id on the database under the event name ‘INSTRUCTION’.</span><a class="headerlink" href="#register-dev1" title="Permalink to this image">¶</a></p>
+</div>
+<p><br/><br/>
+a. If the sensor you are using for the deployment is not registered in the database. Use script STAPI04_RegisterSensor to register the new sensor. Fill in the parameters accordingly and pay attention to the instruction given on the script. One sensor only has to be registered once and it can be used again. Just remember the id of the sensor.</p>
+<div class="figure align-default" id="reg-sensor">
+<a class="reference internal image-reference" href="../../_images/reg_sensor.png"><img alt="../../_images/reg_sensor.png" src="../../_images/reg_sensor.png" style="width: 763.5px; height: 270.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 21 </span><span class="caption-text">Details of the registration is published under the event name ‘REGISTRATION_DETAILS’. Pay attention to the sensor &#64;iot.id, you will need this id for the STAPI02_RegisterDevice script.</span><a class="headerlink" href="#reg-sensor" title="Permalink to this image">¶</a></p>
+</div>
+<p><br/><br/>
+b. If the Observed Property you are using for the deployment is not registered in the database. Use script STAPI05_RegisterObservedProp to register the new property. Fill in the parameters accordingly and pay attention to the instruction given on the script. One property only has to be registered once and it can be used again. Just remember the id of the property.</p>
+<div class="figure align-default" id="reg-prop">
+<a class="reference internal image-reference" href="../../_images/reg_prop.png"><img alt="../../_images/reg_prop.png" src="../../_images/reg_prop.png" style="width: 762.0px; height: 311.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 22 </span><span class="caption-text">Details of the registration is published under the event name ‘REGISTRATION_DETAILS’. Pay attention to the property &#64;iot.id, you will need this id for the STAPI02_RegisterDevice script.</span><a class="headerlink" href="#reg-prop" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>If you are re-purposing the device. Use STAPI03_RegisterNewDeployment to register the same device in the database but with a different deployment parameter. Fill in the parameters, pay attention to the instruction on the script.</p>
+<div class="figure align-default" id="reg-new-deploy">
+<a class="reference internal image-reference" href="../../_images/reg_new_deploy.png"><img alt="../../_images/reg_new_deploy.png" src="../../_images/reg_new_deploy.png" style="width: 804.5px; height: 403.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 23 </span><span class="caption-text">Details of the the registration is published under the event name ‘DETAILS’. Take not of the multi/datastreams id as you will need these ids for the STAPI06_PostObservations scripts.</span><a class="headerlink" href="#reg-new-deploy" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="reg-new-deploy1">
+<a class="reference internal image-reference" href="../../_images/reg_new_deploy1.png"><img alt="../../_images/reg_new_deploy1.png" src="../../_images/reg_new_deploy1.png" style="width: 815.0px; height: 292.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 24 </span><span class="caption-text">If this device is already registered, you will be informed duplicates are found and the duplicate id on the database under the event name ‘INSTRUCTION’.</span><a class="headerlink" href="#reg-new-deploy1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>With the multi/datastream ids use STAPI06_PostObservations to post your observations to the database. The script is only a template, make necessary adjustments to the script for your project.</p>
+<div class="figure align-default" id="post-obs">
+<a class="reference internal image-reference" href="../../_images/post_obs.png"><img alt="../../_images/post_obs.png" src="../../_images/post_obs.png" style="width: 733.0px; height: 210.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 25 </span><span class="caption-text">Observations are posted to the database.</span><a class="headerlink" href="#post-obs" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\040"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="041postgres.html" title="previous page">PostgreSQL</a>
+    <a class='right-next' id="next-link" href="043python.html" title="next page">Masa3DB with Python</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

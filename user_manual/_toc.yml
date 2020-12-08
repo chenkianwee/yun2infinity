@@ -1,22 +1,26 @@
 # Table of content
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
-- file: docs/010intro
-- file: docs/020installation
+- file: docs/010/010intro
+- file: docs/020/020installation
   sections:
-    - file: docs/021docker
-    - file: docs/023setup
-    - file: docs/024maintain
-- file: docs/030tutorial
+    - file: docs/020/021docker
+    - file: docs/020/022setup
+    - file: docs/020/023maintain
+- file: docs/030/030work
   sections:
-    - file: docs/031postgres
-    - file: docs/032particle
-    - file: docs/033python
-    - file: docs/034citydb
-    - file: docs/035import_citygml
-    - file: docs/036grafana
-    - file: docs/037cesium3d
-    - file: docs/038analysis
-- file: docs/040integration
+    - file: docs/030/031work1
+- file: docs/040/040task
   sections:
-    - file: docs/041docker_image
+    - file: docs/040/041postgres
+    - file: docs/040/042particle
+    - file: docs/040/043python
+    - file: docs/040/044citydb
+    - file: docs/040/045import_citygml
+    - file: docs/040/046grafana
+    - file: docs/040/047cesium3d
+    - file: docs/040/048analysis
+- file: docs/050/050integration
+  sections:
+    - file: docs/050/051docker_image
+    - file: docs/050/052webhooks

@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Setup Masa3DB &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Maintenance" href="023maintain.html" />
+    <link rel="prev" title="Docker" href="021docker.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="020installation.html">
+   Installation
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="021docker.html">
+     Docker
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Setup Masa3DB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="023maintain.html">
+     Maintenance
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../030/030work.html">
+   Work
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../030/031work1.html">
+     Work Example 1
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../040/040task.html">
+   Task
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/041postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/042particle.html">
+     Masa3DB with Particle Devices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/043python.html">
+     Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/044citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/045import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/046grafana.html">
+     Visualisation with Grafana
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/047cesium3d.html">
+     Visualisation with CesiumJS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/048analysis.html">
+     Analysis
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../050/050integration.html">
+   Integration
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/051docker_image.html">
+     Timescale-3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../050/052webhooks.html">
+     Particle Webhooks
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/020/022setup.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/022setup.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ubuntu-20-04">
+   Ubuntu 20.04
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#download-masa3db-onto-your-machine">
+     Download Masa3DB onto your machine
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#install-masa3db">
+     Install Masa3DB
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uninstall-masa3db">
+     Uninstall Masa3DB
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="setup-masa3db">
+<h1>Setup Masa3DB<a class="headerlink" href="#setup-masa3db" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ubuntu-20-04">
+<h2>Ubuntu 20.04<a class="headerlink" href="#ubuntu-20-04" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="download-masa3db-onto-your-machine">
+<h3>Download Masa3DB onto your machine<a class="headerlink" href="#download-masa3db-onto-your-machine" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://github.com/chenkianwee/masa3db/archive/0.02.zip &gt; masa3db-0.02.zip
+</pre></div>
+</div>
+<p>a. If curl is not installed on your machine. Install it with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get curl
+</pre></div>
+</div>
+</li>
+<li><p>Unzip the file with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip masa3db-0.02.zip
+</pre></div>
+</div>
+<p>a. If unzip is not installed on your machine. Install it with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get unzip
+</pre></div>
+</div>
+</li>
+<li><p>Go into the masa3db-0.02 folder with this command. You will be able to see the following folders and files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02
+
+LICENSE  README.md  shellscript  timescale-3dcitydb
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="install-masa3db">
+<h3>Install Masa3DB<a class="headerlink" href="#install-masa3db" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Execute this command to install Masa3DB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02/shellscript
+
+$ sudo sh setup_masa3db.sh
+</pre></div>
+</div>
+</li>
+<li><p>The script will ask you to enter a series of parameters. Most of the parameters you can just accept the defaults. Remember the passwords and username you entered here as you will need it later.</p>
+<div class="figure align-default" id="setup-parm2">
+<img alt="../../_images/setup_parm2.png" src="../../_images/setup_parm2.png" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The series of parameters to fill, in pay attention to the two parameters as stated below.</span><a class="headerlink" href="#setup-parm2" title="Permalink to this image">¶</a></p>
+</div>
+<p>a. Pay attention to the Service Root URL. If you already have a domain name for your server enter that as the Service Root URL. In this example our domain name is http://chaosbox.princeton.edu.
+<br/><br/>
+b. The other parameter to pay attention to is if you want to allow the public to request for data from your database without the need of a password. If you want to set a password set the parameter to “false”.</p>
+<div class="figure align-default" id="setup-parm">
+<img alt="../../_images/setup_parm.png" src="../../_images/setup_parm.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Two parameters to pay attention.</span><a class="headerlink" href="#setup-parm" title="Permalink to this image">¶</a></p>
+</div>
+<p>c. If the installation is successful you will see these messages.</p>
+<div class="figure align-default" id="setup-success">
+<img alt="../../_images/setup_success.png" src="../../_images/setup_success.png" />
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">A successful setup.</span><a class="headerlink" href="#setup-success" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>We will check if the database has been successfully installed. Type in this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker ps
+</pre></div>
+</div>
+<p>a. One container is running the postgresql database (container name: spatempdb) and the other is running the FROST-Server (Sensorthings API server) (container name: frost). All the data is stored in the spatempdb container while the frost container enables the sensorthings api to access the database.</p>
+<div class="figure align-default" id="docker-containers">
+<img alt="../../_images/docker_containers.png" src="../../_images/docker_containers.png" />
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Two containers will be running spatempdb and frost if you have accepted the default naming of containers.</span><a class="headerlink" href="#docker-containers" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Go to http://you_public_ip_address:8080/FROST-Server you will be able to see this landing page. This means that your sensorthings API is setup.</p>
+<div class="figure align-default" id="sensorthings-landing">
+<img alt="../../_images/sensorthings_landing.png" src="../../_images/sensorthings_landing.png" />
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">The landing page of the FROST-Server (Sensorthings API).</span><a class="headerlink" href="#sensorthings-landing" title="Permalink to this image">¶</a></p>
+</div>
+<p>a. Click on the Database Status and Update. You will be prompted to key in your username and password. The default username and passwords are admin. We can change it later.
+<br/><br/>
+b. Once you enter the page click on do update. Once successfully update this message will be shown.</p>
+<div class="figure align-default" id="sensorthings-update">
+<img alt="../../_images/sensorthings_update.png" src="../../_images/sensorthings_update.png" />
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Successfully updated the FROST-Server settings.</span><a class="headerlink" href="#sensorthings-update" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Congratulation you have successfully installed Masa3DB.</p></li>
+</ol>
+</div>
+<div class="section" id="uninstall-masa3db">
+<h3>Uninstall Masa3DB<a class="headerlink" href="#uninstall-masa3db" title="Permalink to this headline">¶</a></h3>
+<ol>
+<li><p>Execute this command to uninstall Masa3DB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!!!This will remove the database with all its data!!!
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02/shellscript
+
+$ sudo sh rmv_masa3db.sh
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\020"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="021docker.html" title="previous page">Docker</a>
+    <a class='right-next' id="next-link" href="023maintain.html" title="next page">Maintenance</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

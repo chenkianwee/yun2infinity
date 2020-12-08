@@ -1,0 +1,565 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Particle Webhooks &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Timescale-3DCityDB" href="051docker_image.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../020/020installation.html">
+   Installation
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/021docker.html">
+     Docker
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/022setup.html">
+     Setup Masa3DB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/023maintain.html">
+     Maintenance
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../030/030work.html">
+   Work
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../030/031work1.html">
+     Work Example 1
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../040/040task.html">
+   Task
+  </a>
+  <ul class="collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/041postgres.html">
+     PostgreSQL
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/042particle.html">
+     Masa3DB with Particle Devices
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/043python.html">
+     Masa3DB with Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/044citydb.html">
+     Initialising 3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/045import_citygml.html">
+     Import CityGML
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/046grafana.html">
+     Visualisation with Grafana
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/047cesium3d.html">
+     Visualisation with CesiumJS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/048analysis.html">
+     Analysis
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="050integration.html">
+   Integration
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="051docker_image.html">
+     Timescale-3DCityDB
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Particle Webhooks
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/050/052webhooks.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/050/052webhooks.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="particle-webhooks">
+<h1>Particle Webhooks<a class="headerlink" href="#particle-webhooks" title="Permalink to this headline">¶</a></h1>
+<p>Webhook is a Particle integration mechanism. For more information on Webhooks, refer to <a class="reference external" href="https://docs.particle.io/tutorials/device-cloud/webhooks/">this</a>. 8 Webhooks are setup to enable the integration with Particle devices.</p>
+<ol>
+<li><p>The getFilter Webhook. This Webhook makes GET request to the FROST-Server to filter and search for relevant information. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">getFilter</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="p">{{{</span><span class="n">query</span><span class="p">}}}</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">GET</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Query</span> <span class="n">Parameters</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postThing Webhook. This Webhook makes POST request to the FROST-Server to create a Thing object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postThing</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">Things</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">JSON</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">JSON</span> <span class="n">DATA</span><span class="p">:</span> <span class="n">Custom</span>
+<span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{PARTICLE_DEVICE_ID}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{thingdesc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;deployment&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{deployment}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;pins&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{pins}</span><span class="s2">}}&quot;</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;Locations&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{foiname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{foidesc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;encodingType&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{entype}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+      <span class="s2">&quot;location&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{loctype}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;{{</span><span class="si">{coordx}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;{{</span><span class="si">{coordy}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;{{</span><span class="si">{coordz}</span><span class="s2">}}&quot;</span>
+        <span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postDatastream Webhook. This Webhook makes POST request to the FROST-Server to create a Datastrean object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postDatastream</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">Datastreams</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Custom</span> <span class="n">Body</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">CUSTOM</span> <span class="n">REQUEST</span> <span class="n">BODY</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{dsname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{dsdesc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;observationType&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{obstype}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;unitOfMeasurement&quot;</span><span class="p">:</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomsym}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomdef}</span><span class="s2">}}&quot;</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;Thing&quot;</span><span class="p">:{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">thingid</span><span class="p">}}}},</span>
+    <span class="s2">&quot;ObservedProperty&quot;</span><span class="p">:{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">obspropid</span><span class="p">}}}},</span>
+    <span class="s2">&quot;Sensor&quot;</span><span class="p">:{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">sensorid</span><span class="p">}}}}</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postMultiDatastream Webhook. This Webhook makes POST request to the FROST-Server to create a MultiDatastrean object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postMultiDatastream</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">MultiDatastreams</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Custom</span> <span class="n">Body</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">CUSTOM</span> <span class="n">REQUEST</span> <span class="n">BODY</span>
+<span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{dsname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{dsdesc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;observationType&quot;</span><span class="p">:</span> <span class="s2">&quot;http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_ComplexObservation&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;multiObservationDataTypes&quot;</span><span class="p">:[</span><span class="s2">&quot;{{</span><span class="si">{obstype}</span><span class="s2">}}&quot;</span><span class="p">,</span> <span class="s2">&quot;{{</span><span class="si">{obstype}</span><span class="s2">}}&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;unitOfMeasurements&quot;</span><span class="p">:</span>
+    <span class="p">[</span>
+     <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomsym}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomdef}</span><span class="s2">}}&quot;</span>
+     <span class="p">},</span>
+     <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;symbol&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomsym}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{uomdef}</span><span class="s2">}}&quot;</span>
+     <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;Thing&quot;</span><span class="p">:{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">thingid</span><span class="p">}}}},</span>
+    <span class="s2">&quot;ObservedProperties&quot;</span><span class="p">:[{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">obspropid</span><span class="p">}}}},</span> <span class="p">{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">obspropid</span><span class="p">}}}}],</span>
+    <span class="s2">&quot;Sensor&quot;</span><span class="p">:{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:{{{</span><span class="n">sensorid</span><span class="p">}}}}</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postObservation Webhook. This Webhook makes POST request to the FROST-Server to create a Observation object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postObservation</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">Observations</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Custom</span> <span class="n">Body</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">CUSTOM</span> <span class="n">REQUEST</span> <span class="n">BODY</span>
+<span class="p">{</span>
+    <span class="s2">&quot;phenomenonTime&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{time}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;resultTime&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{time}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="p">{{{</span><span class="n">result</span><span class="p">}}},</span>
+    <span class="s2">&quot;Datastream&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:</span> <span class="p">{{{</span><span class="n">dsId</span><span class="p">}}}}</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postMultiObservation Webhook. This Webhook makes POST request to the FROST-Server to create a MultiObservation object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postObservation</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">CreateObservations</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Custom</span> <span class="n">Body</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">CUSTOM</span> <span class="n">REQUEST</span> <span class="n">BODY</span>
+<span class="p">[{</span>
+    <span class="s2">&quot;components&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;phenomenonTime&quot;</span><span class="p">,</span><span class="s2">&quot;resultTime&quot;</span><span class="p">,</span><span class="s2">&quot;result&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;dataArray&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;{{</span><span class="si">{time}</span><span class="s2">}}&quot;</span><span class="p">,</span><span class="s2">&quot;{{</span><span class="si">{time}</span><span class="s2">}}&quot;</span><span class="p">,</span> <span class="p">[{{{</span><span class="n">result1</span><span class="p">}}},</span> <span class="p">{{{</span><span class="n">result2</span><span class="p">}}}]]],</span>
+    <span class="s2">&quot;dataArray@iot.count&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;MultiDatastream&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;@iot.id&quot;</span><span class="p">:</span> <span class="p">{{{</span><span class="n">mdsId</span><span class="p">}}}}</span>
+<span class="p">}]</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postSensor Webhook. This Webhook makes POST request to the FROST-Server to create a Sensor object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postSensor</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">Sensors</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">JSON</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">JSON</span> <span class="n">DATA</span> <span class="o">-</span> <span class="n">Custom</span>
+<span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{name}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{desc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;encodingType&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{encodeType}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;metadata&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{metadata}</span><span class="s2">}}&quot;</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+<li><p>The postObsProperties Webhook. This Webhook makes POST request to the FROST-Server to create a Observed Property object for the Particle device. Setup your Webhook as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postSensor</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">ObservedProperties</span>
+<span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
+<span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">JSON</span>
+<span class="n">Device</span><span class="p">:</span> <span class="n">Any</span>
+
+<span class="n">Advanced</span> <span class="n">Settings</span>
+<span class="n">JSON</span> <span class="n">DATA</span> <span class="o">-</span> <span class="n">Custom</span>
+<span class="p">{</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{name}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{desc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;definition&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{def}</span><span class="s2">}}&quot;</span>
+<span class="p">}</span>
+<span class="n">HTTP</span> <span class="n">BASIC</span> <span class="n">AUTH</span>
+<span class="n">Username</span><span class="p">:</span> <span class="n">Your</span> <span class="n">username</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">Your</span> <span class="n">password</span> <span class="k">for</span> <span class="n">FROST</span><span class="o">-</span><span class="n">server</span> <span class="n">access</span>
+
+<span class="n">ENFORCE</span> <span class="n">SSL</span><span class="p">:</span> <span class="n">No</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\050"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="051docker_image.html" title="previous page">Timescale-3DCityDB</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
