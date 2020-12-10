@@ -289,6 +289,16 @@
    Install Grafana
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">
+   Install LinkSmart SensorThings Plugin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-dashboards">
+   Create Dashboards
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -313,6 +323,61 @@
 </div>
 </li>
 <li><p>Go to the server where you have installed your Grafana. In my case, I have installed it at http://chaosbox.princeton.edu:3000 (will need to VPN into the local intranet). For the first time, login to Grafana with username:admin and password:admin. Once login change the password and username.</p></li>
+</ol>
+</div>
+<div class="section" id="install-linksmart-sensorthings-plugin">
+<h2>Install LinkSmart SensorThings Plugin<a class="headerlink" href="#install-linksmart-sensorthings-plugin" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Run this command to get into the grafana container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -u root -it grafana bash
+</pre></div>
+</div>
+</li>
+<li><p>Run this command in the bash to install the SensorThings Plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grafana-cli plugins install linksmart-sensorthings-datasource
+</pre></div>
+</div>
+</li>
+<li><p>Exit the container by running this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ exit
+</pre></div>
+</div>
+</li>
+<li><p>Restart the Grafana container for the plugin to work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart grafana
+</pre></div>
+</div>
+</li>
+<li><p>Once installed. Login to Grafana. On the side bar, go to Configuration -&gt; Data Sources - Add data source. Search for sensorthings and you will see</p>
+<div class="figure align-default" id="sensorthings-plugin">
+<a class="reference internal image-reference" href="../../_images/sensorthings_plugin.png"><img alt="../../_images/sensorthings_plugin.png" src="../../_images/sensorthings_plugin.png" style="width: 957.0px; height: 333.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Select the LinkSmart SensorThings.</span><a class="headerlink" href="#sensorthings-plugin" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Next configure the settings as follows.Remember to substitute your frost server container name below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">LinkSmart</span> <span class="n">SensorThings</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">containername</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">Access</span><span class="p">:</span> <span class="n">Server</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
+
+<span class="n">Basic</span> <span class="n">auth</span>
+<span class="n">Basic</span> <span class="n">Auth</span> <span class="n">Details</span>
+<span class="n">User</span><span class="p">:</span> <span class="n">your</span> <span class="n">user</span> <span class="n">name</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">your</span> <span class="n">password</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="create-dashboards">
+<h2>Create Dashboards<a class="headerlink" href="#create-dashboards" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Go to the side bar, Create -&gt; Dashboard -&gt; Add new panel.</p></li>
+<li><p>At the datasource tab, choose the Sensorthing datasource that you have setup.</p>
+<div class="figure align-default" id="sensorthings-plugin1">
+<a class="reference internal image-reference" href="../../_images/sensorthings_plugin1.png"><img alt="../../_images/sensorthings_plugin1.png" src="../../_images/sensorthings_plugin1.png" style="width: 835.0px; height: 294.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Select the LinkSmart SensorThings as datasource.</span><a class="headerlink" href="#sensorthings-plugin1" title="Permalink to this image">¶</a></p>
+</div>
+</li>
 </ol>
 </div>
 </div>

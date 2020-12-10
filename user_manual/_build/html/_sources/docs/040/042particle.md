@@ -19,27 +19,27 @@
 
 - STAPI01_isDeviceRegistered:
 ```
-https://go.particle.io/shared_apps/5fc52d84483a480009a2c2fc
+https://go.particle.io/shared_apps/5fd26ea3483a480009a35286
 ```
 - STAPI02_RegisterDevice:
 ```
-https://go.particle.io/shared_apps/5fcab743e6f0b000172cfbe2
+https://go.particle.io/shared_apps/5fd25f28e6f0b000172d5076
 ```
 - STAPI03_RegisterNewDeployment:
 ```
-https://go.particle.io/shared_apps/5fc52e37e6f0b000172cc032
+https://go.particle.io/shared_apps/5fd260a7e6f0b000092d5d29
 ```
 - STAPI04_RegisterSensor:
 ```
-https://go.particle.io/shared_apps/5fcab1dde6f0b000092d09c2
+https://go.particle.io/shared_apps/5fd2625b483a480009a3520f
 ```
 - STAPI05_RegisterObservedProp:
 ```
-https://go.particle.io/shared_apps/5fce7c68e6f0b000172d22b3
+https://go.particle.io/shared_apps/5fd26322483a480009a35216
 ```
 - STAPI06_PostObservations:
 ```
-https://go.particle.io/shared_apps/5fcab9d6e6f0b000172cfbfb
+https://go.particle.io/shared_apps/5fd269b0483a480017a34ddb
 ```
 <br/><br/>
 1. Check if the device is registered in the database by flashing it with STAPI01_isDeviceRegistered.

@@ -7,7 +7,7 @@
     ```
     a. If curl is not installed on your machine. Install it with this command.
     ```
-    $ sudo apt-get curl
+    $ sudo apt-get install curl
     ```
 2. Unzip the file with this command.
     ```
@@ -15,7 +15,7 @@
     ```
     a. If unzip is not installed on your machine. Install it with this command.
     ```
-    $ sudo apt-get unzip
+    $ sudo apt-get install unzip
     ```
 3. Go into the masa3db-0.02 folder with this command. You will be able to see the following folders and files.
     ```

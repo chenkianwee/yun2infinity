@@ -13,6 +13,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+
     ENFORCE SSL: No
     ```
 2. The postThing Webhook. This Webhook makes POST request to the FROST-Server to create a Thing object for the Particle device. Setup your Webhook as follows.
@@ -52,6 +56,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+
     ENFORCE SSL: No
     ```
 3. The postDatastream Webhook. This Webhook makes POST request to the FROST-Server to create a Datastrean object for the Particle device. Setup your Webhook as follows.
@@ -81,6 +89,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     HTTP BASIC AUTH
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
+
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
     ENFORCE SSL: No
     ```
@@ -120,6 +132,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+
     ENFORCE SSL: No
     ```
 5. The postObservation Webhook. This Webhook makes POST request to the FROST-Server to create a Observation object for the Particle device. Setup your Webhook as follows.
@@ -141,6 +157,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     HTTP BASIC AUTH
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
+
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
     ENFORCE SSL: No
     ```
@@ -164,6 +184,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+
     ENFORCE SSL: No
     ```
 7. The postSensor Webhook. This Webhook makes POST request to the FROST-Server to create a Sensor object for the Particle device. Setup your Webhook as follows.
@@ -186,6 +210,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+
     ENFORCE SSL: No
     ```
 8. The postObsProperties Webhook. This Webhook makes POST request to the FROST-Server to create a Observed Property object for the Particle device. Setup your Webhook as follows.
@@ -207,5 +235,9 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Username: Your username for FROST-server access
     Password: Your password for FROST-server access
 
+    WEBHOOK RESPONSES
+    Response Topic
+    {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
+    
     ENFORCE SSL: No
     ```

@@ -47,7 +47,7 @@ I will use the pgAdmin software, which is a GUI for managing the Postgresql data
 
     You can see all the tables of the Sensorthing API.
     ```
-## Setting FROST-Server Authenication
+## Setting FROST-Server Authentication
 1. Right click the table USERS -> View/Edit Data -> All Rows. You will see the table with all the information below. There are three users defined in this table:admin, read and write.
     ```{figure} /_static/031postgres/user_pw.png
     :scale: 80%
