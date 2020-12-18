@@ -22,3 +22,13 @@
 ## Workaround
 ### Under Development ... ...
 [Possible workaround that has not been implemented](https://github.com/3dcitydb/importer-exporter/issues/70#issuecomment-710457603)
+
+## SQL for 3DCityDB
+1. Show the names and height of the building.
+    ```
+    select c.name,c.id,b.measured_height from cityobject c inner join building b on b.id = c.id ;
+    ```
+2. To check the geometry of the buildings.
+    ```
+    select ST_AsGML(geometry) from surface_geometry where id=5;
+    ```

@@ -7,6 +7,7 @@
     - file: docs/020/021docker
     - file: docs/020/022setup
     - file: docs/020/023maintain
+    - file: docs/020/024man_setup
 - file: docs/030/030work
   sections:
     - file: docs/030/031work1
@@ -20,6 +21,7 @@
     - file: docs/040/046grafana
     - file: docs/040/047cesium3d
     - file: docs/040/048analysis
+    - file: docs/040/049ssl_cert
 - file: docs/050/050integration
   sections:
     - file: docs/050/051docker_image

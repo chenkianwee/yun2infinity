@@ -55,7 +55,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Workflows" href="../030/030work.html" />
+    <link rel="next" title="Non Docker Installation (Not Recommended)" href="024man_setup.html" />
     <link rel="prev" title="Setup Masa3DB" href="022setup.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -110,6 +110,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Maintenance
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="024man_setup.html">
+     Non Docker Installation (Not Recommended)
     </a>
    </li>
   </ul>
@@ -173,6 +178,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../040/048analysis.html">
      Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../040/049ssl_cert.html">
+     Get SSL Certificate for you FROST-Server
     </a>
    </li>
   </ul>
@@ -285,8 +295,8 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#under-development">
-   Under Development … …
+  <a class="reference internal nav-link" href="#backup-and-restore-database">
+   Backup and Restore database
   </a>
  </li>
 </ul>
@@ -302,8 +312,67 @@
                 
   <div class="section" id="maintenance">
 <h1>Maintenance<a class="headerlink" href="#maintenance" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-development">
-<h2>Under Development … …<a class="headerlink" href="#under-development" title="Permalink to this headline">¶</a></h2>
+<p>You have to get into the container hosting the PostgreSQL.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -it container_name bash
+</pre></div>
+</div>
+<div class="section" id="backup-and-restore-database">
+<h2>Backup and Restore database<a class="headerlink" href="#backup-and-restore-database" title="Permalink to this headline">¶</a></h2>
+<p>This instructions are based on the official timescaleDB documentation <a class="reference external" href="https://docs.timescale.com/latest/using-timescaledb/backup">here</a></p>
+<ol>
+<li><p>Backup your database with pg_dump. The error messages are <a class="reference external" href="https://github.com/timescale/timescaledb/issues/1581">harmless</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pg_dump -U $username -Fc -f backup.bak $database_to_backup
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ignore</span> <span class="n">this</span> <span class="n">error</span> <span class="n">message</span> <span class="n">they</span> <span class="n">are</span> <span class="n">harmless</span><span class="p">:</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">there</span> <span class="n">are</span> <span class="n">circular</span> <span class="n">foreign</span><span class="o">-</span><span class="n">key</span> <span class="n">constraints</span> <span class="n">on</span> <span class="n">this</span> <span class="n">table</span><span class="p">:</span>
+<span class="n">pg_dump</span><span class="p">:</span>   <span class="n">hypertable</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">You</span> <span class="n">might</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">restore</span> <span class="n">the</span> <span class="n">dump</span> <span class="n">without</span> <span class="n">using</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">triggers</span> <span class="ow">or</span> <span class="n">temporarily</span> <span class="n">dropping</span> <span class="n">the</span> <span class="n">constraints</span><span class="o">.</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">Consider</span> <span class="n">using</span> <span class="n">a</span> <span class="n">full</span> <span class="n">dump</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">only</span> <span class="n">dump</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">warning</span><span class="p">:</span> <span class="n">there</span> <span class="n">are</span> <span class="n">circular</span> <span class="n">foreign</span><span class="o">-</span><span class="n">key</span> <span class="n">constraints</span> <span class="n">on</span> <span class="n">this</span> <span class="n">table</span><span class="p">:</span>
+<span class="n">pg_dump</span><span class="p">:</span>   <span class="n">chunk</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">You</span> <span class="n">might</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">able</span> <span class="n">to</span> <span class="n">restore</span> <span class="n">the</span> <span class="n">dump</span> <span class="n">without</span> <span class="n">using</span> <span class="o">--</span><span class="n">disable</span><span class="o">-</span><span class="n">triggers</span> <span class="ow">or</span> <span class="n">temporarily</span> <span class="n">dropping</span> <span class="n">the</span> <span class="n">constraints</span><span class="o">.</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">Consider</span> <span class="n">using</span> <span class="n">a</span> <span class="n">full</span> <span class="n">dump</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">a</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">only</span> <span class="n">dump</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">this</span> <span class="n">problem</span><span class="o">.</span>
+<span class="n">pg_dump</span><span class="p">:</span> <span class="n">NOTICE</span><span class="p">:</span>  <span class="n">hypertable</span> <span class="n">data</span> <span class="n">are</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">chunks</span><span class="p">,</span> <span class="n">no</span> <span class="n">data</span> <span class="n">will</span> <span class="n">be</span> <span class="n">copied</span>
+<span class="n">DETAIL</span><span class="p">:</span>  <span class="n">Data</span> <span class="k">for</span> <span class="n">hypertables</span> <span class="n">are</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">chunks</span> <span class="n">of</span> <span class="n">a</span> <span class="n">hypertable</span> <span class="n">so</span> <span class="n">COPY</span> <span class="n">TO</span> <span class="n">of</span> <span class="n">a</span> <span class="n">hypertable</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">copy</span> <span class="nb">any</span> <span class="n">data</span><span class="o">.</span>
+<span class="n">HINT</span><span class="p">:</span>  <span class="n">Use</span> <span class="s2">&quot;COPY (SELECT * FROM &lt;hypertable&gt;) TO ...&quot;</span> <span class="n">to</span> <span class="n">copy</span> <span class="nb">all</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">hypertable</span><span class="p">,</span> <span class="ow">or</span> <span class="n">copy</span> <span class="n">each</span> <span class="n">chunk</span> <span class="n">individually</span><span class="o">.</span>
+</pre></div>
+</div>
+</li>
+<li><p>Copy it into your local host. Get out of the container and run this command. This will copy the backup file onto the current directory of your local machine. Then use this file to restore the database in a new machine.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker cp spatempdb:spatempdb.bak .
+</pre></div>
+</div>
+</li>
+<li><p>Copy the backup file into the container you want to restore to.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker cp backup.bak containername:.
+</pre></div>
+</div>
+</li>
+<li><p>Perform the restore with these command. Go into the PostgreSQL container you want to restore to. Connect to PostgreSQL with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql -U username database_name
+</pre></div>
+</div>
+<p>a. Once you get into psql, if you want to restore it to a new database. Create a new database.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CREATE</span> <span class="n">DATABASE</span> <span class="n">database_to_restore</span><span class="p">;</span>
+\<span class="n">c</span> <span class="n">database_to_restore</span> <span class="o">--</span><span class="n">connect</span> <span class="n">to</span> <span class="n">the</span> <span class="n">db</span> <span class="n">where</span> <span class="n">we</span><span class="s1">&#39;ll perform the restore</span>
+<span class="n">CREATE</span> <span class="n">EXTENSION</span> <span class="n">IF</span> <span class="n">NOT</span> <span class="n">EXISTS</span> <span class="n">timescaledb</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>b. Before the restore remember to run this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">timescaledb_pre_restore</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>c. Exit the psql and then execute pg_restore</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pg_restore -U username -Fc -d database_to_restore spatempdb.bak
+</pre></div>
+</div>
+<p>c. Once restored enter into the psql again and execute this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">timescaledb_post_restore</span><span class="p">();</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 
@@ -336,7 +405,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="022setup.html" title="previous page">Setup Masa3DB</a>
-    <a class='right-next' id="next-link" href="../030/030work.html" title="next page">Workflows</a>
+    <a class='right-next' id="next-link" href="024man_setup.html" title="next page">Non Docker Installation (Not Recommended)</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

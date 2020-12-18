@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualisation with Grafana &#8212; Masa3DB User Manual</title>
+    <title>Get SSL Certificate for you FROST-Server &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Visualisation with CesiumJS" href="047cesium3d.html" />
-    <link rel="prev" title="Import CityGML" href="045import_citygml.html" />
+    <link rel="next" title="Integration" href="../050/050integration.html" />
+    <link rel="prev" title="Analysis" href="048analysis.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -165,8 +165,8 @@
      Import CityGML
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="046grafana.html">
      Visualisation with Grafana
     </a>
    </li>
@@ -180,8 +180,8 @@
      Analysis
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="049ssl_cert.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Get SSL Certificate for you FROST-Server
     </a>
    </li>
@@ -248,7 +248,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/040/046grafana.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/040/049ssl_cert.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -268,7 +268,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/046grafana.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/049ssl_cert.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -295,18 +295,8 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-grafana">
-   Install Grafana
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">
-   Install LinkSmart SensorThings Plugin
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#create-dashboards">
-   Create Dashboards
+  <a class="reference internal nav-link" href="#generate-csr-key">
+   Generate CSR key
   </a>
  </li>
 </ul>
@@ -320,72 +310,87 @@
         
               <div>
                 
-  <div class="section" id="visualisation-with-grafana">
-<h1>Visualisation with Grafana<a class="headerlink" href="#visualisation-with-grafana" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-grafana">
-<h2>Install Grafana<a class="headerlink" href="#install-grafana" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="get-ssl-certificate-for-you-frost-server">
+<h1>Get SSL Certificate for you FROST-Server<a class="headerlink" href="#get-ssl-certificate-for-you-frost-server" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="generate-csr-key">
+<h2>Generate CSR key<a class="headerlink" href="#generate-csr-key" title="Permalink to this headline">¶</a></h2>
+<p>This is based on instructions from <a class="reference external" href="https://dzone.com/articles/keytool-commandutility-to-generate-a-keystorecerti">here</a></p>
 <ol>
-<li><p>If you have not installed Docker. Install Docker <a class="reference internal" href="../020/021docker.html"><span class="doc">here</span></a>.</p></li>
-<li><p>If you have not installed Masa3DB. Install Masa3DB <a class="reference internal" href="../020/022setup.html"><span class="doc">here</span></a>.</p></li>
-<li><p>Run this command to install Grafana.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker run -d --network masa3db -p 3000:3000 --name grafana grafana/grafana  
+<li><p>Interactive bash into the container running the FROST-Server with the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">u</span> <span class="n">root</span> <span class="n">ContainerName</span> <span class="n">bash</span>
 </pre></div>
 </div>
 </li>
-<li><p>Go to the server where you have installed your Grafana. In my case, I have installed it at http://chaosbox.princeton.edu:3000 (will need to VPN into the local intranet). For the first time, login to Grafana with username:admin and password:admin. Once login change the password and username.</p></li>
-</ol>
-</div>
-<div class="section" id="install-linksmart-sensorthings-plugin">
-<h2>Install LinkSmart SensorThings Plugin<a class="headerlink" href="#install-linksmart-sensorthings-plugin" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>Run this command to get into the grafana container.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -u root -it grafana bash
-</pre></div>
-</div>
-</li>
-<li><p>Run this command in the bash to install the SensorThings Plugin.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grafana-cli plugins install linksmart-sensorthings-datasource
-</pre></div>
-</div>
-</li>
-<li><p>Exit the container by running this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ exit
-</pre></div>
-</div>
-</li>
-<li><p>Restart the Grafana container for the plugin to work.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart grafana
-</pre></div>
-</div>
-</li>
-<li><p>Once installed. Login to Grafana. On the side bar, go to Configuration -&gt; Data Sources - Add data source. Search for sensorthings and you will see</p>
-<div class="figure align-default" id="sensorthings-plugin">
-<a class="reference internal image-reference" href="../../_images/sensorthings_plugin.png"><img alt="../../_images/sensorthings_plugin.png" src="../../_images/sensorthings_plugin.png" style="width: 957.0px; height: 333.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 28 </span><span class="caption-text">Select the LinkSmart SensorThings.</span><a class="headerlink" href="#sensorthings-plugin" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Next configure the settings as follows.Remember to substitute your frost server container name below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">LinkSmart</span> <span class="n">SensorThings</span>
-<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">containername</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span>
-<span class="n">Access</span><span class="p">:</span> <span class="n">Server</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
+<li><p>You will be logged into the container as root with the -u 0 option. Generate a keystore with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>keytool -genkey -alias $domain_name -keyalg RSA -keysize 2048 -keystore $file_name.jks
 
-<span class="n">Basic</span> <span class="n">auth</span>
-<span class="n">Basic</span> <span class="n">Auth</span> <span class="n">Details</span>
-<span class="n">User</span><span class="p">:</span> <span class="n">your</span> <span class="n">user</span> <span class="n">name</span>
-<span class="n">Password</span><span class="p">:</span> <span class="n">your</span> <span class="n">password</span>
+substitute $domain_name and $file_name with your real domain name. For example, if your URL is chaosbox.princeton.com, your $domain_name = chaosbox
+</pre></div>
+</div>
+<p>a. You will be prompted to fill in the following parameters. Remember your keystore password.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Enter keystore password:
+Re-enter new password:
+What is your first and last name?
+  [Unknown]:  andlchaos300l.xyz.com
+What is the name of your organizational unit?
+  [Unknown]:  your_unit
+What is the name of your organization?
+  [Unknown]:  your organization
+What is the name of your City or Locality?
+  [Unknown]:  City
+What is the name of your State or Province?
+  [Unknown]:  State
+What is the two-letter country code for this unit?
+  [Unknown]:  Country
+Is CN=andlchaos300l.xyz.com, OU=your_unit, O=your organization, L=Princeton, ST=New Jersey, C=US correct?
+  [no]:  yes
+</pre></div>
+</div>
+<p>b. The .jks file will be generated in the directory.</p>
+</li>
+<li><p>Generate the CSR file to be signed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -certreq -alias $domain_name -keystore $domain_name.jks -file $csr_key.csr
 </pre></div>
 </div>
 </li>
-</ol>
+<li><p>Import the signed certificate into the keystore with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias $domain_name -keystore $domain_name.jks -file $signed_cert.crt
+</pre></div>
 </div>
-<div class="section" id="create-dashboards">
-<h2>Create Dashboards<a class="headerlink" href="#create-dashboards" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>Go to the side bar, Create -&gt; Dashboard -&gt; Add new panel.</p></li>
-<li><p>At the datasource tab, choose the Sensorthing datasource that you have setup.</p>
-<div class="figure align-default" id="sensorthings-plugin1">
-<a class="reference internal image-reference" href="../../_images/sensorthings_plugin1.png"><img alt="../../_images/sensorthings_plugin1.png" src="../../_images/sensorthings_plugin1.png" style="width: 835.0px; height: 294.0px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 29 </span><span class="caption-text">Select the LinkSmart SensorThings as datasource.</span><a class="headerlink" href="#sensorthings-plugin1" title="Permalink to this image">¶</a></p>
+</li>
+<li><p>Next, in the container you will have to edit the setting in Tomcat, update the apt-get software and install vim for editing text file. If you did not sign the CSR you can still do this to create a self-signed URL.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ apt-get update
+
+$ apt-get install vim
+</pre></div>
+</div>
+</li>
+<li><p>Once installed, open the server.xml file at the conf directory.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi conf/server.xml
+</pre></div>
+</div>
+<p>a. Go to the connector segment shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Connector</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8080&quot;</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;HTTP/1.1&quot;</span>
+            <span class="n">connectionTimeout</span><span class="o">=</span><span class="s2">&quot;20000&quot;</span>
+            <span class="n">redirectPort</span><span class="o">=</span><span class="s2">&quot;8443&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>b. Add these extra settings to enable https encryption.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Connector</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8080&quot;</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;HTTP/1.1&quot;</span>
+            <span class="n">connectionTimeout</span><span class="o">=</span><span class="s2">&quot;20000&quot;</span>
+            <span class="n">redirectPort</span><span class="o">=</span><span class="s2">&quot;8443&quot;</span>
+            <span class="n">SSLEnabled</span><span class="o">=</span><span class="s2">&quot;true&quot;</span>
+            <span class="n">scheme</span><span class="o">=</span><span class="s2">&quot;https&quot;</span>
+            <span class="n">keystoreFile</span><span class="o">=</span><span class="s2">&quot;keystorefile.jks&quot;</span>
+            <span class="n">keystorePass</span><span class="o">=</span><span class="s2">&quot;keystore_password&quot;</span>
+            <span class="n">clientAuth</span><span class="o">=</span><span class="s2">&quot;false&quot;</span>
+            <span class="n">sslProtocol</span><span class="o">=</span><span class="s2">&quot;TLS&quot;</span><span class="o">/&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Restart your container. The URL will start with https now.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart $container_name
+</pre></div>
 </div>
 </li>
 </ol>
@@ -420,8 +425,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="045import_citygml.html" title="previous page">Import CityGML</a>
-    <a class='right-next' id="next-link" href="047cesium3d.html" title="next page">Visualisation with CesiumJS</a>
+    <a class='left-prev' id="prev-link" href="048analysis.html" title="previous page">Analysis</a>
+    <a class='right-next' id="next-link" href="../050/050integration.html" title="next page">Integration</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

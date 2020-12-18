@@ -112,6 +112,11 @@
      Maintenance
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../020/024man_setup.html">
+     Non Docker Installation (Not Recommended)
+    </a>
+   </li>
   </ul>
   <i class="fas fa-chevron-down">
   </i>
@@ -173,6 +178,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="048analysis.html">
      Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="049ssl_cert.html">
+     Get SSL Certificate for you FROST-Server
     </a>
    </li>
   </ul>
@@ -301,6 +311,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-for-3dcitydb">
+   SQL for 3DCityDB
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -340,6 +355,21 @@
 <h3>Under Development … …<a class="headerlink" href="#under-development" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://github.com/3dcitydb/importer-exporter/issues/70#issuecomment-710457603">Possible workaround that has not been implemented</a></p>
 </div>
+</div>
+<div class="section" id="sql-for-3dcitydb">
+<h2>SQL for 3DCityDB<a class="headerlink" href="#sql-for-3dcitydb" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Show the names and height of the building.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">measured_height</span> <span class="kn">from</span> <span class="nn">cityobject</span> <span class="n">c</span> <span class="n">inner</span> <span class="n">join</span> <span class="n">building</span> <span class="n">b</span> <span class="n">on</span> <span class="n">b</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>To check the geometry of the buildings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">ST_AsGML</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">surface_geometry</span> <span class="n">where</span> <span class="nb">id</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 
