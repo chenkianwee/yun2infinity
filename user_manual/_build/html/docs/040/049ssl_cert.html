@@ -325,6 +325,10 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>keytool -genkey -alias $domain_name -keyalg RSA -keysize 2048 -keystore $file_name.jks
 
 substitute $domain_name and $file_name with your real domain name. For example, if your URL is chaosbox.princeton.com, your $domain_name = chaosbox
+
+for self-signed cert you can add in the validity option
+
+keytool -genkey -alias $domain_name -keyalg RSA -keysize 2048 -keystore $file_name.jks -validity 365
 </pre></div>
 </div>
 <p>a. You will be prompted to fill in the following parameters. Remember your keystore password.</p>
@@ -353,8 +357,28 @@ Is CN=andlchaos300l.xyz.com, OU=your_unit, O=your organization, L=Princeton, ST=
 </pre></div>
 </div>
 </li>
-<li><p>Import the signed certificate into the keystore with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias $domain_name -keystore $domain_name.jks -file $signed_cert.crt
+<li><p>Import the signed certificate into the keystore with this command. First import the root certificate. These instructions are based on this <a class="reference external" href="https://www.ssls.com/knowledgebase/how-to-install-an-ssl-certificate-on-a-tomcat-server/#PKCS12">post</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias root -keystore $domain_name.jks -file root.crt
+</pre></div>
+</div>
+<p>a. Then import the intermediate certificate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias intermediate -keystore $domain_name.jks -file intermediate.crt
+</pre></div>
+</div>
+<p>b. Then import the domain certificate.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias $domain_name -keystore $domain_name.jks -file domain.crt
+
+You will get the message &#39;Certificate reply was installed in keystore&#39;.
+
+The alias name have to correspond to the domain name of your webpage
+</pre></div>
+</div>
+<p>c. You can check the installed certificates with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -list -v -keystore $domain_name.jks -storepass $password
+</pre></div>
+</div>
+<p>b. If you want to delete certificate you can do it with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -delete -alias $aliasname -keystore $domain_name.jks -storepass $password
 </pre></div>
 </div>
 </li>

@@ -11,6 +11,10 @@ This is based on instructions from [here](https://dzone.com/articles/keytool-com
     keytool -genkey -alias $domain_name -keyalg RSA -keysize 2048 -keystore $file_name.jks
 
     substitute $domain_name and $file_name with your real domain name. For example, if your URL is chaosbox.princeton.com, your $domain_name = chaosbox
+
+    for self-signed cert you can add in the validity option
+
+    keytool -genkey -alias $domain_name -keyalg RSA -keysize 2048 -keystore $file_name.jks -validity 365
     ```
 
     a. You will be prompted to fill in the following parameters. Remember your keystore password.
@@ -40,10 +44,31 @@ This is based on instructions from [here](https://dzone.com/articles/keytool-com
     $ keytool -certreq -alias $domain_name -keystore $domain_name.jks -file $csr_key.csr
     ```
 
-4. Import the signed certificate into the keystore with this command.
+4. Import the signed certificate into the keystore with this command. First import the root certificate. These instructions are based on this [post](https://www.ssls.com/knowledgebase/how-to-install-an-ssl-certificate-on-a-tomcat-server/#PKCS12).
     ```
-    $ keytool -import -alias $domain_name -keystore $domain_name.jks -file $signed_cert.crt
+    $ keytool -import -alias root -keystore $domain_name.jks -file root.crt
     ```
+    a. Then import the intermediate certificate.
+    ```
+    $ keytool -import -alias intermediate -keystore $domain_name.jks -file intermediate.crt
+    ```
+    b. Then import the domain certificate.
+    ```
+    $ keytool -import -alias $domain_name -keystore $domain_name.jks -file domain.crt
+
+    You will get the message 'Certificate reply was installed in keystore'.
+
+    The alias name have to correspond to the domain name of your webpage
+    ```
+    c. You can check the installed certificates with this command.
+    ```
+    $ keytool -list -v -keystore $domain_name.jks -storepass $password
+    ```
+    b. If you want to delete certificate you can do it with this command.
+    ```
+    $ keytool -delete -alias $aliasname -keystore $domain_name.jks -storepass $password
+    ```
+
 5. Next, in the container you will have to edit the setting in Tomcat, update the apt-get software and install vim for editing text file. If you did not sign the CSR you can still do this to create a self-signed URL.
     ```
     $ apt-get update
