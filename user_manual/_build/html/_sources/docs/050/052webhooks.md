@@ -17,7 +17,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 2. The postThing Webhook. This Webhook makes POST request to the FROST-Server to create a Thing object for the Particle device. Setup your Webhook as follows.
     ```
@@ -60,7 +60,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 3. The postDatastream Webhook. This Webhook makes POST request to the FROST-Server to create a Datastrean object for the Particle device. Setup your Webhook as follows.
     ```
@@ -94,7 +94,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 4. The postMultiDatastream Webhook. This Webhook makes POST request to the FROST-Server to create a MultiDatastrean object for the Particle device. Setup your Webhook as follows.
     ```
@@ -136,7 +136,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 5. The postObservation Webhook. This Webhook makes POST request to the FROST-Server to create a Observation object for the Particle device. Setup your Webhook as follows.
     ```
@@ -162,7 +162,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 6. The postMultiObservation Webhook. This Webhook makes POST request to the FROST-Server to create a MultiObservation object for the Particle device. Setup your Webhook as follows.
     ```
@@ -188,7 +188,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 7. The postSensor Webhook. This Webhook makes POST request to the FROST-Server to create a Sensor object for the Particle device. Setup your Webhook as follows.
     ```
@@ -214,7 +214,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
 
-    ENFORCE SSL: No
+    ENFORCE SSL: No (If you have a https page then yes)
     ```
 8. The postObsProperties Webhook. This Webhook makes POST request to the FROST-Server to create a Observed Property object for the Particle device. Setup your Webhook as follows.
     ```
@@ -238,6 +238,6 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     WEBHOOK RESPONSES
     Response Topic
     {{PARTICLE_DEVICE_ID}}/hook-response/{{PARTICLE_EVENT_NAME}}
-    
-    ENFORCE SSL: No
+
+    ENFORCE SSL: No (If you have a https page then yes)
     ```

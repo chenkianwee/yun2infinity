@@ -43,8 +43,8 @@ This is based on instructions from [here](https://dzone.com/articles/keytool-com
     ```
     $ keytool -certreq -alias $domain_name -keystore $domain_name.jks -file $csr_key.csr
     ```
-
-4. Import the signed certificate into the keystore with this command. First import the root certificate. These instructions are based on this [post](https://www.ssls.com/knowledgebase/how-to-install-an-ssl-certificate-on-a-tomcat-server/#PKCS12).
+## Install the Signed Certificate for FROST-Server
+1. Import the signed certificate into the keystore with this command. First import the root certificate. These instructions are based on this [post](https://www.ssls.com/knowledgebase/how-to-install-an-ssl-certificate-on-a-tomcat-server/#PKCS12).
     ```
     $ keytool -import -alias root -keystore $domain_name.jks -file root.crt
     ```
@@ -69,14 +69,14 @@ This is based on instructions from [here](https://dzone.com/articles/keytool-com
     $ keytool -delete -alias $aliasname -keystore $domain_name.jks -storepass $password
     ```
 
-5. Next, in the container you will have to edit the setting in Tomcat, update the apt-get software and install vim for editing text file. If you did not sign the CSR you can still do this to create a self-signed URL.
+2. Next, in the container you will have to edit the setting in Tomcat, update the apt-get software and install vim for editing text file. If you did not sign the CSR you can still do this to create a self-signed URL.
     ```
     $ apt-get update
 
     $ apt-get install vim
     ```
 
-6. Once installed, open the server.xml file at the conf directory.
+3. Once installed, open the server.xml file at the conf directory.
     ```
     $ vi conf/server.xml
     ```
@@ -101,7 +101,67 @@ This is based on instructions from [here](https://dzone.com/articles/keytool-com
                 sslProtocol="TLS"/>
     ```
 
-7. Restart your container. The URL will start with https now.
+4. Restart your container. The URL will start with https now.
     ```
     $ sudo docker restart $container_name
+    ```
+## Install the Signed Certificate for Grafana
+The instruction here is based on this [post](https://community.grafana.com/t/grafana-https-configuration/524)
+
+1. Export the certificate and private key from the keytool (I have assumed you are using keytool from the frost server container). I assumed you have imported all the signed certificates into the keystore. You can then run this command to export the cert.pem (signed certificate) and key.pem (private key) for use in the granfana server. Instructions here are based on this [post](https://security.stackexchange.com/questions/3779/how-can-i-export-my-private-key-from-a-java-keytool-keystore)
+    ```
+    $ keytool -importkeystore -srckeystore $domain_name.jks -destkeystore $keystore.p12 -deststoretype PKCS12 -srcalias $domain_name -deststorepass $your_password -destkeypass $your_password
+    ```
+
+2. Once you $keystore.p12 is created. Use openssl to export the certificate with this command.
+    ```
+    $ openssl pkcs12 -in $keystore.p12 -nokeys -out $cert.pem
+    ```
+
+3. Generate the private key with this command.
+    ```
+    $ openssl pkcs12 -in $keystore.p12 -nodes -nocerts -out $key.pem
+    ```
+
+4. Once you have both the key.pem and cert.pem. Copy the two pem files into the Grafana container.
+    ```
+    $ sudo docker cp path/to/cert.pem $grafana_container_name:/etc/grafana
+
+    $ sudo docker cp path/to/key.pem $grafana_container_name:/etc/grafana
+    ```
+
+5. Go into the Grafana container go to the directory /etc/grafana. These instructions are based on this [post](https://medium.com/grafana-tutorials/adding-ssl-to-grafana-eb4ab634e43f)
+    ```
+    $ sudo docker exec -it -u root $grafana_container_name bash
+    ```
+
+    a. using Vim, open the file 'grafana.ini'
+    ```
+    $ vi grafana.ini
+    ```
+
+    b. Change the permission of the files to allow Grafana to read them.
+    ```
+    $ chmod 640 /etc/grafana/cert.pem
+    $ chmod 640 /etc/grafana/key.pem
+    ```
+
+    c. Uncomment (remove the ; infront of the line) and make the following changes to the grafana.ini file.
+    ```
+    [server]
+    protocol = https
+    http_addr =
+    http_port = 3000
+    domain = your_domain.com
+    enforce_domain = false
+    root_url = https://your_domain.com:3000/
+    serve_from_sub_path = false
+    router_logging = false
+    static_root_path = public
+    cert_file = /etc/grafana/cert.pem
+    cert_key = /etc/grafana/key.pem
+    ```
+6. Once all this is done. Restart the Grafana container.
+    ```
+    $ sudo docker restart $grafana_container_name
     ```

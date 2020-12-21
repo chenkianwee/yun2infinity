@@ -19,23 +19,23 @@
 
 - STAPI01_isDeviceRegistered:
 ```
-https://go.particle.io/shared_apps/5fd26ea3483a480009a35286
+https://go.particle.io/shared_apps/5fe0f742e6f0b000092ded1e
 ```
 - STAPI02_RegisterDevice:
 ```
-https://go.particle.io/shared_apps/5fd25f28e6f0b000172d5076
+https://go.particle.io/shared_apps/5fe10997483a480017a3e07c
 ```
 - STAPI03_RegisterNewDeployment:
 ```
-https://go.particle.io/shared_apps/5fd260a7e6f0b000092d5d29
+https://go.particle.io/shared_apps/5fe10b58483a480017a3e09a
 ```
 - STAPI04_RegisterSensor:
 ```
-https://go.particle.io/shared_apps/5fd2625b483a480009a3520f
+https://go.particle.io/shared_apps/5fd428b6e6f0b000092d6e8e
 ```
 - STAPI05_RegisterObservedProp:
 ```
-https://go.particle.io/shared_apps/5fd26322483a480009a35216
+https://go.particle.io/shared_apps/5fd42bd0e6f0b000092d6eba
 ```
 - STAPI06_PostObservations:
 ```

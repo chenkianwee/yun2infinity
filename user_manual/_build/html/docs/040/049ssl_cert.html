@@ -299,6 +299,16 @@
    Generate CSR key
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-signed-certificate-for-frost-server">
+   Install the Signed Certificate for FROST-Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-the-signed-certificate-for-grafana">
+   Install the Signed Certificate for Grafana
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -357,6 +367,11 @@ Is CN=andlchaos300l.xyz.com, OU=your_unit, O=your organization, L=Princeton, ST=
 </pre></div>
 </div>
 </li>
+</ol>
+</div>
+<div class="section" id="install-the-signed-certificate-for-frost-server">
+<h2>Install the Signed Certificate for FROST-Server<a class="headerlink" href="#install-the-signed-certificate-for-frost-server" title="Permalink to this headline">¶</a></h2>
+<ol>
 <li><p>Import the signed certificate into the keystore with this command. First import the root certificate. These instructions are based on this <a class="reference external" href="https://www.ssls.com/knowledgebase/how-to-install-an-ssl-certificate-on-a-tomcat-server/#PKCS12">post</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -import -alias root -keystore $domain_name.jks -file root.crt
 </pre></div>
@@ -414,6 +429,68 @@ $ apt-get install vim
 </li>
 <li><p>Restart your container. The URL will start with https now.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart $container_name
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="install-the-signed-certificate-for-grafana">
+<h2>Install the Signed Certificate for Grafana<a class="headerlink" href="#install-the-signed-certificate-for-grafana" title="Permalink to this headline">¶</a></h2>
+<p>The instruction here is based on this <a class="reference external" href="https://community.grafana.com/t/grafana-https-configuration/524">post</a></p>
+<ol>
+<li><p>Export the certificate and private key from the keytool (I have assumed you are using keytool from the frost server container). I assumed you have imported all the signed certificates into the keystore. You can then run this command to export the cert.pem (signed certificate) and key.pem (private key) for use in the granfana server. Instructions here are based on this <a class="reference external" href="https://security.stackexchange.com/questions/3779/how-can-i-export-my-private-key-from-a-java-keytool-keystore">post</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ keytool -importkeystore -srckeystore $domain_name.jks -destkeystore $keystore.p12 -deststoretype PKCS12 -srcalias $domain_name -deststorepass $your_password -destkeypass $your_password
+</pre></div>
+</div>
+</li>
+<li><p>Once you $keystore.p12 is created. Use openssl to export the certificate with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ openssl pkcs12 -in $keystore.p12 -nokeys -out $cert.pem
+</pre></div>
+</div>
+</li>
+<li><p>Generate the private key with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ openssl pkcs12 -in $keystore.p12 -nodes -nocerts -out $key.pem
+</pre></div>
+</div>
+</li>
+<li><p>Once you have both the key.pem and cert.pem. Copy the two pem files into the Grafana container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker cp path/to/cert.pem $grafana_container_name:/etc/grafana
+
+$ sudo docker cp path/to/key.pem $grafana_container_name:/etc/grafana
+</pre></div>
+</div>
+</li>
+<li><p>Go into the Grafana container go to the directory /etc/grafana. These instructions are based on this <a class="reference external" href="https://medium.com/grafana-tutorials/adding-ssl-to-grafana-eb4ab634e43f">post</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -it -u root $grafana_container_name bash
+</pre></div>
+</div>
+<p>a. using Vim, open the file ‘grafana.ini’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi grafana.ini
+</pre></div>
+</div>
+<p>b. Change the permission of the files to allow Grafana to read them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 640 /etc/grafana/cert.pem
+$ chmod 640 /etc/grafana/key.pem
+</pre></div>
+</div>
+<p>c. Uncomment (remove the ; infront of the line) and make the following changes to the grafana.ini file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
+<span class="n">protocol</span> <span class="o">=</span> <span class="n">https</span>
+<span class="n">http_addr</span> <span class="o">=</span>
+<span class="n">http_port</span> <span class="o">=</span> <span class="mi">3000</span>
+<span class="n">domain</span> <span class="o">=</span> <span class="n">your_domain</span><span class="o">.</span><span class="n">com</span>
+<span class="n">enforce_domain</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">root_url</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">your_domain</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span>
+<span class="n">serve_from_sub_path</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">router_logging</span> <span class="o">=</span> <span class="n">false</span>
+<span class="n">static_root_path</span> <span class="o">=</span> <span class="n">public</span>
+<span class="n">cert_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span>
+<span class="n">cert_key</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">key</span><span class="o">.</span><span class="n">pem</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once all this is done. Restart the Grafana container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart $grafana_container_name
 </pre></div>
 </div>
 </li>
