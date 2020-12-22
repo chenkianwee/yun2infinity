@@ -1,4 +1,4 @@
-# Get SSL Certificate for you FROST-Server
+# Get SSL Certificate for you FROST-Server and Grafana Server
 
 ## Generate CSR key
 This is based on instructions from [here](https://dzone.com/articles/keytool-commandutility-to-generate-a-keystorecerti)
