@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Visualisation with CesiumJS &#8212; Masa3DB User Manual</title>
+    <title>Install 3DcityDB Web Map Client &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -172,7 +172,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Visualisation with CesiumJS
+     Install 3DcityDB Web Map Client
     </a>
    </li>
    <li class="toctree-l2">
@@ -182,7 +182,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="049ssl_cert.html">
-     Get SSL Certificate for you FROST-Server
+     Get SSL Certificate for you FROST-Server and Grafana Server
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="0410wfs.html">
+     Install Web Feature Service (WFS)
     </a>
    </li>
   </ul>
@@ -289,20 +294,6 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#under-development">
-   Under Development … …
-  </a>
- </li>
-</ul>
-
-        </nav>
-        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -310,11 +301,18 @@
         
               <div>
                 
-  <div class="section" id="visualisation-with-cesiumjs">
-<h1>Visualisation with CesiumJS<a class="headerlink" href="#visualisation-with-cesiumjs" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="under-development">
-<h2>Under Development … …<a class="headerlink" href="#under-development" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="install-3dcitydb-web-map-client">
+<h1>Install 3DcityDB Web Map Client<a class="headerlink" href="#install-3dcitydb-web-map-client" title="Permalink to this headline">¶</a></h1>
+<p>By installing the Web Map Client, you will be able to visualise the cityGML data in CesiumJS. More details <a class="reference external" href="https://www.3dcitydb.org/3dcitydb/3dwebclient/">here</a>.</p>
+<ol>
+<li><p>Install the Docker image of 3DcityDB-Web-Map-Client. The instructions are based on this <a class="reference external" href="https://github.com/tum-gis/3dcitydb-web-map-docker">post</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -d --name 3dwebmap -p 8000:8000 \
+-v /home/chaos/3dcitydata/:/var/www/data/ \
+tumgis/3dcitydb-web-map
+</pre></div>
 </div>
+</li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">

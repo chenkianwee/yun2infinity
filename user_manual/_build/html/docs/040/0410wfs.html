@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Installation &#8212; Masa3DB User Manual</title>
+    <title>Install Web Feature Service (WFS) &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Docker" href="021docker.html" />
-    <link rel="prev" title="Introduction to Masa3DB" href="../010/010intro.html" />
+    <link rel="next" title="Integration" href="../050/050integration.html" />
+    <link rel="prev" title="Get SSL Certificate for you FROST-Server and Grafana Server" href="049ssl_cert.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,28 +92,28 @@
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active collapsible-parent">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../020/020installation.html">
    Installation
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="021docker.html">
+    <a class="reference internal" href="../020/021docker.html">
      Docker
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="022setup.html">
+    <a class="reference internal" href="../020/022setup.html">
      Setup Masa3DB
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="023maintain.html">
+    <a class="reference internal" href="../020/023maintain.html">
      Maintenance
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="024man_setup.html">
+    <a class="reference internal" href="../020/024man_setup.html">
      Non Docker Installation (Not Recommended)
     </a>
    </li>
@@ -135,58 +135,58 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../040/040task.html">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="040task.html">
    Tasks
   </a>
-  <ul class="collapse-ul">
+  <ul class="current collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/041postgres.html">
+    <a class="reference internal" href="041postgres.html">
      PostgreSQL
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/042particle.html">
+    <a class="reference internal" href="042particle.html">
      Masa3DB with Particle Devices
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/043python.html">
+    <a class="reference internal" href="043python.html">
      Masa3DB with Python
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/044citydb.html">
+    <a class="reference internal" href="044citydb.html">
      Initialising 3DCityDB
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/045import_citygml.html">
+    <a class="reference internal" href="045import_citygml.html">
      Import CityGML
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/046grafana.html">
+    <a class="reference internal" href="046grafana.html">
      Visualisation with Grafana
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/047cesium3d.html">
+    <a class="reference internal" href="047cesium3d.html">
      Visualisation with CesiumJS
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/048analysis.html">
+    <a class="reference internal" href="048analysis.html">
      Analysis
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../040/049ssl_cert.html">
+    <a class="reference internal" href="049ssl_cert.html">
      Get SSL Certificate for you FROST-Server and Grafana Server
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../040/0410wfs.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Install Web Feature Service (WFS)
     </a>
    </li>
@@ -253,7 +253,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/020/020installation.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/040/0410wfs.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -273,7 +273,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/020installation.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/0410wfs.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -301,15 +301,29 @@
         
               <div>
                 
-  <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>I am using <a class="reference external" href="https://www.docker.com/">Docker</a> for running the database. So you will have to install Docker on your machine. Refer to the next section to install Docker. Once Docker is installed, I have written a shellscript to automatically fetch all the necessary Docker containers to get the database up and running. Currently, the shellscript has only been tested with an Ubuntu machine. In summary:</p>
-<ol class="simple">
-<li><p>Install Docker</p></li>
-<li><p>Install Masa3DB</p></li>
-</ol>
-<div class="toctree-wrapper compound">
+  <div class="section" id="install-web-feature-service-wfs">
+<h1>Install Web Feature Service (WFS)<a class="headerlink" href="#install-web-feature-service-wfs" title="Permalink to this headline">¶</a></h1>
+<p>By installing the WFS, you will be able to have fine grained access to the cityGML database. More details <a class="reference external" href="https://www.ogc.org/standards/wfs">here</a>.</p>
+<ol>
+<li><p>Install the Docker image of 3DcityDB-WFS. The instructions are based on this <a class="reference external" href="https://github.com/tum-gis/3dcitydb-wfs-docker/">post</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="s2">&quot;citydb-wfs&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8765</span><span class="p">:</span><span class="mi">8080</span> \
+<span class="o">--</span><span class="n">network</span> <span class="s2">&quot;masa3db&quot;</span>\
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_TYPE=PostGIS&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_SERVER=$container_name_hosting3dcitydb&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_PORT=5432&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_SID=spatempdb&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_USER=$username&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_PASSWORD=$password&quot;</span> \
+<span class="n">tumgis</span><span class="o">/</span><span class="mi">3</span><span class="n">dcitydb</span><span class="o">-</span><span class="n">wfs</span>
+</pre></div>
 </div>
+</li>
+<li><p>Test the installation by going to a web browser. If it return an XML, the service is up and running.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://my-docker-host:8765/citydb-wfs/wfs?SERVICE=WFS&amp;REQUEST=GetCapabilities
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">
@@ -325,7 +339,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\020"
+            path: "./docs\040"
         },
         predefinedOutput: true
     }
@@ -340,8 +354,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../010/010intro.html" title="previous page">Introduction to Masa3DB</a>
-    <a class='right-next' id="next-link" href="021docker.html" title="next page">Docker</a>
+    <a class='left-prev' id="prev-link" href="049ssl_cert.html" title="previous page">Get SSL Certificate for you FROST-Server and Grafana Server</a>
+    <a class='right-next' id="next-link" href="../050/050integration.html" title="next page">Integration</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
