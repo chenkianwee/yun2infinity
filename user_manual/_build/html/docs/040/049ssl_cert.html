@@ -464,26 +464,18 @@ $ sudo docker cp path/to/key.pem $grafana_container_name:/etc/grafana
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -it -u root $grafana_container_name bash
 </pre></div>
 </div>
-<p>a. using Vim, open the file ‘grafana.ini’</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi grafana.ini
-</pre></div>
-</div>
-<p>b. Change the permission of the files to allow Grafana to read them.</p>
+<p>a. Change the permission of the files to allow Grafana to read them.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod 640 /etc/grafana/cert.pem
 $ chmod 640 /etc/grafana/key.pem
+</pre></div>
+</div>
+<p>b. using Vim, open the file ‘grafana.ini’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ vi grafana.ini
 </pre></div>
 </div>
 <p>c. Uncomment (remove the ; infront of the line) and make the following changes to the grafana.ini file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
 <span class="n">protocol</span> <span class="o">=</span> <span class="n">https</span>
-<span class="n">http_addr</span> <span class="o">=</span>
-<span class="n">http_port</span> <span class="o">=</span> <span class="mi">3000</span>
-<span class="n">domain</span> <span class="o">=</span> <span class="n">your_domain</span><span class="o">.</span><span class="n">com</span>
-<span class="n">enforce_domain</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">root_url</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">your_domain</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">3000</span><span class="o">/</span>
-<span class="n">serve_from_sub_path</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">router_logging</span> <span class="o">=</span> <span class="n">false</span>
-<span class="n">static_root_path</span> <span class="o">=</span> <span class="n">public</span>
 <span class="n">cert_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">cert</span><span class="o">.</span><span class="n">pem</span>
 <span class="n">cert_key</span> <span class="o">=</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">key</span><span class="o">.</span><span class="n">pem</span>
 </pre></div>

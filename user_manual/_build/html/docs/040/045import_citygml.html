@@ -182,7 +182,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="049ssl_cert.html">
-     Get SSL Certificate for you FROST-Server
+     Get SSL Certificate for you FROST-Server and Grafana Server
     </a>
    </li>
   </ul>
@@ -295,25 +295,18 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#official-method-not-working">
-   Official Method (Not Working)
+  <a class="reference internal nav-link" href="#install-import-exporter-tool-on-your-local-machine-recommended">
+   Install Import/Exporter Tool on your Local Machine (Recommended).
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workaround">
-   Workaround
+  <a class="reference internal nav-link" href="#install-import-exporter-tool-on-the-server">
+   Install Import/Exporter Tool on the Server.
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#under-development">
-     Under Development … …
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sql-for-3dcitydb">
-   SQL for 3DCityDB
+  <a class="reference internal nav-link" href="#sql-for-3dcitydb-check-the-imported-data">
+   SQL for 3DCityDB - Check the Imported Data
   </a>
  </li>
 </ul>
@@ -329,19 +322,28 @@
                 
   <div class="section" id="import-citygml">
 <h1>Import CityGML<a class="headerlink" href="#import-citygml" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="official-method-not-working">
-<h2>Official Method (Not Working)<a class="headerlink" href="#official-method-not-working" title="Permalink to this headline">¶</a></h2>
+<p>Refer to <a class="reference external" href="https://3dcitydb-docs.readthedocs.io">here</a> for the full documentation of 3DCityDB.</p>
+<div class="section" id="install-import-exporter-tool-on-your-local-machine-recommended">
+<h2>Install Import/Exporter Tool on your Local Machine (Recommended).<a class="headerlink" href="#install-import-exporter-tool-on-your-local-machine-recommended" title="Permalink to this headline">¶</a></h2>
+<p>The instructions are based on this <a class="reference external" href="https://github.com/3dcitydb/importer-exporter/issues/161">post</a>.</p>
 <ol>
 <li><p>Download the <a class="reference external" href="https://www.3dcitydb.org/3dcitydb/d3dimpexp/">3D City Database Importer/Exporter</a></p>
-<p>a. You will need to install Java for the installer to work. Install Java <a class="reference external" href="https://java.com/en/download/">here</a></p>
+<p>a. You will need to install Java for the installer to work. Install Java <a class="reference external" href="https://techoral.com/blog/java/openjdk-install-windows.html">here</a></p>
 </li>
-<li><p>Once installed you will need to connect to the database. (However it cannot connect to a PostgreSQL database through a SSL connection.) This method is currently not working.</p>
+<li><p>Once installed you will need to connect to the database.</p>
+<p>a. Make sure AllowTcpForwarding is set to yes in your ssh server config file (usually located at /etc/ssh/sshd-config)
+<br><br/>
+b. Establish your ssh tunnel using: ssh -L [LOCAL_IP:]LOCAL_PORT:DESTINATION:DESTINATION_PORT [USER&#64;]SSH_SERVER, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mi">5432</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5432</span> <span class="n">user</span><span class="nd">@chaosbox</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>c. Connect to the 3DCityDB instance using e.g. 3DCityDB Importer/Exporter using localhost:5432 as host and port.</p>
 <div class="figure align-default" id="dcitydb-connect">
-<a class="reference internal image-reference" href="../../_images/3dcitydb_connect.png"><img alt="../../_images/3dcitydb_connect.png" src="../../_images/3dcitydb_connect.png" style="width: 606.6px; height: 274.8px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">There are no SSL connection settings.</span><a class="headerlink" href="#dcitydb-connect" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="../../_images/3dcitydb_connect.png"><img alt="../../_images/3dcitydb_connect.png" src="../../_images/3dcitydb_connect.png" style="width: 1054.8px; height: 301.2px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 26 </span><span class="caption-text">Interface for importing a CityGML file.</span><a class="headerlink" href="#dcitydb-connect" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>You can still use the software to validate your CityGML file.</p>
+<li><p>You can validate your CityGML file.</p>
 <div class="figure align-default" id="dcitydb-import">
 <a class="reference internal image-reference" href="../../_images/3dcitydb_import.png"><img alt="../../_images/3dcitydb_import.png" src="../../_images/3dcitydb_import.png" style="width: 640.1999999999999px; height: 345.59999999999997px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 27 </span><span class="caption-text">Interface for importing a CityGML file.</span><a class="headerlink" href="#dcitydb-import" title="Permalink to this image">¶</a></p>
@@ -349,16 +351,60 @@
 </li>
 </ol>
 </div>
-<div class="section" id="workaround">
-<h2>Workaround<a class="headerlink" href="#workaround" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="under-development">
-<h3>Under Development … …<a class="headerlink" href="#under-development" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="https://github.com/3dcitydb/importer-exporter/issues/70#issuecomment-710457603">Possible workaround that has not been implemented</a></p>
-</div>
-</div>
-<div class="section" id="sql-for-3dcitydb">
-<h2>SQL for 3DCityDB<a class="headerlink" href="#sql-for-3dcitydb" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-import-exporter-tool-on-the-server">
+<h2>Install Import/Exporter Tool on the Server.<a class="headerlink" href="#install-import-exporter-tool-on-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Install the 3DcityDB Importer/Exporter tool on your Docker host machine. Follow the instructions <a class="reference external" href="https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/intro/install-impexp.html#command-line-installation">here</a>.</p>
 <ol>
+<li><p>Download the .jar file from 3DcityDB website with curl.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://www.3dcitydb.org/3dcitydb/fileadmin/downloaddata/3DCityDB-Importer-Exporter-4.2.0-Setup.jar &gt; 3dcitydb_impexp/3DCityDB-Importer-Exporter-4.2.0-Setup.jar
+</pre></div>
+</div>
+</li>
+<li><p>Install the OpenJDK to run the .jar installation file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install openjdk-14-jre-headless
+</pre></div>
+</div>
+</li>
+<li><p>Install the importer/exporter with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo java -jar 3dcitydb_impexp/3DCityDB-Importer-Exporter-4.2.0-Setup.jar -console
+</pre></div>
+</div>
+<p>a. Only install the following packages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Select</span> <span class="n">installation</span> <span class="n">packages</span><span class="p">:</span>
+<span class="p">[</span><span class="n">core</span><span class="p">]</span> <span class="p">[</span><span class="n">required</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">3</span><span class="n">dcitydb</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">manual</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="mi">3</span><span class="n">d</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="nb">map</span><span class="o">-</span><span class="n">client</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">samples</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">plugins</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">spreadsheet</span><span class="o">.</span><span class="n">generator</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">ade</span><span class="o">-</span><span class="n">manager</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+</pre></div>
+</div>
+</li>
+<li><p>You can start importing cityGML data based on the command line. Full documentation <a class="reference external" href="https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/impexp/cli.html">here</a>. The easiest way to get a config_file.xml is to use the GUI to create the config file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Run the Importer/Exporter with the graphical user interface (GUI).
+2. Make all your settings in the GUI.
+3. Save your settings to a local config file via the Project Save Project As… dialog from the main menu bar.
+4. Make manual changes to the config file if required.
+5. Feed this config file to the command line interface using the -config argument.
+</pre></div>
+</div>
+<p>a. Once you have the config file specify it here and run this command to validate the cityGML file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar impexp-client-4.2.0.jar -shell -config /path/to/config_file.xml -validate /path/to/import_file.gml
+</pre></div>
+</div>
+<p>b. a. Once you have the config file specify it here and run this command to import the cityGML file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar impexp-client-4.2.0.jar -shell -config /path/to/config_file.xml -import /path/to/import_file.gml
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="sql-for-3dcitydb-check-the-imported-data">
+<h2>SQL for 3DCityDB - Check the Imported Data<a class="headerlink" href="#sql-for-3dcitydb-check-the-imported-data" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li></li>
 <li><p>Show the names and height of the building.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">measured_height</span> <span class="kn">from</span> <span class="nn">cityobject</span> <span class="n">c</span> <span class="n">inner</span> <span class="n">join</span> <span class="n">building</span> <span class="n">b</span> <span class="n">on</span> <span class="n">b</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="p">;</span>
 </pre></div>

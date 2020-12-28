@@ -135,29 +135,21 @@ The instruction here is based on this [post](https://community.grafana.com/t/gra
     $ sudo docker exec -it -u root $grafana_container_name bash
     ```
 
-    a. using Vim, open the file 'grafana.ini'
-    ```
-    $ vi grafana.ini
-    ```
-
-    b. Change the permission of the files to allow Grafana to read them.
+    a. Change the permission of the files to allow Grafana to read them.
     ```
     $ chmod 640 /etc/grafana/cert.pem
     $ chmod 640 /etc/grafana/key.pem
     ```
 
+    b. using Vim, open the file 'grafana.ini'
+    ```
+    $ vi grafana.ini
+    ```
+    
     c. Uncomment (remove the ; infront of the line) and make the following changes to the grafana.ini file.
     ```
     [server]
     protocol = https
-    http_addr =
-    http_port = 3000
-    domain = your_domain.com
-    enforce_domain = false
-    root_url = https://your_domain.com:3000/
-    serve_from_sub_path = false
-    router_logging = false
-    static_root_path = public
     cert_file = /etc/grafana/cert.pem
     cert_key = /etc/grafana/key.pem
     ```

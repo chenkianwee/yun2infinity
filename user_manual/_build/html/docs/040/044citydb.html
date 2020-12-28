@@ -182,7 +182,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="049ssl_cert.html">
-     Get SSL Certificate for you FROST-Server
+     Get SSL Certificate for you FROST-Server and Grafana Server
     </a>
    </li>
   </ul>
@@ -289,25 +289,6 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#official-method-not-working">
-   Official Method (Not Working)
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#workaround">
-   Workaround
-  </a>
- </li>
-</ul>
-
-        </nav>
-        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -317,8 +298,7 @@
                 
   <div class="section" id="initialising-3dcitydb">
 <h1>Initialising 3DCityDB<a class="headerlink" href="#initialising-3dcitydb" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="official-method-not-working">
-<h2>Official Method (Not Working)<a class="headerlink" href="#official-method-not-working" title="Permalink to this headline">¶</a></h2>
+<p>Refer to <a class="reference external" href="https://3dcitydb-docs.readthedocs.io">here</a> for the full documentation of 3DCityDB.</p>
 <ol>
 <li><p>Get into the spatempdb container (or whatever name you have specified for you database container) with this command.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -it spatempdb bash
@@ -345,46 +325,13 @@
 </div>
 </li>
 <li><p>Execute the CREATE_DB.sh. This should create a citydb schema in the database.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sh CREATE_DB.sh
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash CREATE_DB.sh
+
+!!! DO NOT USE THE sh COMMAND. THIS DOES NOT WORK WITH THE sh COMMAND. !!!
 </pre></div>
 </div>
 </li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!!! This is the official method for creating a database with 3DCityDB.
-However, it is not working currently. !!! This is a work in progress ... ...
-For the time being we will use a workaround.
-The suspected bug is the CREATE_DB.sh is not reading the CONNECTION_DETAILS.sh script properly.
-As a result, it is unable to access the database
-</pre></div>
-</div>
-</div>
-<div class="section" id="workaround">
-<h2>Workaround<a class="headerlink" href="#workaround" title="Permalink to this headline">¶</a></h2>
-<ol>
-<li><p>Go to the SQL script directory.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /3DCityDB-4.0.1/PostgreSQL/SQLScripts/
-</pre></div>
-</div>
-<p>a. Execute this command to create a citydb database. Remember to substitute the variables for the right value.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql -U &quot;your user name&quot; -d &quot;spatempdb&quot; -f &quot;CREATE_DB.sql&quot; -v srsno=&quot;specify epsg number&quot; -v gmlsrsname=&quot;urn:ogc:def:crs:EPSG::$srsno&quot;
-</pre></div>
-</div>
-<p>a. Execute this command to drop a citydb database.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql -U &quot;your user name&quot; -d &quot;spatempdb&quot; -f &quot;DROP_DB.sql&quot;
-</pre></div>
-</div>
-</li>
-<li><p>For dropping a schema.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd /3DCityDB-4.0.1/PostgreSQL/SQLScripts/UTIL/SCHEMAS
-</pre></div>
-</div>
-<p>a. Dropping a schema.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql -U &quot;your user name&quot; -d &quot;spatempdb&quot; -f &quot;DROP_SCHEMA.sql&quot; -v schema_name=&quot;$schema to drop&quot;
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
 </div>
 
     <script type="text/x-thebe-config">
