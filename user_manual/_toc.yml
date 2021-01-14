@@ -23,6 +23,7 @@
     - file: docs/040/048analysis
     - file: docs/040/049ssl_cert
     - file: docs/040/0410wfs
+    - file: docs/040/0411expgltf
 - file: docs/050/050integration
   sections:
     - file: docs/050/051docker_image
