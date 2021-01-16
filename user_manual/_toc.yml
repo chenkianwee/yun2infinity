@@ -10,7 +10,7 @@
     - file: docs/020/024man_setup
 - file: docs/030/030work
   sections:
-    - file: docs/030/031work1
+    - file: docs/030/031update
 - file: docs/040/040task
   sections:
     - file: docs/040/041postgres
