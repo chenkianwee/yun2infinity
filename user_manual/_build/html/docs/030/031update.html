@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Integration &#8212; Masa3DB User Manual</title>
+    <title>Update the Container Images - FROST-Server Image Update &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Timescale-3DCityDB" href="051docker_image.html" />
-    <link rel="prev" title="Export glTF" href="../040/0411expgltf.html" />
+    <link rel="next" title="Tasks" href="../040/040task.html" />
+    <link rel="prev" title="Workflows" href="030work.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -121,13 +121,13 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1 collapsible-parent">
-  <a class="reference internal" href="../030/030work.html">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="030work.html">
    Workflows
   </a>
-  <ul class="collapse-ul">
-   <li class="toctree-l2">
-    <a class="reference internal" href="../030/031update.html">
+  <ul class="current collapse-ul">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Update the Container Images - FROST-Server Image Update
     </a>
    </li>
@@ -199,18 +199,18 @@
   <i class="fas fa-chevron-down">
   </i>
  </li>
- <li class="toctree-l1 current active collapsible-parent">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 collapsible-parent">
+  <a class="reference internal" href="../050/050integration.html">
    Integration
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="051docker_image.html">
+    <a class="reference internal" href="../050/051docker_image.html">
      Timescale-3DCityDB
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="052webhooks.html">
+    <a class="reference internal" href="../050/052webhooks.html">
      Particle Webhooks
     </a>
    </li>
@@ -258,7 +258,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/050/050integration.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/030/031update.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -278,7 +278,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/050/050integration.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/030/031update.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -306,11 +306,20 @@
         
               <div>
                 
-  <div class="section" id="integration">
-<h1>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h1>
-<p>I have made some customisation for each software for Masa3DB. This section documents the inner tweaks that I have done for the integration.</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="update-the-container-images-frost-server-image-update">
+<h1>Update the Container Images - FROST-Server Image Update<a class="headerlink" href="#update-the-container-images-frost-server-image-update" title="Permalink to this headline">¶</a></h1>
+<p>In this example we will update the FROST-Server image to the latest image.</p>
+<ol>
+<li><p>Backup the database before doing any update. Follow the instruction here: <a class="reference internal" href="../020/023maintain.html"><span class="doc">Maintenance</span></a>.</p></li>
+<li><p>Pull the latest image from Docker Hub and run a new container with the new image.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker pull fraunhoferiosb/frost-server:latest
+</pre></div>
 </div>
+</li>
+<li><p>Run the remove masa3db script as shown here <a class="reference internal" href="../020/022setup.html"><span class="doc">Setup Masa3DB</span></a>.</p></li>
+<li><p>Once all the containers are removed. We can then restore them with the restore script. You will need to specify the path of the backup file required for restoring the database.</p></li>
+<li><p>If FROST Server does not load on your browser. While the browser is loading, restart your DB container with docker restart to force the webpage to load.</p></li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">
@@ -326,7 +335,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\050"
+            path: "./docs\030"
         },
         predefinedOutput: true
     }
@@ -341,8 +350,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../040/0411expgltf.html" title="previous page">Export glTF</a>
-    <a class='right-next' id="next-link" href="051docker_image.html" title="next page">Timescale-3DCityDB</a>
+    <a class='left-prev' id="prev-link" href="030work.html" title="previous page">Workflows</a>
+    <a class='right-next' id="next-link" href="../040/040task.html" title="next page">Tasks</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

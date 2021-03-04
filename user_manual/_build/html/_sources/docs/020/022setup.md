@@ -76,6 +76,9 @@
     ```
 5. Congratulation you have successfully installed Masa3DB.
 
+### Increase Paging of FROST-server for Improvement of Performance
+1. Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.
+
 ### Uninstall Masa3DB
 1. Execute this command to uninstall Masa3DB.
     ```

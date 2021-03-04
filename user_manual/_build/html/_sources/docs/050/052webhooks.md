@@ -30,10 +30,10 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     Advanced Settings
     JSON DATA: Custom
     {
-      "name": "{{{PARTICLE_DEVICE_ID}}}",
+      "name": "{{{thingname}}}",
       "description": "{{{thingdesc}}}",
       "properties": {
-        "deployment": "{{{deployment}}}",
+        "uid": "{{{PARTICLE_DEVICE_ID}}}",
         "pins": "{{{pins}}}"
       },
       "Locations": [
@@ -166,7 +166,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     ```
 6. The postMultiObservation Webhook. This Webhook makes POST request to the FROST-Server to create a MultiObservation object for the Particle device. Setup your Webhook as follows.
     ```
-    Event Name: postObservation
+    Event Name: postMultiObservation
     URL: http://your.frost-server.com:8080/FROST-Server/v1.0/CreateObservations
     Request Type: POST
     Request Format: Custom Body
@@ -218,7 +218,7 @@ Webhook is a Particle integration mechanism. For more information on Webhooks, r
     ```
 8. The postObsProperties Webhook. This Webhook makes POST request to the FROST-Server to create a Observed Property object for the Particle device. Setup your Webhook as follows.
     ```
-    Event Name: postSensor
+    Event Name: postObsProperties
     URL: http://your.frost-server.com:8080/FROST-Server/v1.0/ObservedProperties
     Request Type: POST
     Request Format: JSON

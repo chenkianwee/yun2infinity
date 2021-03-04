@@ -126,8 +126,8 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../030/031work1.html">
-     Workflow Example 1
+    <a class="reference internal" href="../030/031update.html">
+     Update the Container Images - FROST-Server Image Update
     </a>
    </li>
   </ul>
@@ -339,10 +339,10 @@
 <span class="n">Advanced</span> <span class="n">Settings</span>
 <span class="n">JSON</span> <span class="n">DATA</span><span class="p">:</span> <span class="n">Custom</span>
 <span class="p">{</span>
-  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{PARTICLE_DEVICE_ID}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{thingname}</span><span class="s2">}}&quot;</span><span class="p">,</span>
   <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{thingdesc}</span><span class="s2">}}&quot;</span><span class="p">,</span>
   <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;deployment&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{deployment}</span><span class="s2">}}&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;uid&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{PARTICLE_DEVICE_ID}</span><span class="s2">}}&quot;</span><span class="p">,</span>
     <span class="s2">&quot;pins&quot;</span><span class="p">:</span> <span class="s2">&quot;{{</span><span class="si">{pins}</span><span class="s2">}}&quot;</span>
   <span class="p">},</span>
   <span class="s2">&quot;Locations&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -479,7 +479,7 @@
 </div>
 </li>
 <li><p>The postMultiObservation Webhook. This Webhook makes POST request to the FROST-Server to create a MultiObservation object for the Particle device. Setup your Webhook as follows.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postObservation</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postMultiObservation</span>
 <span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">CreateObservations</span>
 <span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
 <span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">Custom</span> <span class="n">Body</span>
@@ -533,7 +533,7 @@
 </div>
 </li>
 <li><p>The postObsProperties Webhook. This Webhook makes POST request to the FROST-Server to create a Observed Property object for the Particle device. Setup your Webhook as follows.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postSensor</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Event</span> <span class="n">Name</span><span class="p">:</span> <span class="n">postObsProperties</span>
 <span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">your</span><span class="o">.</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="n">ObservedProperties</span>
 <span class="n">Request</span> <span class="n">Type</span><span class="p">:</span> <span class="n">POST</span>
 <span class="n">Request</span> <span class="n">Format</span><span class="p">:</span> <span class="n">JSON</span>

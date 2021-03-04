@@ -127,8 +127,8 @@
   </a>
   <ul class="collapse-ul">
    <li class="toctree-l2">
-    <a class="reference internal" href="../030/031work1.html">
-     Workflow Example 1
+    <a class="reference internal" href="../030/031update.html">
+     Update the Container Images - FROST-Server Image Update
     </a>
    </li>
   </ul>
@@ -338,6 +338,15 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ bash CREATE_DB.sh
 
 !!! DO NOT USE THE sh COMMAND. THIS DOES NOT WORK WITH THE sh COMMAND. !!!
+</pre></div>
+</div>
+</li>
+<li><p>Remember to configure the search path of the database back to its pre-bash sequence, if not, the next time you restart the containers, FROST-Server will fail.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ psql -U $username spatempdb
+
+# in the psql console execute this command
+
+ALTER ROLE $username SET search_path = &quot;$user&quot;, public, citydb, citydb_pkg;
 </pre></div>
 </div>
 </li>

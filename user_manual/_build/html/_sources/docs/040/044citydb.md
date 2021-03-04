@@ -28,3 +28,13 @@ Refer to [here](https://3dcitydb-docs.readthedocs.io) for the full documentation
 
     !!! DO NOT USE THE sh COMMAND. THIS DOES NOT WORK WITH THE sh COMMAND. !!!
     ```
+
+5. Remember to configure the search path of the database back to its pre-bash sequence, if not, the next time you restart the containers, FROST-Server will fail.
+
+    ```
+    $ psql -U $username spatempdb
+
+    # in the psql console execute this command
+
+    ALTER ROLE $username SET search_path = "$user", public, citydb, citydb_pkg;
+    ```

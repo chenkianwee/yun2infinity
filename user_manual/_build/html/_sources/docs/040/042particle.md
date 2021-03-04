@@ -23,11 +23,11 @@ https://go.particle.io/shared_apps/5fe0f742e6f0b000092ded1e
 ```
 - STAPI02_RegisterDevice:
 ```
-https://go.particle.io/shared_apps/5fe10997483a480017a3e07c
+https://go.particle.io/shared_apps/60259cc4479fdf00089f7c34
 ```
 - STAPI03_RegisterNewDeployment:
 ```
-https://go.particle.io/shared_apps/5fe10b58483a480017a3e09a
+https://go.particle.io/shared_apps/60259c2f479fdf00169f7c0c
 ```
 - STAPI04_RegisterSensor:
 ```
