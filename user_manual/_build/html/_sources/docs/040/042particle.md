@@ -27,7 +27,7 @@ https://go.particle.io/shared_apps/60259cc4479fdf00089f7c34
 ```
 - STAPI03_RegisterNewDeployment:
 ```
-https://go.particle.io/shared_apps/60259c2f479fdf00169f7c0c
+https://go.particle.io/shared_apps/6046681e4debcb0009099aa4
 ```
 - STAPI04_RegisterSensor:
 ```
