@@ -60,3 +60,4 @@ This instructions are based on the official timescaleDB documentation [here](htt
     ```
     SELECT timescaledb_post_restore();
     ```
+## Replicate the Database with Bucardo

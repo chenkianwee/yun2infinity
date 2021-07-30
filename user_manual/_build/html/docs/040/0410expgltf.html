@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>10. Export glTF &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Integration" href="../050/050integration.html" />
+    <link rel="prev" title="9. Get SSL Certificate for you FROST-Server and Grafana Server" href="048ssl_cert.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Installation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/020installation.html">
+   1. Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/021docker.html">
+   2. Docker
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/022setup.html">
+   3. Setup Masa3DB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/023maintain.html">
+   4. Maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/024man_setup.html">
+   5. Non Docker Installation (Not Recommended)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tasks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../030/030update.html">
+   1. Update the Container Images - FROST-Server Image Update
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Sub-Tasks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="040postgres.html">
+   1. PostgreSQL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="041particle.html">
+   2. Masa3DB with Particle Devices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="042python.html">
+   3. Masa3DB with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="043citydb.html">
+   4. Initialising 3DCityDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="044import_citygml.html">
+   5. Import CityGML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="045grafana.html">
+   6. Visualisation with Grafana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="046cesium3d.html">
+   7. Install 3DcityDB Web Map Client
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="047analysis.html">
+   8. Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="048ssl_cert.html">
+   9. Get SSL Certificate for you FROST-Server and Grafana Server
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   10. Export glTF
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Integration
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/050integration.html">
+   1. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/051docker_image.html">
+   2. Timescale-3DCityDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/052webhooks.html">
+   3. Particle Webhooks
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/040/0410expgltf.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/0410expgltf.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="export-gltf">
+<h1><span class="section-number">10. </span>Export glTF<a class="headerlink" href="#export-gltf" title="Permalink to this headline">¶</a></h1>
+<p>Install Import/Exporter Tool here: <span class="xref std std-doc">045import_citygml</span>.</p>
+<ol>
+<li><p>Go to the tab Preferences. On the left panel go to KML/COLLADA/glTF Export -&gt; General. In the General window:
+<br><br/>
+a. Tick the ‘Create glTF model; Path of the COLLADA2glTF Tool:’</p>
+<p>b. Select Export glTF version 2.0</p>
+<p>c. Tick ‘Write JSON file’ -&gt; ‘of type JSONP’ -&gt; ‘with callback method name’: handle_3DCityDB_data
+<br><br/></p>
+</li>
+<li><p>At the KML/COLLADA/glTF tab fill in the file to export to with the ‘Browse’ button.
+<br><br/>
+a. Specify if you want to export a single object or by bounding box. You can calculate the bounding box of features in the database with the ‘Database’ tab.</p>
+<p>b. Go to the Database tab. Fill in all the necessary connection details to connect to your 3DCityDB. In the section ‘Database operation’, go to ‘Bounding box’ tab. Here you can choose the top feature to include in your bounding box calculation. Then calculate the bounding box. Copy the calculated bounding box and use it in ‘KML/COLLADA/glTF’ tab for your export.</p>
+<p>c. For the tiling option, choose automatic to have a tile size of 125mx125m.
+<br><br/></p>
+</li>
+<li><p>Choose the level of detail from the section ‘Export from level of detail’. In the Display as you can choose to export either the ‘Footprint’, ‘Extruded’, ‘Geometry’ and ‘COLLADA/glTF’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Footprint</span> <span class="o">-</span> <span class="n">export</span> <span class="n">the</span> <span class="n">footprint</span> <span class="n">of</span> <span class="n">the</span> <span class="n">feature</span><span class="o">.</span> <span class="n">For</span> <span class="n">LOD</span> <span class="mi">0</span> <span class="n">objects</span><span class="o">.</span>
+<span class="n">Extruded</span> <span class="o">-</span> <span class="n">export</span> <span class="n">the</span> <span class="n">extrusion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">footprint</span><span class="o">.</span>
+<span class="n">Geometry</span> <span class="o">-</span> <span class="n">each</span> <span class="n">surface</span> <span class="n">of</span> <span class="n">the</span> <span class="n">feature</span> <span class="ow">is</span> <span class="n">exported</span><span class="o">.</span>
+<span class="n">COLLADA</span><span class="o">/</span><span class="n">glTF</span> <span class="o">-</span> <span class="n">geometry</span> <span class="ow">and</span> <span class="n">texture</span> <span class="n">of</span> <span class="n">the</span> <span class="n">feature</span> <span class="ow">is</span> <span class="n">exported</span>
+</pre></div>
+</div>
+<p>a. For the visible from ____ pixels. When viewed in google earth pro and the web map client, 0 pixels means it will always be rendered, a bigger number means it will only be rendered when you zoom closer, the bigger the number the closer you need to zoom.</p>
+<p>b. In the section Feature Types, choose the feature type to export.
+<br><br/></p>
+</li>
+<li><p>Check the exported geometries by viewing them in Google Earth Pro.</p></li>
+<li><p>Next go to the SPSHG tab. Let’s export the attributes of the exported feature. In the previous steps, only the geometries are exported, the semantics of the features are not exported with the glTF.</p></li>
+<li><p>In the SPSHG tab allows you to export the attributes of the features into a CSV file, we will first define the columns and content of the CSV to be exported.</p>
+<div class="figure align-default" id="spshg">
+<a class="reference internal image-reference" href="../../_images/spshg.png"><img alt="../../_images/spshg.png" src="../../_images/spshg.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10.1 </span><span class="caption-text">Export attributes to csv.</span><a class="headerlink" href="#spshg" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\040"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="048ssl_cert.html" title="previous page"><span class="section-number">9. </span>Get SSL Certificate for you FROST-Server and Grafana Server</a>
+    <a class='right-next' id="next-link" href="../050/050integration.html" title="next page"><span class="section-number">1. </span>Integration</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

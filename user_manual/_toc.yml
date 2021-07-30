@@ -2,29 +2,33 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 #
 - file: docs/010/010intro
-- file: docs/020/020installation
-  sections:
+  numbered: true
+
+- part: Installation
+  chapters:
+    - file: docs/020/020installation
     - file: docs/020/021docker
     - file: docs/020/022setup
     - file: docs/020/023maintain
     - file: docs/020/024man_setup
-- file: docs/030/030work
-  sections:
-    - file: docs/030/031update
-- file: docs/040/040task
-  sections:
-    - file: docs/040/041postgres
-    - file: docs/040/042particle
-    - file: docs/040/043python
-    - file: docs/040/044citydb
-    - file: docs/040/045import_citygml
-    - file: docs/040/046grafana
-    - file: docs/040/047cesium3d
-    - file: docs/040/048analysis
-    - file: docs/040/049ssl_cert
-    - file: docs/040/0410wfs
-    - file: docs/040/0411expgltf
-- file: docs/050/050integration
-  sections:
+- part: Tasks
+  chapters:
+    - file: docs/030/030update
+- part: Sub-Tasks
+  chapters:
+    - file: docs/040/040postgres
+    - file: docs/040/041particle
+    - file: docs/040/042python
+    - file: docs/040/043citydb
+    - file: docs/040/044import_citygml
+    - file: docs/040/045grafana
+    - file: docs/040/046cesium3d
+    - file: docs/040/047analysis
+    - file: docs/040/048ssl_cert
+    - file: docs/040/0490wfs
+    - file: docs/040/0410expgltf
+- part: Integration
+  chapters:
+    - file: docs/050/050integration
     - file: docs/050/051docker_image
     - file: docs/050/052webhooks

@@ -60,3 +60,28 @@ This instructions are based on the official timescaleDB documentation [here](htt
     ```
     SELECT timescaledb_post_restore();
     ```
+## Replicate the Database with Bucardo
+
+https://www.endpoint.com/blog/2014/06/bucardo-5-multimaster-postgres-released/
+install ssh
+
+establish ssh connection and map the port to localhost
+
+ssh -L 127.0.0.1:5900:localhost:5432 -N -f -M -S ~/.ssh-tunnel.gateway.mycompany.com chaos@chaosbox.princeton.edu
+
+ssh -S ~/.ssh-tunnel.gateway.mycompany.com -O check chaos@chaosbox.princeton.edu
+
+ssh -S ~/.ssh-tunnel.gateway.mycompany.com -O exit chaos@chaosbox.princeton.edu
+
+https://mpharrigan.com/2016/05/17/background-ssh.html
+
+https://notepad2.blogspot.com/2012/11/run-ssh-tunnel-in-background.html
+
+bucardo command
+bucardo add database chaoslocal host=127.0.0.1 port=5901 dbname=spatempdb user=chaoslocal password=Zer0exergy
+
+bucardo add sync stapi dbs=chaosbox:source,chaoslocal:source tables=all
+
+bucardo update sync stapi conflict='chaosbox chaoslocal'
+
+ALTER TABLE "OBSERVATIONS" ADD PRIMARY KEY ("ID", "PHENOMENON_TIME_START");

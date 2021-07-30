@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5. Import CityGML &#8212; Masa3DB User Manual</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="6. Visualisation with Grafana" href="045grafana.html" />
+    <link rel="prev" title="4. Initialising 3DCityDB" href="043citydb.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
+   Introduction to Masa3DB
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Installation
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/020installation.html">
+   1. Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/021docker.html">
+   2. Docker
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/022setup.html">
+   3. Setup Masa3DB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/023maintain.html">
+   4. Maintenance
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/024man_setup.html">
+   5. Non Docker Installation (Not Recommended)
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Tasks
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../030/030update.html">
+   1. Update the Container Images - FROST-Server Image Update
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Sub-Tasks
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="040postgres.html">
+   1. PostgreSQL
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="041particle.html">
+   2. Masa3DB with Particle Devices
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="042python.html">
+   3. Masa3DB with Python
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="043citydb.html">
+   4. Initialising 3DCityDB
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   5. Import CityGML
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="045grafana.html">
+   6. Visualisation with Grafana
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="046cesium3d.html">
+   7. Install 3DcityDB Web Map Client
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="047analysis.html">
+   8. Analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="048ssl_cert.html">
+   9. Get SSL Certificate for you FROST-Server and Grafana Server
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="0410expgltf.html">
+   10. Export glTF
+  </a>
+ </li>
+</ul>
+<p class="caption collapsible-parent">
+ <span class="caption-text">
+  Integration
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/050integration.html">
+   1. Integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/051docker_image.html">
+   2. Timescale-3DCityDB
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../050/052webhooks.html">
+   3. Particle Webhooks
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/docs/040/044import_citygml.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/044import_citygml.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-import-exporter-tool-on-your-local-machine-recommended">
+   5.1. Install Import/Exporter Tool on your Local Machine (Recommended).
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-import-exporter-tool-on-the-server">
+   5.2. Install Import/Exporter Tool on the Server.
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sql-for-3dcitydb-check-the-imported-data">
+   5.3. SQL for 3DCityDB - Check the Imported Data
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="import-citygml">
+<h1><span class="section-number">5. </span>Import CityGML<a class="headerlink" href="#import-citygml" title="Permalink to this headline">¶</a></h1>
+<p>Refer to <a class="reference external" href="https://3dcitydb-docs.readthedocs.io">here</a> for the full documentation of 3DCityDB.</p>
+<div class="section" id="install-import-exporter-tool-on-your-local-machine-recommended">
+<h2><span class="section-number">5.1. </span>Install Import/Exporter Tool on your Local Machine (Recommended).<a class="headerlink" href="#install-import-exporter-tool-on-your-local-machine-recommended" title="Permalink to this headline">¶</a></h2>
+<p>The instructions are based on this <a class="reference external" href="https://github.com/3dcitydb/importer-exporter/issues/161">post</a>.</p>
+<ol>
+<li><p>Download the <a class="reference external" href="https://www.3dcitydb.org/3dcitydb/d3dimpexp/">3D City Database Importer/Exporter</a></p>
+<p>a. You will need to install Java for the installer to work. Install Java <a class="reference external" href="https://techoral.com/blog/java/openjdk-install-windows.html">here</a></p>
+</li>
+<li><p>Once installed you will need to connect to the database.</p>
+<p>a. Make sure AllowTcpForwarding is set to yes in your ssh server config file (usually located at /etc/ssh/sshd-config)
+<br><br/>
+b. Establish your ssh tunnel using: ssh -L [LOCAL_IP:]LOCAL_PORT:DESTINATION:DESTINATION_PORT [USER&#64;]SSH_SERVER, e.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mi">5432</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5432</span> <span class="n">user</span><span class="nd">@chaosbox</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>c. Connect to the 3DCityDB instance using e.g. 3DCityDB Importer/Exporter using localhost:5432 as host and port.</p>
+<div class="figure align-default" id="dcitydb-connect">
+<a class="reference internal image-reference" href="../../_images/3dcitydb_connect.png"><img alt="../../_images/3dcitydb_connect.png" src="../../_images/3dcitydb_connect.png" style="width: 1054.8px; height: 301.2px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5.1 </span><span class="caption-text">Interface for importing a CityGML file.</span><a class="headerlink" href="#dcitydb-connect" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>You can validate your CityGML file.</p>
+<div class="figure align-default" id="dcitydb-import">
+<a class="reference internal image-reference" href="../../_images/3dcitydb_import.png"><img alt="../../_images/3dcitydb_import.png" src="../../_images/3dcitydb_import.png" style="width: 640.1999999999999px; height: 345.59999999999997px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 5.2 </span><span class="caption-text">Interface for importing a CityGML file.</span><a class="headerlink" href="#dcitydb-import" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="install-import-exporter-tool-on-the-server">
+<h2><span class="section-number">5.2. </span>Install Import/Exporter Tool on the Server.<a class="headerlink" href="#install-import-exporter-tool-on-the-server" title="Permalink to this headline">¶</a></h2>
+<p>Install the 3DcityDB Importer/Exporter tool on your Docker host machine. Follow the instructions <a class="reference external" href="https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/intro/install-impexp.html#command-line-installation">here</a>.</p>
+<ol>
+<li><p>Download the .jar file from 3DcityDB website with curl.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://www.3dcitydb.org/3dcitydb/fileadmin/downloaddata/3DCityDB-Importer-Exporter-4.2.0-Setup.jar &gt; 3dcitydb_impexp/3DCityDB-Importer-Exporter-4.2.0-Setup.jar
+</pre></div>
+</div>
+</li>
+<li><p>Install the OpenJDK to run the .jar installation file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install openjdk-14-jre-headless
+</pre></div>
+</div>
+</li>
+<li><p>Install the importer/exporter with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo java -jar 3dcitydb_impexp/3DCityDB-Importer-Exporter-4.2.0-Setup.jar -console
+</pre></div>
+</div>
+<p>a. Only install the following packages.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Select</span> <span class="n">installation</span> <span class="n">packages</span><span class="p">:</span>
+<span class="p">[</span><span class="n">core</span><span class="p">]</span> <span class="p">[</span><span class="n">required</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">3</span><span class="n">dcitydb</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">manual</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="mi">3</span><span class="n">d</span><span class="o">-</span><span class="n">web</span><span class="o">-</span><span class="nb">map</span><span class="o">-</span><span class="n">client</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">samples</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">n</span>
+<span class="p">[</span><span class="n">plugins</span><span class="p">]</span>  <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">spreadsheet</span><span class="o">.</span><span class="n">generator</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+        <span class="n">plugin</span><span class="o">.</span><span class="n">ade</span><span class="o">-</span><span class="n">manager</span> <span class="p">[</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">]</span> <span class="n">y</span>
+</pre></div>
+</div>
+</li>
+<li><p>You can start importing cityGML data based on the command line. Full documentation <a class="reference external" href="https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/impexp/cli.html">here</a>. The easiest way to get a config_file.xml is to use the GUI to create the config file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1. Run the Importer/Exporter with the graphical user interface (GUI).
+2. Make all your settings in the GUI.
+3. Save your settings to a local config file via the Project Save Project As… dialog from the main menu bar.
+4. Make manual changes to the config file if required.
+5. Feed this config file to the command line interface using the -config argument.
+</pre></div>
+</div>
+<p>a. Once you have the config file specify it here and run this command to validate the cityGML file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar impexp-client-4.2.0.jar -shell -config /path/to/config_file.xml -validate /path/to/import_file.gml
+</pre></div>
+</div>
+<p>b. a. Once you have the config file specify it here and run this command to import the cityGML file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar impexp-client-4.2.0.jar -shell -config /path/to/config_file.xml -import /path/to/import_file.gml
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="sql-for-3dcitydb-check-the-imported-data">
+<h2><span class="section-number">5.3. </span>SQL for 3DCityDB - Check the Imported Data<a class="headerlink" href="#sql-for-3dcitydb-check-the-imported-data" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li></li>
+<li><p>Show the names and height of the building.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">id</span><span class="p">,</span><span class="n">b</span><span class="o">.</span><span class="n">measured_height</span> <span class="kn">from</span> <span class="nn">cityobject</span> <span class="n">c</span> <span class="n">inner</span> <span class="n">join</span> <span class="n">building</span> <span class="n">b</span> <span class="n">on</span> <span class="n">b</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">id</span> <span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>To check the geometry of the buildings.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">select</span> <span class="n">ST_AsGML</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">surface_geometry</span> <span class="n">where</span> <span class="nb">id</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./docs\040"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="043citydb.html" title="previous page"><span class="section-number">4. </span>Initialising 3DCityDB</a>
+    <a class='right-next' id="next-link" href="045grafana.html" title="next page"><span class="section-number">6. </span>Visualisation with Grafana</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Kian Wee Chen<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

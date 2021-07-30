@@ -3,7 +3,7 @@ At the time of development, I was unable to find a docker image that is installe
 
 1. Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.
     ```
-    $ curl -L https://github.com/chenkianwee/masa3db/archive/0.02.zip > masa3db-0.02.zip
+    $ curl -L https://github.com/chenkianwee/masa3db/archive/0.04.zip > masa3db-0.02.zip
     ```
 2. Unzip the file with this command.
     ```
@@ -60,4 +60,16 @@ At the time of development, I was unable to find a docker image that is installe
     ```
     $ sudo docker login
     $ sudo docker push yourName/ImageName:tag
+    ```
+
+## Docker Image for Raspberry Pi
+
+1. We will use the Debian docker image as base.
+
+2. Install Tomcat in the Debian Docker image. Instruction [here](https://tecadmin.net/install-apache-tomcat-9-on-debian/) and for the init.d [here](https://javabirder.wordpress.com/2016/02/18/install-tomcat-9-ubuntu/).
+
+    ```
+    $ apt update
+    $ apt install default-jdk
+    $ apt install wget https://apache.osuosl.org/tomcat/tomcat-9/v9.0.50/bin/apache-tomcat-9.0.50.tar.gz
     ```
