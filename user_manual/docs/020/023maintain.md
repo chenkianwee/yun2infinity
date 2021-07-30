@@ -78,7 +78,7 @@ https://mpharrigan.com/2016/05/17/background-ssh.html
 https://notepad2.blogspot.com/2012/11/run-ssh-tunnel-in-background.html
 
 bucardo command
-bucardo add database chaoslocal host=127.0.0.1 port=5901 dbname=spatempdb user=chaoslocal password=Zer0exergy
+bucardo add database chaoslocal host=127.0.0.1 port=5901 dbname=spatempdb user=chaoslocal password=
 
 bucardo add sync stapi dbs=chaosbox:source,chaoslocal:source tables=all
 
