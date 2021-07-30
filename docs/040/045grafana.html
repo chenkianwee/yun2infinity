@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Setup Masa3DB &#8212; Masa3DB User Manual</title>
+    <title>6. Visualisation with Grafana &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Maintenance" href="023maintain.html" />
-    <link rel="prev" title="2. Docker" href="021docker.html" />
+    <link rel="next" title="7. Install 3DcityDB Web Map Client" href="046cesium3d.html" />
+    <link rel="prev" title="5. Import CityGML" href="044import_citygml.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,29 +96,29 @@
   Installation
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="020installation.html">
+  <a class="reference internal" href="../020/020installation.html">
    1. Installation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="021docker.html">
+  <a class="reference internal" href="../020/021docker.html">
    2. Docker
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/022setup.html">
    3. Setup Masa3DB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="023maintain.html">
+  <a class="reference internal" href="../020/023maintain.html">
    4. Maintenance
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="024man_setup.html">
+  <a class="reference internal" href="../020/024man_setup.html">
    5. Non Docker Installation (Not Recommended)
   </a>
  </li>
@@ -140,54 +140,54 @@
   Sub-Tasks
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/040postgres.html">
+  <a class="reference internal" href="040postgres.html">
    1. PostgreSQL
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/041particle.html">
+  <a class="reference internal" href="041particle.html">
    2. Masa3DB with Particle Devices
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/042python.html">
+  <a class="reference internal" href="042python.html">
    3. Masa3DB with Python
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/043citydb.html">
+  <a class="reference internal" href="043citydb.html">
    4. Initialising 3DCityDB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/044import_citygml.html">
+  <a class="reference internal" href="044import_citygml.html">
    5. Import CityGML
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/045grafana.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    6. Visualisation with Grafana
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/046cesium3d.html">
+  <a class="reference internal" href="046cesium3d.html">
    7. Install 3DcityDB Web Map Client
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/047analysis.html">
+  <a class="reference internal" href="047analysis.html">
    8. Analysis
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/048ssl_cert.html">
+  <a class="reference internal" href="048ssl_cert.html">
    9. Get SSL Certificate for you FROST-Server and Grafana Server
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/0410expgltf.html">
+  <a class="reference internal" href="0410expgltf.html">
    10. Export glTF
   </a>
  </li>
@@ -253,7 +253,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/020/022setup.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/040/045grafana.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -273,7 +273,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/022setup.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/045grafana.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -300,31 +300,19 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ubuntu-20-04">
-   3.1. Ubuntu 20.04
+  <a class="reference internal nav-link" href="#install-grafana">
+   6.1. Install Grafana
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#download-masa3db-onto-your-machine">
-     3.1.1. Download Masa3DB onto your machine
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-masa3db">
-     3.1.2. Install Masa3DB
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#increase-paging-of-frost-server-for-improvement-of-performance">
-     3.1.3. Increase Paging of FROST-server for Improvement of Performance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uninstall-masa3db">
-     3.1.4. Uninstall Masa3DB
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">
+   6.2. Install LinkSmart SensorThings Plugin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-dashboards">
+   6.3. Create Dashboards
+  </a>
  </li>
 </ul>
 
@@ -337,126 +325,75 @@
         
               <div>
                 
-  <div class="section" id="setup-masa3db">
-<h1><span class="section-number">3. </span>Setup Masa3DB<a class="headerlink" href="#setup-masa3db" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="ubuntu-20-04">
-<h2><span class="section-number">3.1. </span>Ubuntu 20.04<a class="headerlink" href="#ubuntu-20-04" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="download-masa3db-onto-your-machine">
-<h3><span class="section-number">3.1.1. </span>Download Masa3DB onto your machine<a class="headerlink" href="#download-masa3db-onto-your-machine" title="Permalink to this headline">¶</a></h3>
+  <div class="section" id="visualisation-with-grafana">
+<h1><span class="section-number">6. </span>Visualisation with Grafana<a class="headerlink" href="#visualisation-with-grafana" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-grafana">
+<h2><span class="section-number">6.1. </span>Install Grafana<a class="headerlink" href="#install-grafana" title="Permalink to this headline">¶</a></h2>
 <ol>
-<li><p>Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://github.com/chenkianwee/masa3db/archive/0.05.zip &gt; masa3db-0.05.zip
-</pre></div>
-</div>
-<p>a. If curl is not installed on your machine. Install it with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install curl
-</pre></div>
-</div>
-</li>
-<li><p>Unzip the file with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip masa3db-0.05.zip
-</pre></div>
-</div>
-<p>a. If unzip is not installed on your machine. Install it with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install unzip
+<li><p>If you have not installed Docker. Install Docker <a class="reference internal" href="../020/021docker.html"><span class="doc">here</span></a>.</p></li>
+<li><p>If you have not installed Masa3DB. Install Masa3DB <a class="reference internal" href="../020/022setup.html"><span class="doc">here</span></a>.</p></li>
+<li><p>Run this command to install Grafana.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker run -d --network masa3db -p 3000:3000 --name grafana chenkianwee/grafana-sensorthings  
 </pre></div>
 </div>
 </li>
-<li><p>Go into the masa3db-0.05 folder with this command. You will be able to see the following folders and files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.05
+<li><p>Go to the server where you have installed your Grafana. In my case, I have installed it at http://chaosbox.princeton.edu:3000 (will need to VPN into the local intranet). For the first time, login to Grafana with username:admin and password:admin. Once login change the password and username.</p></li>
+</ol>
+</div>
+<div class="section" id="install-linksmart-sensorthings-plugin">
+<h2><span class="section-number">6.2. </span>Install LinkSmart SensorThings Plugin<a class="headerlink" href="#install-linksmart-sensorthings-plugin" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Run this command to get into the grafana container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -u root -it grafana bash
+</pre></div>
+</div>
+</li>
+<li><p>Run this command in the bash to install the SensorThings Plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ grafana-cli plugins install linksmart-sensorthings-datasource
+</pre></div>
+</div>
+</li>
+<li><p>Exit the container by running this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ exit
+</pre></div>
+</div>
+</li>
+<li><p>Restart the Grafana container for the plugin to work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker restart grafana
+</pre></div>
+</div>
+</li>
+<li><p>Once installed. Login to Grafana. On the side bar, go to Configuration -&gt; Data Sources - Add data source. Search for sensorthings and you will see</p>
+<div class="figure align-default" id="sensorthings-plugin">
+<a class="reference internal image-reference" href="../../_images/sensorthings_plugin.png"><img alt="../../_images/sensorthings_plugin.png" src="../../_images/sensorthings_plugin.png" style="width: 957.0px; height: 333.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Select the LinkSmart SensorThings.</span><a class="headerlink" href="#sensorthings-plugin" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>Next configure the settings as follows.Remember to substitute your frost server container name below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">LinkSmart</span> <span class="n">SensorThings</span>
+<span class="n">URL</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">containername</span><span class="p">:</span><span class="mi">8080</span><span class="o">/</span><span class="n">FROST</span><span class="o">-</span><span class="n">Server</span><span class="o">/</span><span class="n">v1</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">Access</span><span class="p">:</span> <span class="n">Server</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
 
-LICENSE  README.md  shellscript  timescale-3dcitydb
+<span class="n">Basic</span> <span class="n">auth</span>
+<span class="n">Basic</span> <span class="n">Auth</span> <span class="n">Details</span>
+<span class="n">User</span><span class="p">:</span> <span class="n">your</span> <span class="n">user</span> <span class="n">name</span>
+<span class="n">Password</span><span class="p">:</span> <span class="n">your</span> <span class="n">password</span>
 </pre></div>
 </div>
 </li>
 </ol>
 </div>
-<div class="section" id="install-masa3db">
-<h3><span class="section-number">3.1.2. </span>Install Masa3DB<a class="headerlink" href="#install-masa3db" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-dashboards">
+<h2><span class="section-number">6.3. </span>Create Dashboards<a class="headerlink" href="#create-dashboards" title="Permalink to this headline">¶</a></h2>
 <ol>
-<li><p>Execute this command to install Masa3DB.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.05/shellscript
-
-$ sudo sh setup_masa3db.sh
-</pre></div>
-</div>
-</li>
-<li><p>The script will ask you to enter a series of parameters. Most of the parameters you can just accept the defaults. Remember the passwords and username you entered here as you will need it later.</p>
-<div class="figure align-default" id="setup-parm2">
-<img alt="../../_images/setup_parm2.png" src="../../_images/setup_parm2.png" />
-<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The series of parameters to fill, in pay attention to the two parameters as stated below.</span><a class="headerlink" href="#setup-parm2" title="Permalink to this image">¶</a></p>
-</div>
-<p>a. Pay attention to the Service Root URL. If you already have a domain name for your server enter that as the Service Root URL. In this example our domain name is http://chaosbox.princeton.edu.
-<br/><br/>
-b. The other parameter to pay attention to is if you want to allow the public to request for data from your database without the need of a password. If you want to set a password set the parameter to “false”.</p>
-<div class="figure align-default" id="setup-parm">
-<img alt="../../_images/setup_parm.png" src="../../_images/setup_parm.png" />
-<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Two parameters to pay attention.</span><a class="headerlink" href="#setup-parm" title="Permalink to this image">¶</a></p>
-</div>
-<p>c. If the installation is successful you will see these messages.</p>
-<div class="figure align-default" id="setup-success">
-<img alt="../../_images/setup_success.png" src="../../_images/setup_success.png" />
-<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">A successful setup.</span><a class="headerlink" href="#setup-success" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>We will check if the database has been successfully installed. Type in this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker ps
-</pre></div>
-</div>
-<p>a. One container is running the postgresql database (container name: spatempdb) and the other is running the FROST-Server (Sensorthings API server) (container name: frost). All the data is stored in the spatempdb container while the frost container enables the sensorthings api to access the database.</p>
-<div class="figure align-default" id="docker-containers">
-<img alt="../../_images/docker_containers.png" src="../../_images/docker_containers.png" />
-<p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Two containers will be running spatempdb and frost if you have accepted the default naming of containers.</span><a class="headerlink" href="#docker-containers" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Go to http://you_public_ip_address:8080/FROST-Server you will be able to see this landing page. This means that your sensorthings API is setup.</p>
-<div class="figure align-default" id="sensorthings-landing">
-<img alt="../../_images/sensorthings_landing.png" src="../../_images/sensorthings_landing.png" />
-<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">The landing page of the FROST-Server (Sensorthings API).</span><a class="headerlink" href="#sensorthings-landing" title="Permalink to this image">¶</a></p>
-</div>
-<p>a. Click on the Database Status and Update. You will be prompted to key in your username and password. The default username and passwords are admin. We can change it later.
-<br/><br/>
-b. Once you enter the page click on do update. Once successfully update this message will be shown.</p>
-<div class="figure align-default" id="sensorthings-update">
-<img alt="../../_images/sensorthings_update.png" src="../../_images/sensorthings_update.png" />
-<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Successfully updated the FROST-Server settings.</span><a class="headerlink" href="#sensorthings-update" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Congratulation you have successfully installed Masa3DB.</p></li>
-</ol>
-</div>
-<div class="section" id="increase-paging-of-frost-server-for-improvement-of-performance">
-<h3><span class="section-number">3.1.3. </span>Increase Paging of FROST-server for Improvement of Performance<a class="headerlink" href="#increase-paging-of-frost-server-for-improvement-of-performance" title="Permalink to this headline">¶</a></h3>
-<ol>
-<li><p>Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#copy the file out of the container and edit it with nano
-$ sudo docker cp frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml .
-$ sudo chmod o=rw context.xml
-$ nano context.xml
-
-# after making the edit and saving it change the write permission back to its original
-$ sudo chmod o=rw context.xml
-$ sudo docker cp context.xml frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml
-</pre></div>
+<li><p>Go to the side bar, Create -&gt; Dashboard -&gt; Add new panel.</p></li>
+<li><p>At the datasource tab, choose the Sensorthing datasource that you have setup.</p>
+<div class="figure align-default" id="sensorthings-plugin1">
+<a class="reference internal image-reference" href="../../_images/sensorthings_plugin1.png"><img alt="../../_images/sensorthings_plugin1.png" src="../../_images/sensorthings_plugin1.png" style="width: 835.0px; height: 294.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Select the LinkSmart SensorThings as datasource.</span><a class="headerlink" href="#sensorthings-plugin1" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="uninstall-masa3db">
-<h3><span class="section-number">3.1.4. </span>Uninstall Masa3DB<a class="headerlink" href="#uninstall-masa3db" title="Permalink to this headline">¶</a></h3>
-<ol>
-<li><p>Execute this command to uninstall Masa3DB.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!!!This will remove the database with all its data!!!
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02/shellscript
-
-$ sudo sh rmv_masa3db.sh
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 
@@ -473,7 +410,7 @@ $ sudo sh rmv_masa3db.sh
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\020"
+            path: "./docs\040"
         },
         predefinedOutput: true
     }
@@ -488,8 +425,8 @@ $ sudo sh rmv_masa3db.sh
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="021docker.html" title="previous page"><span class="section-number">2. </span>Docker</a>
-    <a class='right-next' id="next-link" href="023maintain.html" title="next page"><span class="section-number">4. </span>Maintenance</a>
+    <a class='left-prev' id="prev-link" href="044import_citygml.html" title="previous page"><span class="section-number">5. </span>Import CityGML</a>
+    <a class='right-next' id="next-link" href="046cesium3d.html" title="next page"><span class="section-number">7. </span>Install 3DcityDB Web Map Client</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

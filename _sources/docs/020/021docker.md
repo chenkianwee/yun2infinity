@@ -43,6 +43,25 @@ This is written based on instruction from the [Docker official site](https://doc
     $ sudo apt-get update
     $ sudo apt-get install docker-ce docker-ce-cli containerd.io
     ```
+### Raspberry Pi OS (In Progress, Untested)
+Tested on Raspberry Pi Model B 2Gb Ram Model.
+1. Setup your Raspberry Pi following the instructions [here](https://magpi.raspberrypi.org/articles/set-up-raspberry-pi-4).
+
+2. Enable SSH on your Raspberry Pi following instructions [here](https://www.raspberrypi.org/documentation/remote-access/ssh/).
+
+3. Install docker on the raspberry pi following instructions [here](https://pimylifeup.com/raspberry-pi-docker/) and also [here](https://phoenixnap.com/kb/docker-on-raspberry-pi)
+
+    a. Update your Raspberry Pi to its latest system with these commands.
+    ```
+    $ sudo apt update
+    $ sudo apt upgrade
+    ```
+
+    b. Install docker by executing this command.
+    ```
+    $ curl -sSL https://get.docker.com | sh
+    ```
+
 ## Uninstall
 ### Ubuntu 20.04
 1. Uninstall the Docker Engine.

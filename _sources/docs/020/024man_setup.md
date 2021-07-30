@@ -13,3 +13,10 @@
     alter database chaos_sim set search_path to sensorthings,citydb,citydb_pkg,“$user”,public;
     ```
 8. Set authentication according to this [instructions](https://fraunhoferiosb.github.io/FROST-Server/settings/auth.html).
+
+## For raspberry pi
+1. Install java on the pi [here](https://raspberrytips.com/install-java-raspberry-pi/)
+    ```
+    $ sudo apt-get openjdk-11-jre
+    ```
+2. Install tomcat base on these [instructions](https://thefridaynightprojectsite.wordpress.com/2015/06/22/installing-apache-tomcat-8-on-a-raspberry-pi/).

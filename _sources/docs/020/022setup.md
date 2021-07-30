@@ -3,7 +3,7 @@
 ### Download Masa3DB onto your machine
 1. Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.
     ```
-    $ curl -L https://github.com/chenkianwee/masa3db/archive/0.02.zip > masa3db-0.02.zip
+    $ curl -L https://github.com/chenkianwee/masa3db/archive/0.05.zip > masa3db-0.05.zip
     ```
     a. If curl is not installed on your machine. Install it with this command.
     ```
@@ -11,22 +11,22 @@
     ```
 2. Unzip the file with this command.
     ```
-    $ unzip masa3db-0.02.zip
+    $ unzip masa3db-0.05.zip
     ```
     a. If unzip is not installed on your machine. Install it with this command.
     ```
     $ sudo apt-get install unzip
     ```
-3. Go into the masa3db-0.02 folder with this command. You will be able to see the following folders and files.
+3. Go into the masa3db-0.05 folder with this command. You will be able to see the following folders and files.
     ```
-    $ cd masa3db-0.02
+    $ cd masa3db-0.05
 
     LICENSE  README.md  shellscript  timescale-3dcitydb
     ```
 ### Install Masa3DB
 1. Execute this command to install Masa3DB.
     ```
-    $ cd masa3db-0.02/shellscript
+    $ cd masa3db-0.05/shellscript
 
     $ sudo sh setup_masa3db.sh
     ```
@@ -78,6 +78,16 @@
 
 ### Increase Paging of FROST-server for Improvement of Performance
 1. Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.
+    ```
+    #copy the file out of the container and edit it with nano
+    $ sudo docker cp frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml .
+    $ sudo chmod o=rw context.xml
+    $ nano context.xml
+
+    # after making the edit and saving it change the write permission back to its original
+    $ sudo chmod o=rw context.xml
+    $ sudo docker cp context.xml frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml
+    ```
 
 ### Uninstall Masa3DB
 1. Execute this command to uninstall Masa3DB.

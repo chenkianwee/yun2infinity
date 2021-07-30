@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Masa3DB &#8212; Masa3DB User Manual</title>
+    <title>Install Web Feature Service (WFS) &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,7 +55,6 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. Installation" href="../020/020installation.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -84,8 +83,8 @@
 </form>
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <ul class="nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../010/010intro.html">
    Introduction to Masa3DB
   </a>
  </li>
@@ -141,52 +140,52 @@
 </p>
 <ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/040postgres.html">
+  <a class="reference internal" href="040postgres.html">
    1. PostgreSQL
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/041particle.html">
+  <a class="reference internal" href="041particle.html">
    2. Masa3DB with Particle Devices
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/042python.html">
+  <a class="reference internal" href="042python.html">
    3. Masa3DB with Python
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/043citydb.html">
+  <a class="reference internal" href="043citydb.html">
    4. Initialising 3DCityDB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/044import_citygml.html">
+  <a class="reference internal" href="044import_citygml.html">
    5. Import CityGML
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/045grafana.html">
+  <a class="reference internal" href="045grafana.html">
    6. Visualisation with Grafana
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/046cesium3d.html">
+  <a class="reference internal" href="046cesium3d.html">
    7. Install 3DcityDB Web Map Client
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/047analysis.html">
+  <a class="reference internal" href="047analysis.html">
    8. Analysis
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/048ssl_cert.html">
+  <a class="reference internal" href="048ssl_cert.html">
    9. Get SSL Certificate for you FROST-Server and Grafana Server
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/0410expgltf.html">
+  <a class="reference internal" href="0410expgltf.html">
    10. Export glTF
   </a>
  </li>
@@ -252,7 +251,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/010/010intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/040/049wfs.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -272,7 +271,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/010/010intro.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/049wfs.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -300,24 +299,29 @@
         
               <div>
                 
-  <div class="section" id="introduction-to-masa3db">
-<h1>Introduction to Masa3DB<a class="headerlink" href="#introduction-to-masa3db" title="Permalink to this headline">¶</a></h1>
-<p>The Masa3DB is a open-source database that can handle spatial time-series data. Masa means time in Malay. So Masa3DB means Time + 3-Dimension Database. It is an integration of the following open-source software:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.postgresql.org/">PostgreSQL Database</a> – the core database software.</p></li>
-<li><p><a class="reference external" href="https://docs.timescale.com/latest/main">TimescaleDB</a> – extension of PostgreSQL that can handle time-series data.</p></li>
-<li><p><a class="reference external" href="https://postgis.net/">Postgis</a> – extension of PostgreSQL that can handle spatial data.</p></li>
-<li><p><a class="reference external" href="https://www.3dcitydb.org/3dcitydb/">3DCityDB</a> – extension of PostgreSQL that can handle 3D City data, it uses the data model of CityGML.</p></li>
-<li><p><a class="reference external" href="https://www.iosb.fraunhofer.de/servlet/is/82077/">FROST-Server</a> – PostgreSQL based implementation of the Sensorthings API.</p></li>
-</ul>
-<div class="toctree-wrapper compound">
+  <div class="section" id="install-web-feature-service-wfs">
+<h1>Install Web Feature Service (WFS)<a class="headerlink" href="#install-web-feature-service-wfs" title="Permalink to this headline">¶</a></h1>
+<p>By installing the WFS, you will be able to have fine grained access to the cityGML database. More details <a class="reference external" href="https://www.ogc.org/standards/wfs">here</a>.</p>
+<ol>
+<li><p>Install the Docker image of 3DcityDB-WFS. The instructions are based on this <a class="reference external" href="https://github.com/tum-gis/3dcitydb-wfs-docker/">post</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">name</span> <span class="s2">&quot;citydb-wfs&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="o">-</span><span class="n">p</span> <span class="mi">8765</span><span class="p">:</span><span class="mi">8080</span> \
+<span class="o">--</span><span class="n">network</span> <span class="s2">&quot;masa3db&quot;</span>\
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_TYPE=PostGIS&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_SERVER=$container_name_hosting3dcitydb&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_PORT=5432&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_SID=spatempdb&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_USER=$username&quot;</span> \
+<span class="o">-</span><span class="n">e</span> <span class="s2">&quot;CITYDB_CONNECTION_PASSWORD=$password&quot;</span> \
+<span class="n">tumgis</span><span class="o">/</span><span class="mi">3</span><span class="n">dcitydb</span><span class="o">-</span><span class="n">wfs</span>
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
+</li>
+<li><p>Test the installation by going to a web browser. If it return an XML, the service is up and running.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://my-docker-host:8765/citydb-wfs/wfs?SERVICE=WFS&amp;REQUEST=GetCapabilities
+</pre></div>
 </div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
+</li>
+</ol>
 </div>
 
     <script type="text/x-thebe-config">
@@ -333,7 +337,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\010"
+            path: "./docs\040"
         },
         predefinedOutput: true
     }
@@ -348,7 +352,6 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="../020/020installation.html" title="next page"><span class="section-number">1. </span>Installation</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

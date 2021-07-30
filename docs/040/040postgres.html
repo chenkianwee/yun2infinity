@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3. Setup Masa3DB &#8212; Masa3DB User Manual</title>
+    <title>1. PostgreSQL &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4. Maintenance" href="023maintain.html" />
-    <link rel="prev" title="2. Docker" href="021docker.html" />
+    <link rel="next" title="2. Masa3DB with Particle Devices" href="041particle.html" />
+    <link rel="prev" title="1. Update the Container Images - FROST-Server Image Update" href="../030/030update.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,29 +96,29 @@
   Installation
  </span>
 </p>
-<ul class="current nav sidenav_l1">
+<ul class="nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="020installation.html">
+  <a class="reference internal" href="../020/020installation.html">
    1. Installation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="021docker.html">
+  <a class="reference internal" href="../020/021docker.html">
    2. Docker
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../020/022setup.html">
    3. Setup Masa3DB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="023maintain.html">
+  <a class="reference internal" href="../020/023maintain.html">
    4. Maintenance
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="024man_setup.html">
+  <a class="reference internal" href="../020/024man_setup.html">
    5. Non Docker Installation (Not Recommended)
   </a>
  </li>
@@ -140,54 +140,54 @@
   Sub-Tasks
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/040postgres.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    1. PostgreSQL
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/041particle.html">
+  <a class="reference internal" href="041particle.html">
    2. Masa3DB with Particle Devices
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/042python.html">
+  <a class="reference internal" href="042python.html">
    3. Masa3DB with Python
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/043citydb.html">
+  <a class="reference internal" href="043citydb.html">
    4. Initialising 3DCityDB
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/044import_citygml.html">
+  <a class="reference internal" href="044import_citygml.html">
    5. Import CityGML
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/045grafana.html">
+  <a class="reference internal" href="045grafana.html">
    6. Visualisation with Grafana
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/046cesium3d.html">
+  <a class="reference internal" href="046cesium3d.html">
    7. Install 3DcityDB Web Map Client
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/047analysis.html">
+  <a class="reference internal" href="047analysis.html">
    8. Analysis
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/048ssl_cert.html">
+  <a class="reference internal" href="048ssl_cert.html">
    9. Get SSL Certificate for you FROST-Server and Grafana Server
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../040/0410expgltf.html">
+  <a class="reference internal" href="0410expgltf.html">
    10. Export glTF
   </a>
  </li>
@@ -253,7 +253,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/020/022setup.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/040/040postgres.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -273,7 +273,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/022setup.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/040postgres.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -300,31 +300,14 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ubuntu-20-04">
-   3.1. Ubuntu 20.04
+  <a class="reference internal nav-link" href="#connecting-to-postgresql-using-pgadmin">
+   1.1. Connecting to PostgreSQL using pgAdmin
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#download-masa3db-onto-your-machine">
-     3.1.1. Download Masa3DB onto your machine
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-masa3db">
-     3.1.2. Install Masa3DB
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#increase-paging-of-frost-server-for-improvement-of-performance">
-     3.1.3. Increase Paging of FROST-server for Improvement of Performance
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uninstall-masa3db">
-     3.1.4. Uninstall Masa3DB
-    </a>
-   </li>
-  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-frost-server-authentication">
+   1.2. Setting FROST-Server Authentication
+  </a>
  </li>
 </ul>
 
@@ -337,126 +320,69 @@
         
               <div>
                 
-  <div class="section" id="setup-masa3db">
-<h1><span class="section-number">3. </span>Setup Masa3DB<a class="headerlink" href="#setup-masa3db" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="ubuntu-20-04">
-<h2><span class="section-number">3.1. </span>Ubuntu 20.04<a class="headerlink" href="#ubuntu-20-04" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="download-masa3db-onto-your-machine">
-<h3><span class="section-number">3.1.1. </span>Download Masa3DB onto your machine<a class="headerlink" href="#download-masa3db-onto-your-machine" title="Permalink to this headline">¶</a></h3>
+  <div class="section" id="postgresql">
+<h1><span class="section-number">1. </span>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h1>
+<p>All the open-source software used in Masa3DB is based on the PostgreSQL database. You can access the underlying PostgreSQL to see how the data are stored. This is also necessary for changing the username and passwords of the FROST-Server.</p>
+<div class="section" id="connecting-to-postgresql-using-pgadmin">
+<h2><span class="section-number">1.1. </span>Connecting to PostgreSQL using pgAdmin<a class="headerlink" href="#connecting-to-postgresql-using-pgadmin" title="Permalink to this headline">¶</a></h2>
+<p>I will use the pgAdmin software, which is a GUI for managing the Postgresql database, to access the database. I am assuming you installed Masa3DB on a server computer. Now with your own laptop/PC you can access the database remotely.</p>
 <ol>
-<li><p>Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://github.com/chenkianwee/masa3db/archive/0.05.zip &gt; masa3db-0.05.zip
-</pre></div>
-</div>
-<p>a. If curl is not installed on your machine. Install it with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install curl
-</pre></div>
+<li><p>Download and install pgAdmin on your local computer. <a class="reference external" href="https://www.pgadmin.org/download/">Download pgAdmin</a></p></li>
+<li><p>First right click on the servers and create a new server.</p>
+<div class="figure align-default" id="create-server">
+<a class="reference internal image-reference" href="../../_images/create_server.png"><img alt="../../_images/create_server.png" src="../../_images/create_server.png" style="width: 477.0px; height: 270.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.1 </span><span class="caption-text">Create a new server.</span><a class="headerlink" href="#create-server" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>Unzip the file with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip masa3db-0.05.zip
-</pre></div>
+<li><p>In the general tab enter a name. In my case, I used the name chaos.</p>
+<div class="figure align-default" id="server-name">
+<a class="reference internal image-reference" href="../../_images/server_name.png"><img alt="../../_images/server_name.png" src="../../_images/server_name.png" style="width: 373.5px; height: 131.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Fill in the server name.</span><a class="headerlink" href="#server-name" title="Permalink to this image">¶</a></p>
 </div>
-<p>a. If unzip is not installed on your machine. Install it with this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install unzip
-</pre></div>
+<p>a. In the connection tab key in localhost for your host, and enter the username and password you entered while setting up the masa3db process.</p>
+<div class="figure align-default" id="connection-detail">
+<a class="reference internal image-reference" href="../../_images/connection_detail.png"><img alt="../../_images/connection_detail.png" src="../../_images/connection_detail.png" style="width: 375.0px; height: 232.5px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.3 </span><span class="caption-text">Fill in the connection details.</span><a class="headerlink" href="#connection-detail" title="Permalink to this image">¶</a></p>
 </div>
-</li>
-<li><p>Go into the masa3db-0.05 folder with this command. You will be able to see the following folders and files.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.05
-
-LICENSE  README.md  shellscript  timescale-3dcitydb
-</pre></div>
+<p>b. We are using ssh to access the server computer. Key in the necessary parameters to connect to your host computer. The details of how you ssh into your ubuntu server/computer. Click save and you will be able to access the database.</p>
+<div class="figure align-default" id="ssh-tunnel">
+<a class="reference internal image-reference" href="../../_images/ssh_tunnel.png"><img alt="../../_images/ssh_tunnel.png" src="../../_images/ssh_tunnel.png" style="width: 375.5px; height: 412.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.4 </span><span class="caption-text">Fill in the ssh tunnel details.</span><a class="headerlink" href="#ssh-tunnel" title="Permalink to this image">¶</a></p>
+</div>
+<p>c. As you remember in the Masa3db setup script the database name that we created is spatempdb. Click on the extensions and you will be able to see all the extensions installed in the database. They should include all of the extensions shown below.</p>
+<div class="figure align-default" id="db-extension">
+<a class="reference internal image-reference" href="../../_images/db_extension.png"><img alt="../../_images/db_extension.png" src="../../_images/db_extension.png" style="width: 198.0px; height: 262.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.5 </span><span class="caption-text">You can see all the extension that is installed.</span><a class="headerlink" href="#db-extension" title="Permalink to this image">¶</a></p>
+</div>
+<p>d. Go to the schema-&gt;public-&gt;tables. You should see 20 tables based on the sensorthings api data model for modelling your IoT network.</p>
+<div class="figure align-default" id="db-tables">
+<a class="reference internal image-reference" href="../../_images/db_tables.png"><img alt="../../_images/db_tables.png" src="../../_images/db_tables.png" style="width: 216.5px; height: 373.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.6 </span><span class="caption-text">You can see all the tables of the Sensorthing API.</span><a class="headerlink" href="#db-tables" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 </ol>
 </div>
-<div class="section" id="install-masa3db">
-<h3><span class="section-number">3.1.2. </span>Install Masa3DB<a class="headerlink" href="#install-masa3db" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="setting-frost-server-authentication">
+<h2><span class="section-number">1.2. </span>Setting FROST-Server Authentication<a class="headerlink" href="#setting-frost-server-authentication" title="Permalink to this headline">¶</a></h2>
 <ol>
-<li><p>Execute this command to install Masa3DB.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.05/shellscript
-
-$ sudo sh setup_masa3db.sh
-</pre></div>
+<li><p>Right click the table USERS -&gt; View/Edit Data -&gt; All Rows. You will see the table with all the information below. There are three users defined in this table:admin, read and write.</p>
+<div class="figure align-default" id="user-pw">
+<a class="reference internal image-reference" href="../../_images/user_pw.png"><img alt="../../_images/user_pw.png" src="../../_images/user_pw.png" style="width: 562.4px; height: 241.60000000000002px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.7 </span><span class="caption-text">All the username and their password.</span><a class="headerlink" href="#user-pw" title="Permalink to this image">¶</a></p>
+</div>
+<p>a. I will rename “admin” to my desired username. In this case, I will name it “new_user_name”. Double-click on the cell. Change the name. Then click on the “Save Data Change” button. You can change the password similarly here.</p>
+<div class="figure align-default" id="user-edit">
+<a class="reference internal image-reference" href="../../_images/user_edit.png"><img alt="../../_images/user_edit.png" src="../../_images/user_edit.png" style="width: 500.0px; height: 264.8px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.8 </span><span class="caption-text">Editing the username and password.</span><a class="headerlink" href="#user-edit" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>The script will ask you to enter a series of parameters. Most of the parameters you can just accept the defaults. Remember the passwords and username you entered here as you will need it later.</p>
-<div class="figure align-default" id="setup-parm2">
-<img alt="../../_images/setup_parm2.png" src="../../_images/setup_parm2.png" />
-<p class="caption"><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The series of parameters to fill, in pay attention to the two parameters as stated below.</span><a class="headerlink" href="#setup-parm2" title="Permalink to this image">¶</a></p>
-</div>
-<p>a. Pay attention to the Service Root URL. If you already have a domain name for your server enter that as the Service Root URL. In this example our domain name is http://chaosbox.princeton.edu.
-<br/><br/>
-b. The other parameter to pay attention to is if you want to allow the public to request for data from your database without the need of a password. If you want to set a password set the parameter to “false”.</p>
-<div class="figure align-default" id="setup-parm">
-<img alt="../../_images/setup_parm.png" src="../../_images/setup_parm.png" />
-<p class="caption"><span class="caption-number">Fig. 3.2 </span><span class="caption-text">Two parameters to pay attention.</span><a class="headerlink" href="#setup-parm" title="Permalink to this image">¶</a></p>
-</div>
-<p>c. If the installation is successful you will see these messages.</p>
-<div class="figure align-default" id="setup-success">
-<img alt="../../_images/setup_success.png" src="../../_images/setup_success.png" />
-<p class="caption"><span class="caption-number">Fig. 3.3 </span><span class="caption-text">A successful setup.</span><a class="headerlink" href="#setup-success" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>We will check if the database has been successfully installed. Type in this command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker ps
-</pre></div>
-</div>
-<p>a. One container is running the postgresql database (container name: spatempdb) and the other is running the FROST-Server (Sensorthings API server) (container name: frost). All the data is stored in the spatempdb container while the frost container enables the sensorthings api to access the database.</p>
-<div class="figure align-default" id="docker-containers">
-<img alt="../../_images/docker_containers.png" src="../../_images/docker_containers.png" />
-<p class="caption"><span class="caption-number">Fig. 3.4 </span><span class="caption-text">Two containers will be running spatempdb and frost if you have accepted the default naming of containers.</span><a class="headerlink" href="#docker-containers" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Go to http://you_public_ip_address:8080/FROST-Server you will be able to see this landing page. This means that your sensorthings API is setup.</p>
-<div class="figure align-default" id="sensorthings-landing">
-<img alt="../../_images/sensorthings_landing.png" src="../../_images/sensorthings_landing.png" />
-<p class="caption"><span class="caption-number">Fig. 3.5 </span><span class="caption-text">The landing page of the FROST-Server (Sensorthings API).</span><a class="headerlink" href="#sensorthings-landing" title="Permalink to this image">¶</a></p>
-</div>
-<p>a. Click on the Database Status and Update. You will be prompted to key in your username and password. The default username and passwords are admin. We can change it later.
-<br/><br/>
-b. Once you enter the page click on do update. Once successfully update this message will be shown.</p>
-<div class="figure align-default" id="sensorthings-update">
-<img alt="../../_images/sensorthings_update.png" src="../../_images/sensorthings_update.png" />
-<p class="caption"><span class="caption-number">Fig. 3.6 </span><span class="caption-text">Successfully updated the FROST-Server settings.</span><a class="headerlink" href="#sensorthings-update" title="Permalink to this image">¶</a></p>
-</div>
-</li>
-<li><p>Congratulation you have successfully installed Masa3DB.</p></li>
-</ol>
-</div>
-<div class="section" id="increase-paging-of-frost-server-for-improvement-of-performance">
-<h3><span class="section-number">3.1.3. </span>Increase Paging of FROST-server for Improvement of Performance<a class="headerlink" href="#increase-paging-of-frost-server-for-improvement-of-performance" title="Permalink to this headline">¶</a></h3>
-<ol>
-<li><p>Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#copy the file out of the container and edit it with nano
-$ sudo docker cp frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml .
-$ sudo chmod o=rw context.xml
-$ nano context.xml
-
-# after making the edit and saving it change the write permission back to its original
-$ sudo chmod o=rw context.xml
-$ sudo docker cp context.xml frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml
-</pre></div>
+<li><p>Now right-click on the table USER_ROLES -&gt; View/Edit Data -&gt; All Rows. The change is reflected in this table. According to the table, the USER_NAME: new_user_name has the ROLES of admin, create, delete, read and update. It means the user new_user_name is able to do all these actions. So you can create new users and their roles for accessing the Sensorthings API by manipulating these two tables.</p>
+<div class="figure align-default" id="user-roles">
+<a class="reference internal image-reference" href="../../_images/user_roles.png"><img alt="../../_images/user_roles.png" src="../../_images/user_roles.png" style="width: 752.0px; height: 320.0px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1.9 </span><span class="caption-text">All the username and their roles.</span><a class="headerlink" href="#user-roles" title="Permalink to this image">¶</a></p>
 </div>
 </li>
 </ol>
-</div>
-<div class="section" id="uninstall-masa3db">
-<h3><span class="section-number">3.1.4. </span>Uninstall Masa3DB<a class="headerlink" href="#uninstall-masa3db" title="Permalink to this headline">¶</a></h3>
-<ol>
-<li><p>Execute this command to uninstall Masa3DB.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!!!This will remove the database with all its data!!!
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02/shellscript
-
-$ sudo sh rmv_masa3db.sh
-</pre></div>
-</div>
-</li>
-</ol>
-</div>
 </div>
 </div>
 
@@ -473,7 +399,7 @@ $ sudo sh rmv_masa3db.sh
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\020"
+            path: "./docs\040"
         },
         predefinedOutput: true
     }
@@ -488,8 +414,8 @@ $ sudo sh rmv_masa3db.sh
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="021docker.html" title="previous page"><span class="section-number">2. </span>Docker</a>
-    <a class='right-next' id="next-link" href="023maintain.html" title="next page"><span class="section-number">4. </span>Maintenance</a>
+    <a class='left-prev' id="prev-link" href="../030/030update.html" title="previous page"><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update</a>
+    <a class='right-next' id="next-link" href="041particle.html" title="next page"><span class="section-number">2. </span>Masa3DB with Particle Devices</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
