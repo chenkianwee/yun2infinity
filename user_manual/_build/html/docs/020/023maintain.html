@@ -386,6 +386,131 @@
 </div>
 <div class="section" id="replicate-the-database-with-bucardo">
 <h2><span class="section-number">4.2. </span>Replicate the Database with Bucardo<a class="headerlink" href="#replicate-the-database-with-bucardo" title="Permalink to this headline">¶</a></h2>
+<p>This entry is based on these resources:</p>
+<ul class="simple">
+<li><p><a href="https://bucardo.org/Bucardo/pgbench_example" target="_blank">Bucardo tutorial</a>.</p></li>
+<li><p><a href="https://www.endpoint.com/blog/2014/06/bucardo-5-multimaster-postgres-released/" target="_blank">Syncing with Bucardo 5</a>.</p></li>
+<li><p><a href="https://mpharrigan.com/2016/05/17/background-ssh.html" target="_blank">Running SSH tunnel in the background</a>.</p></li>
+<li><p><a href="https://notepad2.blogspot.com/2012/11/run-ssh-tunnel-in-background.html" target="_blank">Running SSH tunnel in the background 2</a>.</p></li>
+</ul>
+<ol>
+<li><p>Follow the instruction on <a class="reference internal" href="022setup.html"><span class="doc">Setup Masa3DB</span></a> <strong>3.1.1 Steps 1-3</strong> to get the masa3db installation package.</p>
+<ul>
+<li><p>For Masa3DB before release 0.05, you will have to add primary key to your observation table with this command in psql.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ALTER</span> <span class="n">TABLE</span> <span class="s2">&quot;OBSERVATIONS&quot;</span> <span class="n">ADD</span> <span class="n">PRIMARY</span> <span class="n">KEY</span> <span class="p">(</span><span class="s2">&quot;ID&quot;</span><span class="p">,</span> <span class="s2">&quot;PHENOMENON_TIME_START&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Install Bucardo go to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">masa3db</span><span class="o">-</span><span class="mf">0.05</span><span class="o">/</span><span class="n">bucardo</span><span class="o">/</span><span class="n">shellscript</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Execute the install_bucardo.sh script with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">sh</span> <span class="n">install_bucardo</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>You will be asked to fill in these parameters. Since 5432 is already used by the FROST-Server we will change the port to 5431.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">DB</span> <span class="n">Container</span> <span class="n">Name</span>
+<span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">bucardo</span><span class="p">):</span>
+
+<span class="n">Enter</span> <span class="n">Port</span> <span class="n">to</span> <span class="n">listen</span> <span class="n">to</span> <span class="k">for</span> <span class="n">the</span> <span class="n">DB</span> <span class="n">Container</span><span class="o">.</span>
+<span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mi">5432</span><span class="p">):</span> <span class="mi">5431</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once the installation is completed you will get this message.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Current</span> <span class="n">connection</span> <span class="n">settings</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Host</span><span class="p">:</span>           <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>
+<span class="mf">2.</span> <span class="n">Port</span><span class="p">:</span>           <span class="mi">5432</span>
+<span class="mf">3.</span> <span class="n">User</span><span class="p">:</span>           <span class="n">postgres</span>
+<span class="mf">4.</span> <span class="n">Database</span><span class="p">:</span>       <span class="n">bucardo</span>
+<span class="mf">5.</span> <span class="n">PID</span> <span class="n">directory</span><span class="p">:</span>  <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">run</span><span class="o">/</span><span class="n">bucardo</span>
+<span class="n">Creating</span> <span class="n">superuser</span> <span class="s1">&#39;bucardo&#39;</span>
+<span class="n">Installation</span> <span class="ow">is</span> <span class="n">now</span> <span class="n">complete</span><span class="o">.</span>
+<span class="n">Set</span> <span class="s2">&quot;log_level&quot;</span> <span class="n">to</span> <span class="s2">&quot;debug&quot;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Go into the bucardo container with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="n">bucardo</span> <span class="n">bash</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Inside the container install ssh with the following command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">ssh</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Once installed establish a tunnel to the server where your FROST-Server database is hosted.</p>
+<ul>
+<li><p>For example I have a database hosted on chaosbox.com. In the command below I am mapping the port to my localhost address(127.0.0.1) and local port (5900).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">5900</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5432</span> <span class="o">-</span><span class="n">N</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">S</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">-</span><span class="n">tunnel</span><span class="o">.</span><span class="n">chaosbox</span><span class="o">.</span><span class="n">com</span> <span class="n">user</span><span class="nd">@chaosbox</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>to check on the connection use this command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">S</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">-</span><span class="n">tunnel</span><span class="o">.</span><span class="n">chaosbox</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">O</span> <span class="n">check</span> <span class="n">user</span><span class="nd">@chaosbox</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+<p>to end the connection use this command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">S</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">-</span><span class="n">tunnel</span><span class="o">.</span><span class="n">chaosbox</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">O</span> <span class="n">exit</span> <span class="n">user</span><span class="nd">@chaosbox</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</li>
+<li><p>I have another database hosted on my local network.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">L</span> <span class="mf">127.0</span><span class="o">.</span><span class="mf">0.1</span><span class="p">:</span><span class="mi">5901</span><span class="p">:</span><span class="n">localhost</span><span class="p">:</span><span class="mi">5432</span> <span class="o">-</span><span class="n">N</span> <span class="o">-</span><span class="n">f</span> <span class="o">-</span><span class="n">M</span> <span class="o">-</span><span class="n">S</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">-</span><span class="n">tunnel</span><span class="o">.</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.248</span> <span class="n">user</span><span class="o">@</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.248</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Add the two database to Bucardo. Fill in the parameters as according to your setup</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bucardo add database $db1_name host=127.0.0.1 port=5900 dbname=spatempdb user=$user password=$password
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bucardo add database $db2_name host=127.0.0.1 port=5901 dbname=spatempdb user=$user password=$password
+</pre></div>
+</div>
+<p>check the database after you have added them</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bucardo</span> <span class="nb">list</span> <span class="n">dbs</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once the two databases are added you can create a sync with the command. In this command we are doing a master-master sync where both database have read and write capabilities. When there is a conflict, information on db1 will take priority.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bucardo add sync $sync_name dbs=db1:source,db2:source tables=all conflict=&#39;db1 db2&#39;
+</pre></div>
+</div>
+<p>If you want to do a master-standby sync specify as follow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bucardo add sync $sync_name dbs=db1:source,db2:target tables=all conflict=&#39;db1 db2&#39;
+</pre></div>
+</div>
+<p>to check the sync added</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bucardo</span> <span class="nb">list</span> <span class="n">sync</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once the sync is added we need to start the sync by running this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bucardo</span> <span class="n">start</span>
+</pre></div>
+</div>
+<p>to stop the sync</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bucardo</span> <span class="n">stop</span>
+</pre></div>
+</div>
+</li>
+<li><p>Once you start the sync you can check the status of the sync with this.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bucardo status $sync_name
+</pre></div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 

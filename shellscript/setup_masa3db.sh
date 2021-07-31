@@ -112,7 +112,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_max=20"\
 	-e "auth_db_conn_idle_max=10"\
 	-e "auth_db_conn_idle_min=-1"\
-	fraunhoferiosb/frost-server:latest
+	fraunhoferiosb/frost-server:1.14
 
 #wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
