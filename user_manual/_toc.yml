@@ -32,3 +32,4 @@
     - file: docs/050/050integration
     - file: docs/050/051docker_image
     - file: docs/050/052webhooks
+    - file: docs/050/053integrate3
