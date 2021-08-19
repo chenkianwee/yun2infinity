@@ -9,8 +9,7 @@
     - file: docs/020/020installation
     - file: docs/020/021docker
     - file: docs/020/022setup
-    - file: docs/020/023maintain
-    - file: docs/020/024man_setup
+    - file: docs/020/023man_setup
 - part: Tasks
   chapters:
     - file: docs/030/030update
@@ -27,7 +26,7 @@
     - file: docs/040/048ssl_cert
     - file: docs/040/0490wfs
     - file: docs/040/0410expgltf
-    - 
+    - file: docs/040/0411maintain
 - part: Integration
   chapters:
     - file: docs/050/050integration

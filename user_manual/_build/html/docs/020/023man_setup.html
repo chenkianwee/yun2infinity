@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Update the Container Images - FROST-Server Image Update &#8212; Masa3DB User Manual</title>
+    <title>4. Non Docker Installation (Not Recommended) &#8212; Masa3DB User Manual</title>
     
   <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,8 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. PostgreSQL" href="../040/040postgres.html" />
-    <link rel="prev" title="4. Non Docker Installation (Not Recommended)" href="../020/023man_setup.html" />
+    <link rel="next" title="1. Update the Container Images - FROST-Server Image Update" href="../030/030update.html" />
+    <link rel="prev" title="3. Setup Masa3DB" href="022setup.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -96,24 +96,24 @@
   Installation
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
-  <a class="reference internal" href="../020/020installation.html">
+  <a class="reference internal" href="020installation.html">
    1. Installation
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../020/021docker.html">
+  <a class="reference internal" href="021docker.html">
    2. Docker
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../020/022setup.html">
+  <a class="reference internal" href="022setup.html">
    3. Setup Masa3DB
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../020/023man_setup.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    4. Non Docker Installation (Not Recommended)
   </a>
  </li>
@@ -123,9 +123,9 @@
   Tasks
  </span>
 </p>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../030/030update.html">
    1. Update the Container Images - FROST-Server Image Update
   </a>
  </li>
@@ -258,7 +258,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/docs/030/030update.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/docs/020/023man_setup.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -278,7 +278,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/030/030update.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/023man_setup.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -299,6 +299,20 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#for-raspberry-pi">
+   4.1. For raspberry pi
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -306,20 +320,35 @@
         
               <div>
                 
-  <div class="section" id="update-the-container-images-frost-server-image-update">
-<h1><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update<a class="headerlink" href="#update-the-container-images-frost-server-image-update" title="Permalink to this headline">¶</a></h1>
-<p>In this example we will update the FROST-Server image to the latest image.</p>
+  <div class="section" id="non-docker-installation-not-recommended">
+<h1><span class="section-number">4. </span>Non Docker Installation (Not Recommended)<a class="headerlink" href="#non-docker-installation-not-recommended" title="Permalink to this headline">¶</a></h1>
 <ol>
-<li><p>Backup the database before doing any update. Follow the instruction here: <span class="xref std std-doc">../020/023maintain</span>.</p></li>
-<li><p>Pull the latest image from Docker Hub and run a new container with the new image.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker pull fraunhoferiosb/frost-server:latest
+<li><p>Install PostgreSQL 12 with PostGIS.</p></li>
+<li><p>Install 3DCityDB.</p></li>
+<li><p>Install the FROST server for Sensorthings API</p></li>
+<li><p>Install <a class="reference external" href="https://tomcat.apache.org/download-90.cgi">Tomcat</a></p></li>
+<li><p>Install the <a class="reference external" href="https://github.com/FraunhoferIOSB/FROST-Server">FROST-Server</a></p></li>
+<li><p>Installation procedure of FROST-Server can be found <a class="reference external" href="https://fraunhoferiosb.github.io/FROST-Server/deployment/postgresql.html">here</a>.</p>
+<p>a. Put the ware file in the webapp folder</p>
+</li>
+<li><p>If you create a new schema remember to add the new schema to the search_path with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>alter database chaos_sim set search_path to sensorthings,citydb,citydb_pkg,“$user”,public;
 </pre></div>
 </div>
 </li>
-<li><p>Run the remove masa3db script as shown here <a class="reference internal" href="../020/022setup.html"><span class="doc">Setup Masa3DB</span></a>.</p></li>
-<li><p>Once all the containers are removed. We can then restore them with the restore script. You will need to specify the path of the backup file required for restoring the database.</p></li>
-<li><p>If FROST Server does not load on your browser. While the browser is loading, restart your DB container with docker restart to force the webpage to load.</p></li>
+<li><p>Set authentication according to this <a class="reference external" href="https://fraunhoferiosb.github.io/FROST-Server/settings/auth.html">instructions</a>.</p></li>
 </ol>
+<div class="section" id="for-raspberry-pi">
+<h2><span class="section-number">4.1. </span>For raspberry pi<a class="headerlink" href="#for-raspberry-pi" title="Permalink to this headline">¶</a></h2>
+<ol>
+<li><p>Install java on the pi <a class="reference external" href="https://raspberrytips.com/install-java-raspberry-pi/">here</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get openjdk-11-jre
+</pre></div>
+</div>
+</li>
+<li><p>Install tomcat base on these <a class="reference external" href="https://thefridaynightprojectsite.wordpress.com/2015/06/22/installing-apache-tomcat-8-on-a-raspberry-pi/">instructions</a>.</p></li>
+</ol>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -335,7 +364,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./docs\030"
+            path: "./docs\020"
         },
         predefinedOutput: true
     }
@@ -350,8 +379,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="../020/023man_setup.html" title="previous page"><span class="section-number">4. </span>Non Docker Installation (Not Recommended)</a>
-    <a class='right-next' id="next-link" href="../040/040postgres.html" title="next page"><span class="section-number">1. </span>PostgreSQL</a>
+    <a class='left-prev' id="prev-link" href="022setup.html" title="previous page"><span class="section-number">3. </span>Setup Masa3DB</a>
+    <a class='right-next' id="next-link" href="../030/030update.html" title="next page"><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
