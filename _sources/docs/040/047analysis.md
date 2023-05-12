@@ -173,7 +173,7 @@ with SSHTunnelForwarder(('ipaddress'),
     print(len(rows))
     for r in rows:
         print(r)
-        
+
     #===============================================================================================
     #time bucket gapfill filling gap interpolating between values
     #===============================================================================================
