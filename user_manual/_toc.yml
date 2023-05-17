@@ -1,35 +1,35 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
-- file: docs/010/010intro
+format: jb-book
+root: docs/010/010intro
+parts:
+- caption: Installation
   numbered: true
-
-- part: Installation
   chapters:
-    - file: docs/020/020installation
-    - file: docs/020/021docker
-    - file: docs/020/022setup
-    - file: docs/020/023man_setup
-- part: Tasks
+  - file: docs/020/020installation
+  - file: docs/020/021setup
+- caption: Tasks
+  numbered: true
   chapters:
-    - file: docs/030/030update
-- part: Sub-Tasks
+  - file: docs/030/030update
+- caption: Sub-Tasks
+  numbered: true
   chapters:
-    - file: docs/040/040postgres
-    - file: docs/040/041particle
-    - file: docs/040/042python
-    - file: docs/040/043citydb
-    - file: docs/040/044import_citygml
-    - file: docs/040/045grafana
-    - file: docs/040/046cesium3d
-    - file: docs/040/047analysis
-    - file: docs/040/048ssl_cert
-    - file: docs/040/0490wfs
-    - file: docs/040/0410expgltf
-    - file: docs/040/0411maintain
-- part: Integration
+  - file: docs/040/040postgres
+  - file: docs/040/041particle
+  - file: docs/040/042python
+  - file: docs/040/043citydb
+  - file: docs/040/044import_citygml
+  - file: docs/040/045grafana
+  - file: docs/040/046cesium3d
+  - file: docs/040/047analysis
+  - file: docs/040/048ssl_cert
+  - file: docs/040/0490wfs
+  - file: docs/040/0410expgltf
+  - file: docs/040/0411maintain
+  - file: docs/040/0412nginx
+- caption: Integration
+  numbered: true
   chapters:
-    - file: docs/050/050integration
-    - file: docs/050/051docker_image
-    - file: docs/050/052webhooks
-    - file: docs/050/053integrate3
+  - file: docs/050/050integration
+  - file: docs/050/051docker_image
+  - file: docs/050/052webhooks
+  - file: docs/050/053integrate3

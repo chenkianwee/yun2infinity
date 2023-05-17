@@ -44,7 +44,8 @@ docker run -d --name "$CONTAINERNAME"\
 	-e "POSTGRES_USER=$DBUSER"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
-	chenkianwee/timescale-3dcitydb:1.7.2-4.0.1
+	-v "spatempdb_volume:/var/lib/postgresql/data"\
+	chenkianwee/timescale-3dcitydb:2.10.3-4.1.0
 
 sleep 15
 echo 'Create timescale extension'
