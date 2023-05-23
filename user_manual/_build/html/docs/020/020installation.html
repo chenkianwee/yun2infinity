@@ -1,35 +1,45 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Installation &#8212; Masa3DB User Manual</title>
-    
+    <title>1. Installation &#8212; Yun2Infinity User Manual</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -37,12 +47,12 @@
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../../_static/togglebutton.js"></script>
-    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../../_static/design-tabs.js"></script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
 const thebe_selector = ".thebe,.cell"
@@ -50,443 +60,549 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/020/020installation';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Setup Masa3DB" href="021setup.html" />
-    <link rel="prev" title="Introduction to Masa3DB" href="../010/010intro.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
+    <link rel="next" title="1. Update the Container Images - FROST-Server Image Update" href="../030/030update.html" />
+    <link rel="prev" title="Introduction to Yun2Infinity" href="../010/010intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-    <div class="container-fluid" id="banner"></div>
-
     
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
-      
-      
-      
-      <h1 class="site-logo" id="site-title">Masa3DB User Manual</h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
+<a class="navbar-brand logo" href="../010/010intro.html">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Yun2Infinity User Manual</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../010/010intro.html">
-                    Introduction to Masa3DB
+                    Introduction to Yun2Infinity
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Installation
- </span>
-</p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Installation</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   1. Installation
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="021setup.html">
-   2. Setup Masa3DB
-  </a>
- </li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Tasks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../030/030update.html">
-   3. Update the Container Images - FROST-Server Image Update
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../030/030update.html">1. Update the Container Images - FROST-Server Image Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../030/031deploy.html">2. Deploy to AWS server</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Sub-Tasks
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/040postgres.html">
-   4. PostgreSQL
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/041particle.html">
-   5. Masa3DB with Particle Devices
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/042python.html">
-   6. Masa3DB with Python
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/043citydb.html">
-   7. Initialising 3DCityDB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/044import_citygml.html">
-   8. Import CityGML
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/045grafana.html">
-   9. Visualisation with Grafana
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/046cesium3d.html">
-   10. Install 3DcityDB Web Map Client
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/047analysis.html">
-   11. Analysis Using TimescaleDB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/048ssl_cert.html">
-   12. Get SSL Certificate for you FROST-Server and Grafana Server
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/0410expgltf.html">
-   13. Export glTF
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/0411maintain.html">
-   14. Maintenance
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../040/0412nginx.html">
-   15. Reverse proxy using nginx
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../040/040postgres.html">1. PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/041particle.html">2. Masa3DB with Particle Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/042python.html">3. Masa3DB with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/043citydb.html">4. Initialising 3DCityDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/044import_citygml.html">5. Import CityGML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/045grafana.html">6. Visualisation with Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/046cesium3d.html">7. Install 3DcityDB Web Map Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/047analysis.html">8. Analysis Using TimescaleDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/048ssl_cert.html">9. Get SSL Certificate for you FROST-Server and Grafana Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/0410expgltf.html">10. Export glTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/0411maintain.html">11. Maintenance</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Integration
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Integration</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../050/050integration.html">
-   16. Integration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../050/051docker_image.html">
-   17. Timescale-3DCityDB
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../050/052webhooks.html">
-   18. Particle Webhooks
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../050/053integrate3.html">
-   19. Bucardo Syncing (Failed)
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../050/050integration.html">1. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/051docker_image.html">2. Timescale-3DCityDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/052webhooks.html">3. Particle Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/053integrate3.html">4. Bucardo Syncing (Failed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/054containerize.html">5. Building the Yun2Infinity Project with Django and Jupyter-Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/056nginx.html">7. Nginx configuration</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/020installation.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/docs/020/020installation.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/020/020installation.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../../_sources/docs/020/020installation.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
 </label>
-
+</div></div>
+      
     </div>
+  
 </div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#docker">
-   1.1. Docker
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubuntu-installation">
-     1.1.1. Ubuntu Installation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubuntu-uninstallion">
-     1.1.2. Ubuntu Uninstallion
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Installation</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#docker">
-   1.1. Docker
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubuntu-installation">
-     1.1.1. Ubuntu Installation
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#ubuntu-uninstallion">
-     1.1.2. Ubuntu Uninstallion
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
+              
+              
 
-                        </nav>
-                    </div>
-                </div>
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Installation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
             </div>
-            <main id="main-content" role="main">
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">1.1. Docker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-yun2infinity">1.2. Setup Yun2Infinity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increase-paging-of-frost-server-for-improvement-of-performance">1.2.1. Increase Paging of FROST-server for Improvement of Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uninstall-yun2infinity">1.2.2. Uninstall Yun2Infinity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-nginx">1.3. Install nginx</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <section class="tex2jax_ignore mathjax_ignore" id="installation">
 <h1><span class="section-number">1. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h1>
 <p>I am using <a class="reference external" href="https://www.docker.com/">Docker</a> for running the database. So you will have to install Docker on your machine. Refer to the next section to install Docker. Once Docker is installed, I have written a shellscript to automatically fetch all the necessary Docker containers to get the database up and running. Currently, the shellscript has only been tested with an Ubuntu machine. In summary:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Install Docker</p></li>
-<li><p>Install Masa3DB</p></li>
+<li><p>Install Yun2Infinity</p></li>
+<li><p>Install Nginx</p></li>
 </ol>
 <section id="docker">
 <h2><span class="section-number">1.1. </span>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">#</a></h2>
-<section id="ubuntu-installation">
-<h3><span class="section-number">1.1.1. </span>Ubuntu Installation<a class="headerlink" href="#ubuntu-installation" title="Permalink to this headline">#</a></h3>
-<p>Install docker based on instruction from the <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#installation-methods">Docker official site</a>.</p>
+<ul class="simple">
+<li><p>Install docker based on instruction from the <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#installation-methods">Docker official site</a>.</p></li>
+<li><p>Uninstall docker based on instruction from <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#uninstall-docker-engine">here</a></p></li>
+</ul>
 </section>
-<section id="ubuntu-uninstallion">
-<h3><span class="section-number">1.1.2. </span>Ubuntu Uninstallion<a class="headerlink" href="#ubuntu-uninstallion" title="Permalink to this headline">#</a></h3>
-<p>Uninstall docker based on instruction from <a class="reference external" href="https://docs.docker.com/engine/install/ubuntu/#uninstall-docker-engine">here</a></p>
+<section id="setup-yun2infinity">
+<h2><span class="section-number">1.2. </span>Setup Yun2Infinity<a class="headerlink" href="#setup-yun2infinity" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Only tested on Ubuntu 22.04</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ curl -L https://github.com/chenkianwee/yun2infinity/archive/xxxx.zip &gt; yun2infinity-xxxx.zip
+</pre></div>
+</div>
+<p>a. If curl is not installed on your machine. Install it with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install curl
+</pre></div>
+</div>
+</li>
+<li><p>Unzip the file with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ unzip masa3db-xxxx.zip
+</pre></div>
+</div>
+<p>a. If unzip is not installed on your machine. Install it with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install unzip
+</pre></div>
+</div>
+</li>
+<li><p>Go into the masa3db-xxxx folder with this command. You will be able to see the following folders and files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-xxxx
+
+LICENSE  README.md  shellscript  timescale-3dcitydb
+</pre></div>
+</div>
+</li>
+<li><p>Execute this command to install Masa3DB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.05/shellscript
+
+$ sudo sh setup_masa3db.sh
+</pre></div>
+</div>
+</li>
+<li><p>The script will ask you to enter a series of parameters. Most of the parameters you can just accept the defaults. Remember the passwords and username you entered here as you will need it later.</p>
+<figure class="align-default" id="setup-parm2">
+<img alt="../../_images/setup_parm2.png" src="../../_images/setup_parm2.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">The series of parameters to fill, in pay attention to the two parameters as stated below.</span><a class="headerlink" href="#setup-parm2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>a. Pay attention to the Service Root URL. If you already have a domain name for your server enter that as the Service Root URL. In this example our domain name is <a class="reference external" href="http://chaosbox.princeton.edu">http://chaosbox.princeton.edu</a>.
+<br/><br/>
+b. The other parameter to pay attention to is if you want to allow the public to request for data from your database without the need of a password. If you want to set a password set the parameter to “false”.</p>
+<figure class="align-default" id="setup-parm">
+<img alt="../../_images/setup_parm.png" src="../../_images/setup_parm.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Two parameters to pay attention.</span><a class="headerlink" href="#setup-parm" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>c. If the installation is successful you will see these messages.</p>
+<figure class="align-default" id="setup-success">
+<img alt="../../_images/setup_success.png" src="../../_images/setup_success.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.3 </span><span class="caption-text">A successful setup.</span><a class="headerlink" href="#setup-success" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>We will check if the database has been successfully installed. Type in this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo docker ps
+</pre></div>
+</div>
+<p>a. One container is running the postgresql database (container name: spatempdb) and the other is running the FROST-Server (Sensorthings API server) (container name: frost). All the data is stored in the spatempdb container while the frost container enables the sensorthings api to access the database.</p>
+<figure class="align-default" id="docker-containers">
+<img alt="../../_images/docker_containers.png" src="../../_images/docker_containers.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.4 </span><span class="caption-text">Two containers will be running spatempdb and frost if you have accepted the default naming of containers.</span><a class="headerlink" href="#docker-containers" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Go to http://you_public_ip_address:8080/FROST-Server you will be able to see this landing page. This means that your sensorthings API is setup.</p>
+<figure class="align-default" id="sensorthings-landing">
+<img alt="../../_images/sensorthings_landing.png" src="../../_images/sensorthings_landing.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.5 </span><span class="caption-text">The landing page of the FROST-Server (Sensorthings API).</span><a class="headerlink" href="#sensorthings-landing" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>a. Click on the Database Status and Update. You will be prompted to key in your username and password. The default username and passwords are admin. We can change it later.
+<br/><br/>
+b. Once you enter the page click on do update. Once successfully update this message will be shown.</p>
+<figure class="align-default" id="sensorthings-update">
+<img alt="../../_images/sensorthings_update.png" src="../../_images/sensorthings_update.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.6 </span><span class="caption-text">Successfully updated the FROST-Server settings.</span><a class="headerlink" href="#sensorthings-update" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</li>
+<li><p>Congratulation you have successfully installed Masa3DB.</p></li>
+</ol>
+<section id="increase-paging-of-frost-server-for-improvement-of-performance">
+<h3><span class="section-number">1.2.1. </span>Increase Paging of FROST-server for Improvement of Performance<a class="headerlink" href="#increase-paging-of-frost-server-for-improvement-of-performance" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#copy the file out of the container and edit it with nano
+$ sudo docker cp frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml .
+$ sudo chmod o=rw context.xml
+$ nano context.xml
+
+# after making the edit and saving it change the write permission back to its original
+$ sudo chmod o=rw context.xml
+$ sudo docker cp context.xml frost:/usr/local/tomcat/webapps/FROST-Server/META-INF/context.xml
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
+<section id="uninstall-yun2infinity">
+<h3><span class="section-number">1.2.2. </span>Uninstall Yun2Infinity<a class="headerlink" href="#uninstall-yun2infinity" title="Permalink to this headline">#</a></h3>
+<ol class="arabic">
+<li><p>Execute this command to uninstall Masa3DB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>!!!This will remove the database with all its data!!!
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd masa3db-0.02/shellscript
+
+$ sudo sh rmv_masa3db.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<p><del>Non Docker Installation (Not Maintained and Not Recommended)<del></p>
+<ol class="arabic">
+<li><p><del>Install PostgreSQL 12 with PostGIS.<del></p></li>
+<li><p><del>Install 3DCityDB.<del></p></li>
+<li><p><del>Install the FROST server for Sensorthings API<del></p></li>
+<li><p><del>Install <a class="reference external" href="https://tomcat.apache.org/download-90.cgi">Tomcat</a><del></p></li>
+<li><p><del>Install the <a class="reference external" href="https://github.com/FraunhoferIOSB/FROST-Server">FROST-Server</a><del></p></li>
+<li><p><del>Installation procedure of FROST-Server can be found <a class="reference external" href="https://fraunhoferiosb.github.io/FROST-Server/deployment/postgresql.html">here</a>.<del></p>
+<p><del>a. Put the ware file in the webapp folder<del></p>
+</li>
+<li><p><del>If you create a new schema remember to add the new schema to the search_path with this command.<del></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>alter database chaos_sim set search_path to sensorthings,citydb,citydb_pkg,“$user”,public;
+</pre></div>
+</div>
+</li>
+<li><p><del>Set authentication according to this <a class="reference external" href="https://fraunhoferiosb.github.io/FROST-Server/settings/auth.html">instructions</a>.<del></p></li>
+</ol>
+</section>
+</section>
+<section id="install-nginx">
+<h2><span class="section-number">1.3. </span>Install nginx<a class="headerlink" href="#install-nginx" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>A good tutorial on configuring nginx as web server <a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">here</a>.</p></li>
+<li><p>Configure your nginx to serve applications with subdomaims <a class="reference external" href="https://stackoverflow.com/questions/9905378/nginx-subdomain-configuration">here</a></p></li>
+<li><p>How to run grafana behind a reverse proxy <a class="reference external" href="https://grafana.com/tutorials/run-grafana-behind-a-proxy/">here</a></p></li>
+</ul>
+<ol class="arabic">
+<li><p>Install nginx following <a class="reference external" href="https://nginx.org/en/linux_packages.html#Ubuntu">these instructions</a></p></li>
+<li><p>Configure the grafana.ini file in the grafana docker container following <a class="reference external" href="https://grafana.com/tutorials/run-grafana-behind-a-proxy/">these instructions</a>.</p></li>
+<li><p>Configure the config file of the nginx server (/etc/nginx/conf.d/default.config).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>map $http_upgrade $connection_upgrade {
+  default upgrade;
+  &#39;&#39; close;
+}
+
+upstream grafana {
+  server localhost:3000;
+}
+
+server {
+    listen       80;
+    server_name  localhost;
+    root /usr/share/nginx/www;
+    index index.html index.htm;
+    #access_log  /var/log/nginx/host.access.log  main;
+    location /frost {
+        #root   /usr/share/nginx/html;
+        #index  index.html index.htm;
+	proxy_pass		http://localhost:8080/FROST-Server;
+	proxy_set_header	HOST $host;
+    }
+    
+    location /grafana {
+	rewrite  ^/grafana/(.*)  /$1 break;
+	proxy_set_header Host $http_host;
+	proxy_pass http://localhost:3000;
+    }
+    
+    # Proxy Grafana Live WebSocket connections.
+    location /grafana/api/live {
+	rewrite  ^/grafana/(.*)  /$1 break;
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade $http_upgrade;
+	proxy_set_header Connection $connection_upgrade;
+	proxy_set_header Host $http_host;
+	proxy_pass http://localhost:3000;
+	} 
+}   
+</pre></div>
+</div>
+</li>
+</ol>
 </section>
 </section>
 
@@ -502,7 +618,7 @@ title="Print to PDF"
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./docs/020"
         },
         predefinedOutput: true
@@ -510,50 +626,111 @@ title="Print to PDF"
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="../010/010intro.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Masa3DB</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="021setup.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Setup Masa3DB</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Kian Wee Chen<br/>
-  
-      &copy; Copyright 2022.<br/>
-</p>
-        </footer>
-    </div>
-    
-</div>
 
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../010/010intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introduction to Yun2Infinity</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="../030/030update.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">1.1. Docker</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-yun2infinity">1.2. Setup Yun2Infinity</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increase-paging-of-frost-server-for-improvement-of-performance">1.2.1. Increase Paging of FROST-server for Improvement of Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uninstall-yun2infinity">1.2.2. Uninstall Yun2Infinity</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-nginx">1.3. Install nginx</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Kian Wee Chen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

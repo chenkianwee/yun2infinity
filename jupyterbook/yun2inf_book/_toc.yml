@@ -1,0 +1,14 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: User Manual
+  numbered: true
+  chapters:
+  - file: docs/tutorial1
+- caption: Technologies
+  numbered: true
+  chapters:
+  - file: docs/opentech

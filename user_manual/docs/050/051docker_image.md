@@ -52,11 +52,11 @@ At the time of development, I was unable to find a docker image that is installe
     $ sudo docker push yourName/ImageName:tag
     ```
 
-## Docker Image for Raspberry Pi (not working)
+<del>Docker Image for Raspberry Pi (not working)<del>
 
-1. We will use the Debian docker image as base.
+1. <del>We will use the Debian docker image as base.<del>
 
-2. Install Tomcat in the Debian Docker image. Instruction [here](https://tecadmin.net/install-apache-tomcat-9-on-debian/) and for the init.d [here](https://javabirder.wordpress.com/2016/02/18/install-tomcat-9-ubuntu/).
+2. <del>Install Tomcat in the Debian Docker image. Instruction [here](https://tecadmin.net/install-apache-tomcat-9-on-debian/) and for the init.d [here](https://javabirder.wordpress.com/2016/02/18/install-tomcat-9-ubuntu/).<del>
 
     ```
     $ apt update

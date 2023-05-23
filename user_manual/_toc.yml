@@ -5,11 +5,11 @@ parts:
   numbered: true
   chapters:
   - file: docs/020/020installation
-  - file: docs/020/021setup
 - caption: Tasks
   numbered: true
   chapters:
   - file: docs/030/030update
+  - file: docs/030/031deploy
 - caption: Sub-Tasks
   numbered: true
   chapters:
@@ -25,7 +25,6 @@ parts:
   - file: docs/040/0490wfs
   - file: docs/040/0410expgltf
   - file: docs/040/0411maintain
-  - file: docs/040/0412nginx
 - caption: Integration
   numbered: true
   chapters:
@@ -33,3 +32,6 @@ parts:
   - file: docs/050/051docker_image
   - file: docs/050/052webhooks
   - file: docs/050/053integrate3
+  - file: docs/050/054containerize
+  - file: docs/050/055grafana
+  - file: docs/050/056nginx

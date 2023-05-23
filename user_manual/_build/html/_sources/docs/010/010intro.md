@@ -1,6 +1,6 @@
-Introduction to Masa3DB
+Introduction to Yun2Infinity
 =======================
-The Masa3DB is a open-source database that can handle spatial time-series data. Masa means time in Malay. So Masa3DB means Time + 3-Dimension Database. It is an integration of the following open-source software:
+The Yun2Infinity is a open-source platform that can handle spatial time-series data. It is an integration of the following open-source software:
 - [PostgreSQL Database](https://www.postgresql.org/) – the core database software.
 - [TimescaleDB](https://docs.timescale.com/latest/main) – extension of PostgreSQL that can handle time-series data.
 - [Postgis](https://postgis.net/) – extension of PostgreSQL that can handle spatial data.

@@ -1,10 +1,10 @@
 #!/bin/bash
 #-----------------------------------------------------------
-#Setup Masa3db with Two Linked Docker Images Quick Start Script
+#Setup Yun2inf with multiple Linked Docker Images Quick Start Script
 #-----------------------------------------------------------
 echo '------------------------------------------------------'
-echo 'This will help you setup your Masa3db Docker Network'
-echo '3 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container'
+echo 'This will help you setup your Yun2inf Docker Network'
+echo '5 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)nginx'
 echo '------------------------------------------------------'
 #DB CONTAINER NAME
 echo 'Enter DB Container Name'
@@ -52,14 +52,34 @@ read -p "(default=true): " AUTHREAD
 AUTHREAD=${AUTHREAD:-true}
 echo
 echo 'Enter Grafana Container Name'
-read -p "(default=grafana): " CONTAINERNAME3
-CONTAINERNAME3=${CONTAINERNAME3:-grafana}
+read -p "(default=grafana_viz): " CONTAINERNAME3
+CONTAINERNAME3=${CONTAINERNAME3:-grafana_viz}
+echo
+echo 'Enter Port to listen to for the grafana Container.'
+read -p "(default=3000): " GPORT
+GPORT=${GPORT:-3000}
+echo
+echo 'Enter yun2inf_django_gunicorn Container Name'
+read -p "(default=yun2inf_proj): " CONTAINERNAME4
+CONTAINERNAME4=${CONTAINERNAME4:-yun2inf_proj}
+echo
+echo 'Enter Port to listen to for the yun2inf_proj Container.'
+read -p "(default=8000): " YPORT
+YPORT=${YPORT:-8000}
+echo
+echo 'Enter nginx Container Name'
+read -p "(default=yun2inf_nginx): " CONTAINERNAME5
+CONTAINERNAME5=${CONTAINERNAME5:-yun2inf_nginx}
+echo
+echo 'Enter HTTP Port for nginx'
+read -p "(default=80): " NPORT
+NPORT=${NPORT:-80}
 
 #PRINT SETTING
 echo '---------------------------------'
 echo 'Container Name1:' $CONTAINERNAME1
 echo 'Container Name2:' $CONTAINERNAME2
-echo 'Container Name2:' $CONTAINERNAME2
+echo 'Container Name3:' $CONTAINERNAME3
 echo 'DBPort: ' $DBPORT
 echo 'HTTP FROST-Server: ' $FSPORT1
 echo 'MQTT FROST-Server: ' $FSPORT2
@@ -68,7 +88,66 @@ echo 'Password: ' $DBPASSWORD
 echo 'Database Name: ' $DBNAME
 echo 'Root URL: ' $ROOTURL
 echo 'Public can Request Data: ' $AUTHREAD
+echo 'GPort: ' $GPORT
+echo 'Container Name4:' $CONTAINERNAME4
+echo 'Container Name5:' $CONTAINERNAME5
+echo 'YPort: ' $YPORT
+echo 'NPort: ' $NPORT
 echo '--------------------------------'
+#=======================================================================
+# CONFIGURE THE REVERSE PROXY OF NGINX
+#=======================================================================
+echo "map \$http_upgrade \$connection_upgrade {
+  default upgrade;
+  '' close;
+}
+
+upstream grafana {
+  server $CONTAINERNAME3:3000;
+}
+
+server {
+    server_name  localhost;
+    listen       80;
+    access_log  /var/log/nginx/host.access.log;
+    error_log  /var/log/nginx/host.access.log;
+    
+    location / {
+        proxy_pass		   http://$CONTAINERNAME4:8000;
+        proxy_set_header   HOST \$host;
+    }
+    
+    location /static {
+        autoindex on;
+        alias /yun2inf_project/www/static;
+    }
+    
+    location /frost/ {
+	proxy_pass		    http://$CONTAINERNAME2:8080/FROST-Server/;
+	proxy_redirect      http://$CONTAINERNAME2:8080 http://localhost;
+    proxy_read_timeout  240;
+
+    proxy_set_header   Host \$host;
+    #proxy_set_header   X-Real-IP \$remote_addr;
+    #proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
+    #proxy_set_header   X-Forwarded-Proto \$scheme;
+    }
+    
+    location /grafana/ {
+	proxy_set_header Host \$http_host;
+	proxy_pass http://grafana/;
+    }
+    
+    # Proxy Grafana Live WebSocket connections.
+    location /grafana/api/live/ {
+	proxy_http_version 1.1;
+	proxy_set_header Upgrade \$http_host;
+	proxy_set_header Connection \$connection_upgrade;
+	proxy_set_header Host \$http_host;
+	proxy_pass http://grafana/;
+	} 
+}" > yun2inf.conf
+
 #Create docker network
 echo 'Creating the user-defined network yun2inf'
 docker network create --driver bridge yun2inf
@@ -78,6 +157,7 @@ echo '------------------------------------------------------'
 echo 'Trying to start db container now ...'
 echo '------------------------------------------------------'
 docker run -d --name "$CONTAINERNAME1"\
+   	-h "$CONTAINERNAME1"\
    	--network "yun2inf"\
 	-p $DBPORT:5432\
 	-e "POSTGRES_USER=$DBUSER"\
@@ -106,6 +186,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "persistence_db_username=$DBUSER"\
 	-e "persistence_db_password=$DBPASSWORD"\
 	-e "persistence_autoUpdateDatabase=true"\
+	-e "persistence_queryTimeout=240"\
 	-e "auth_provider=de.fraunhofer.iosb.ilt.frostserver.auth.basic.BasicAuthProvider"\
 	-e "auth_allowAnonymousRead=$AUTHREAD"\
 	-e "auth_autoUpdateDatabase=true"\
@@ -144,6 +225,39 @@ echo '------------------------------------------------------'
 echo 'Trying to start grafana container now ...'
 echo '------------------------------------------------------'
 docker run -d --name "$CONTAINERNAME3"\
-    --network "yun2inf"\
-    -p 3000:3000\
+    -h "$CONTAINERNAME3"\
+	--network "yun2inf"\
+    -p $GPORT:3000\
     grafana/grafana-oss:9.5.2-ubuntu
+
+docker cp ../grafana/defaults.ini "$CONTAINERNAME3":/usr/share/grafana/conf/defaults.ini
+docker restart "$CONTAINERNAME3"
+echo '------------------------------------------------------'
+echo 'Trying to start django container now ...'
+echo '------------------------------------------------------'
+docker run -d --name "$CONTAINERNAME4"\
+    -h "$CONTAINERNAME4"\
+	--network "yun2inf"\
+    -p $YPORT:8000\
+    -v "y2i:/yun2inf_project/www/static/"\
+    chenkianwee/yun2inf:0.0.1
+
+docker cp ../django/settings.py "$CONTAINERNAME4":/yun2inf_project/yun2inf_project/settings.py
+docker restart "$CONTAINERNAME4"
+echo '------------------------------------------------------'
+echo 'Trying to start nginx container now ...'
+echo '------------------------------------------------------'
+docker run -d --name "$CONTAINERNAME5"\
+    -h "$CONTAINERNAME5"\
+	--network "yun2inf"\
+    -p $NPORT:80\
+    -v "y2i:/yun2inf_project/www/static/"\
+    nginx:1.24
+
+docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
+docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf
+docker restart "$CONTAINERNAME5"
+mv yun2inf.conf ../nginx/yun2inf.conf
+echo '------------------------------------------------------'
+echo 'Successfully installed yun2infinity'
+echo '------------------------------------------------------'
