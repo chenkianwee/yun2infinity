@@ -251,8 +251,10 @@ docker run -d --name "$CONTAINERNAME5"\
     -h "$CONTAINERNAME5"\
 	--network "yun2inf"\
     -p $NPORT:80\
+    -p 443:443\
     -v "y2i:/yun2inf_project/www/static/"\
-    nginx:1.24
+    -v "letsencrypt:/etc/letsencrypt"\
+    nginx:1.24-alpine3.17-slim
 
 docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
 docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf

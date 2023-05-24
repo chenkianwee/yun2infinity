@@ -3,15 +3,15 @@ At the time of development, I was unable to find a docker image that is installe
 
 1. Go to the terminal on your Ubuntu machine. Run this command to download the masa3db package.
     ```
-    $ curl -L https://github.com/chenkianwee/masa3db/archive/xxxx.zip > masa3db-xxxx.zip
+    $ curl -L https://github.com/chenkianwee/yun2infinity/archive/refs/tags/x.x.x.zip > yun2infinity-x.x.x.zip
     ```
 2. Unzip the file with this command.
     ```
-    $ unzip masa3db-xxxx.zip
+    $ unzip yun2infinity-x.x.x.zip
     ```
-3. Go into the masa3db-xxxx/timescale-3dcitydb folder with this command. You will see these files.
+3. Go into the yun2infinity-x.x.x/timescale-3dcitydb folder with this command. You will see these files.
     ```
-    $ cd masa3db-0.02/timescale-3dcitydb
+    $ cd yun2infinity-x.x.x/timescale-3dcitydb
     $ ls
     ```
     ```
@@ -37,15 +37,10 @@ At the time of development, I was unable to find a docker image that is installe
     ```
 4. Run this command to build the image. This command will find the Dockerfile in the directory and build the image according to the file. Refer to this [website](https://thenewstack.io/docker-basics-how-to-use-dockerfiles/) for a quick understanding  of the Dockerfile.
     ```
-    $ sudo docker build . -t chenkianwee/timescale-3dcitydb:1.7.2-4.0.1
+    $ sudo docker build . -t chenkianwee/timescale-3dcitydb:x.x.x-x.x.x
     ```
 5. The image will be built. If successful you will see the "Successfully built" message.
-    ```{figure} /_static/051docker_image/build_success.png
-    :scale: 100%
-    :name: build_success
 
-    Built success message.
-    ```
 6. Push the image to your docker hub. Once uploaded, you will be able to pull from the repository.
     ```
     $ sudo docker login

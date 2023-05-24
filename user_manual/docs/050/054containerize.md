@@ -107,12 +107,12 @@ This instructions are based on these online tutorials.
     pip install gunicorn==20.1.0
     ```
 
-1. Create a **config/gunicorn/dev.py** file in the project in the following structure
+1. Create a **config/gunicorn/prod.py** file in the project in the following structure
     ```
     - yun2inf_project
         - config
             - gunicorn
-                - dev.py
+                - prod.py
         - yun2inf_book
         - yun2inf_project
         - db.sqlite3
@@ -121,25 +121,28 @@ This instructions are based on these online tutorials.
 2. Cut and paste these codes into the dev.py file.
     ```
     """Gunicorn *development* config file"""
+    import multiprocessing
 
     # Django WSGI application path in pattern MODULE_NAME:VARIABLE_NAME
     wsgi_app = "yun2inf_project.wsgi:application"
     # The granularity of Error log outputs
-    loglevel = "debug"
+    loglevel = "info"
     # The number of worker processes for handling requests
-    workers = 2
+    workers = multiprocessing.cpu_count() * 2 + 1
     # The socket to bind
     bind = "0.0.0.0:8000"
     # Restart workers when code changes (development only!)
-    reload = True
+    reload = False
     # Write access and error info to /var/log
-    accesslog = errorlog = "/var/log/gunicorn/dev.log"
+    accesslog = "/var/log/gunicorn/access.log"
+    errorlog = "/var/log/gunicorn/error.log"
     # Redirect stdout/stderr to log file
     capture_output = True
     # PID file so you can easily fetch process ID
-    pidfile = "/var/run/gunicorn/dev.pid"
+    pidfile = "/var/run/gunicorn/prod.pid"
     # Daemonize the Gunicorn process (detach & enter background)
-    daemon = True
+    daemon = False
+
     ```
 3. Create the log and run file as specified in your config dev.py file. Change the permission to ensure you have access to the files. You can use ls -l path/to/file to get know the owner and group of the file.
     ```
@@ -151,11 +154,12 @@ This instructions are based on these online tutorials.
     ```
 4. Run Gunicorn with this command
     ```
-    gunicorn -c config/gunicorn/dev.py
+    gunicorn -c config/gunicorn/prod.py
     ```
 5. Check on the status with this command.
     ```
-    tail -f /var/log/gunicorn/dev.log
+    tail -f /var/log/gunicorn/access.log
+    tail -f /var/log/gunicorn/error.log
     ```
 6. To kill gunicorn
     ```
@@ -175,15 +179,17 @@ These instructions are based on these online tutorials.
     mkdir -pv /var/run/gunicorn/
     
     source /code/.DJANGO_SET_KEY
-    # gunicorn -c /code/config/gunicorn/dev.py
-    exec gunicorn --log-level=info \
-    --workers=2 \
-    --bind=0.0.0.0:8000 \
-    --access-logfile=/var/log/gunicorn/dev.log \
-    --error-logfile=/var/log/gunicorn/dev.log \
-    --capture-output \
-    --pid=/var/log/gunicorn/dev.pid \
-    yun2inf_project.wsgi:application
+    
+    exec gunicorn -c /code/config/gunicorn/dev.py
+    
+    #exec gunicorn --log-level=info \
+    #--workers=2 \
+    #--bind=0.0.0.0:8000 \
+    #--access-logfile=/var/log/gunicorn/dev.log \
+    #--error-logfile=/var/log/gunicorn/dev.log \
+    #--capture-output \
+    #--pid=/var/log/gunicorn/dev.pid \
+    #yun2inf_project.wsgi:application
     ```
     
 2. Create a Dockerfile in the yun2inf_project folder.

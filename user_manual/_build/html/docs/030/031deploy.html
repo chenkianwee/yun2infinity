@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Deploy to AWS server &#8212; Yun2Infinity User Manual</title>
+    <title>2. Deploy to AWS server with a wix subdomain &#8212; Yun2Infinity User Manual</title>
   
   
   
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="030update.html">1. Update the Container Images - FROST-Server Image Update</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Deploy to AWS server</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
 <ul class="nav bd-sidenav">
@@ -351,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -362,11 +364,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Deploy to AWS server</h1>
+    <h1>Deploy to AWS server with a wix subdomain</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -376,29 +386,46 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="deploy-to-aws-server">
-<h1><span class="section-number">2. </span>Deploy to AWS server<a class="headerlink" href="#deploy-to-aws-server" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="deploy-to-aws-server-with-a-wix-subdomain">
+<h1><span class="section-number">2. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p>A good tutorial on configuring nginx as web server <a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">here</a>.</p></li>
-<li><p>wix subdomain</p>
-<ul>
+<li><p>A good tutorial on configuring nginx as web server <a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a> .</p></li>
+</ul>
+<ol class="arabic">
+<li><p>configure wix subdomain</p>
+<ul class="simple">
 <li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site">https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site</a></p></li>
 <li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource">https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource</a></p></li>
 <li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site">https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site</a></p></li>
 <li><p><a class="reference external" href="https://support.wix.com/article/request-third-party-ssl-certificates">https://support.wix.com/article/request-third-party-ssl-certificates</a></p></li>
 </ul>
 </li>
-<li><p>ssl certificate</p>
-<ul>
-<li><p><a class="reference external" href="https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/">https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/</a></p></li>
-</ul>
-</li>
-</ul>
-<ol class="arabic">
 <li><p>Setup your account for an ec2 virtual machine. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html">here</a>.</p></li>
 <li><p>Connect to your AWS instance. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html">here</a></p></li>
 <li><p>Associate an Elastic IP for the instance.</p></li>
-<li><p>Download and unzip the yun2inf.zip file</p></li>
+<li><p>Download and unzip the latest yun2infinity-x.x.x.zip file from <a class="github reference external" href="https://github.com/chenkianwee/yun2infinity/releases/">chenkianwee/yun2infinity</a></p></li>
+<li><p>Customize your yun2inf_book app by following the instruction in <a class="reference internal" href="../050/054containerize.html"><span class="doc">Building the Yun2Infinity Project with Django and Jupyter-Book</span></a>.</p>
+<ul>
+<li><p>I will make the necessary changes on my local computer, e.g. generate jupyterbook and add in new information etc.</p></li>
+<li><p>then zip the folder and push it onto my AWS instance with the scp command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">i</span> <span class="n">pem</span><span class="p">,</span><span class="n">key</span> <span class="n">user</span><span class="nd">@instance_ip_add</span>
+</pre></div>
+</div>
+</li>
+<li><p>On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the ‘setup_yun2inf.sh’.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;------------------------------------------------------&#39;
+echo &#39;Trying to start django container now ...&#39;
+echo &#39;------------------------------------------------------&#39;
+docker run -d --name &quot;$CONTAINERNAME4&quot;\
+    -h &quot;$CONTAINERNAME4&quot;\
+	--network &quot;yun2inf&quot;\
+    -p $YPORT:8000\
+    -v &quot;y2i:/yun2inf_project/www/static/&quot;\
+    chenkianwee/yun2inf:0.0.1 !!! change this image name to the new image you have build !!! 
+</pre></div>
+</div>
+</li>
 <li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the server name to your domain name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
 <span class="n">server_name</span>  <span class="o">.</span><span class="n">your_domain_name</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
@@ -410,16 +437,13 @@ document.write(`
 </pre></div>
 </div>
 </li>
-<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the frost-server related settings. Based on this post <a class="github reference external" href="https://github.com/FraunhoferIOSB/FROST-Server/issues/235">FraunhoferIOSB/FROST-Server#235</a></p>
+<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the proxy_redirect to your domain name. Based on this post <a class="github reference external" href="https://github.com/FraunhoferIOSB/FROST-Server/issues/235">FraunhoferIOSB/FROST-Server#235</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>location /frost/ {
-proxy_pass		       http://$CONTAINERNAME2:8080/FROST-Server;
-proxy_redirect         http://$CONTAINERNAME2:8080 http://your_domain_name.com;
-proxy_read_timeout     240;
-   
-proxy_set_header       HOST \$host;
-proxy_set_header       X-Real-IP $remote_addr;
-proxy_set_header       X-Forwarded-For $proxy_add_x_forwarded_for;
-proxy_set_header       X-Forwarded-Proto $scheme;
+proxy_pass		    http://$CONTAINERNAME2:8080/FROST-Server/;
+proxy_redirect      http://$CONTAINERNAME2:8080 http://localhost;
+proxy_read_timeout  240;
+
+proxy_set_header   Host \$host;
 }
 </pre></div>
 </div>
@@ -461,6 +485,19 @@ proxy_set_header       X-Forwarded-Proto $scheme;
 </div>
 </li>
 </ol>
+<section id="accessing-your-site-over-https-with-ssl-tls-certificate">
+<h2><span class="section-number">2.1. </span>Accessing your site over HTTPS with SSL/TLS certificate<a class="headerlink" href="#accessing-your-site-over-https-with-ssl-tls-certificate" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>ssl certificate</p>
+<ul>
+<li><p><a class="reference external" href="https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/">https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/</a></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple">
+<li><p>Install certbot <a class="reference external" href="https://certbot.eff.org/instructions?ws=nginx&amp;amp;os=ubuntufocal">https://certbot.eff.org/instructions?ws=nginx&amp;os=ubuntufocal</a></p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -521,6 +558,20 @@ proxy_set_header       X-Forwarded-Proto $scheme;
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

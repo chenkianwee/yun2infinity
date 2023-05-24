@@ -127,3 +127,16 @@ STATIC_ROOT = "/yun2inf_project/www/static/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# UNCOMMENT THIS SECTION FOR HTTPS PRODUCTION READY DEPLPYMENT
+
+# SECURE_HSTS_SECONDS = 30  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!* for producetion use 2_592_000
+# SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+# SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+
+# MIDDLEWARE += ["csp.middleware.CSPMiddleware"]
+# CSP_STYLE_SRC = ["'self'"] # add sources to allow loading of materials from other sources
+# CSP_SCRIPT_SRC = ["'self'"]
+# CSP_IMG_SRC = ["'self'"]
