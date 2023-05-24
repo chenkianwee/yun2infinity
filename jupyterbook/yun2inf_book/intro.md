@@ -1,5 +1,5 @@
 # Welcome to the Yun2Infinity Project
 Describe your customization of the project.
 ## Links
-- FROST-Server: your.root.url.com/frost
-- Grafana: your.root.url.com/grafana
+- FROST-Server: http://localhost/frost
+- Grafana: http://localhost/grafana

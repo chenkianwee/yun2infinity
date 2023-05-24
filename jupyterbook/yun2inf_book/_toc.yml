@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 parts:
-- caption: User Manual
+- caption: Tutorials
   numbered: true
   chapters:
   - file: docs/tutorial1

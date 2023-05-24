@@ -1,13 +1,10 @@
 # Deploy to AWS server
-- A good tutorial on configuring nginx as web server [here](https://realpython.com/django-nginx-gunicorn/).
+- A good tutorial on configuring nginx as web server https://realpython.com/django-nginx-gunicorn/ .
 - wix subdomain
     - https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site
     - https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource
     - https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site
     - https://support.wix.com/article/request-third-party-ssl-certificates
-    
-- ssl certificate
-    - https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/
     
 1. Setup your account for an ec2 virtual machine. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html).
 2. Connect to your AWS instance. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
@@ -31,9 +28,6 @@
 	proxy_read_timeout     240;
 	   
 	proxy_set_header       HOST \$host;
-	proxy_set_header       X-Real-IP $remote_addr;
-    proxy_set_header       X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header       X-Forwarded-Proto $scheme;
     }
     ```
 7. change the yun2inf/grafana/defaults.ini domain to your domain name
@@ -69,4 +63,8 @@
     ```
     sudo sh setup_yun2inf.sh
     ```
-    
+## Accessing your site over HTTPS with SSL/TLS certificate
+- ssl certificate
+    - https://cheapsslsecurity.com/blog/ssl-certificates-for-subdomains/
+
+1. Install certbot https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
