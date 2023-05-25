@@ -97,7 +97,8 @@ echo '--------------------------------'
 #=======================================================================
 # CONFIGURE THE REVERSE PROXY OF NGINX
 #=======================================================================
-echo "map \$http_upgrade \$connection_upgrade {
+echo "#server_tokens   off;
+map \$http_upgrade \$connection_upgrade {
   default upgrade;
   '' close;
 }
@@ -115,6 +116,8 @@ server {
     location / {
         proxy_pass		   http://$CONTAINERNAME4:8000;
         proxy_set_header   HOST \$host;
+        #proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
+        #proxy_set_header   X-Forwarded-Proto \$scheme;
     }
     
     location /static {
@@ -128,7 +131,6 @@ server {
     proxy_read_timeout  240;
 
     proxy_set_header   Host \$host;
-    #proxy_set_header   X-Real-IP \$remote_addr;
     #proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
     #proxy_set_header   X-Forwarded-Proto \$scheme;
     }
@@ -136,6 +138,8 @@ server {
     location /grafana/ {
 	proxy_set_header Host \$http_host;
 	proxy_pass http://grafana/;
+	#proxy_set_header   X-Forwarded-For \$proxy_add_x_forwarded_for;
+    #proxy_set_header   X-Forwarded-Proto \$scheme;
     }
     
     # Proxy Grafana Live WebSocket connections.
@@ -257,6 +261,7 @@ docker run -d --name "$CONTAINERNAME5"\
     nginx:1.24-alpine3.17-slim
 
 docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
+docker cp ../nginx/security_header.conf "$CONTAINERNAME5":/etc/nginx/security_header.conf
 docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf
 docker restart "$CONTAINERNAME5"
 mv yun2inf.conf ../nginx/yun2inf.conf
