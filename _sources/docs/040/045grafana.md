@@ -1,8 +1,8 @@
 # Visualisation with Grafana
 ## Install Grafana
 
-1. If you have not installed Docker. Install Docker {doc}`here <../020/021docker>`.
-2. If you have not installed Masa3DB. Install Masa3DB {doc}`here <../020/022setup>`.
+1. If you have not installed Docker. Install Docker {doc}`here <../020/020installation>`.
+2. If you have not installed Masa3DB. Install Masa3DB {doc}`here <../020/020installation>`.
 3. Run this command to install Grafana.
     ```
     $ sudo docker run -d --network masa3db -p 3000:3000 --name grafana chenkianwee/grafana-sensorthings  
@@ -26,8 +26,8 @@
     $ sudo docker restart grafana
     ```
 5. Once installed. Login to Grafana. On the side bar, go to Configuration -> Data Sources - Add data source. Search for sensorthings and you will see
-    ```{figure} /_static/046grafana/sensorthings_plugin.png
-    :scale: 100%
+    ```{figure} /_static/046grafana/sensorthings_plugin.PNG
+    :width: 100%
     :name: sensorthings_plugin
 
     Select the LinkSmart SensorThings.
@@ -46,8 +46,8 @@
 ## Create Dashboards
 1. Go to the side bar, Create -> Dashboard -> Add new panel.
 2. At the datasource tab, choose the Sensorthing datasource that you have setup.
-    ```{figure} /_static/046grafana/sensorthings_plugin1.png
-    :scale: 100%
+    ```{figure} /_static/046grafana/sensorthings_plugin1.PNG
+    :width: 100%
     :name: sensorthings_plugin1
 
     Select the LinkSmart SensorThings as datasource.

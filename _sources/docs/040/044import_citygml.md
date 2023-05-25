@@ -18,16 +18,16 @@ The instructions are based on this [post](https://github.com/3dcitydb/importer-e
     ssh -L 5432:localhost:5432 user@chaosbox.com
     ```
     c. Connect to the 3DCityDB instance using e.g. 3DCityDB Importer/Exporter using localhost:5432 as host and port.
-    ```{figure} /_static/045import_citygml/3dcitydb_connect.png
-    :scale: 60%
+    ```{figure} /_static/045import_citygml/3dcitydb_connect.PNG
+    :width: 60%
     :name: 3dcitydb_connect
 
     Interface for importing a CityGML file.
     ```
 
 3. You can validate your CityGML file.
-    ```{figure} /_static/045import_citygml/3dcitydb_import.png
-    :scale: 60%
+    ```{figure} /_static/045import_citygml/3dcitydb_import.PNG
+    :width: 60%
     :name: 3dcitydb_import
 
     Interface for importing a CityGML file.

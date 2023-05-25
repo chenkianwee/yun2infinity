@@ -1,6 +1,6 @@
 # Masa3DB with Python
 ## Pre-requisite
-- Have already setup the Masa3DB {doc}`../020/022setup`
+- Have already setup the Masa3DB {doc}`../020/020installation`
 - Familiar with Python programming.
 
 ## Python Scripts

@@ -1,5 +1,5 @@
 # Export glTF
-Install Import/Exporter Tool here: {doc}`045import_citygml`.
+Install Import/Exporter Tool here: {doc}`044import_citygml`.
 
 1. Go to the tab Preferences. On the left panel go to KML/COLLADA/glTF Export -> General. In the General window:
     <br><br/>
@@ -34,7 +34,7 @@ Install Import/Exporter Tool here: {doc}`045import_citygml`.
 
 6. In the SPSHG tab allows you to export the attributes of the features into a CSV file, we will first define the columns and content of the CSV to be exported.
 
-    ```{figure} /_static/0411expgltf/spshg.png
+    ```{figure} /_static/0411expgltf/spshg.PNG
     :width: 100%
     :name: spshg
 

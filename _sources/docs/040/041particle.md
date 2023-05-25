@@ -43,33 +43,33 @@ https://go.particle.io/shared_apps/5fd269b0483a480017a34ddb
 ```
 <br/><br/>
 1. Check if the device is registered in the database by flashing it with STAPI01_isDeviceRegistered.
-    ```{figure} /_static/042particle/is_reg.png
-    :scale: 50%
+    ```{figure} /_static/042particle/is_reg.PNG
+    :width: 50%
     :name: is_reg
 
     If the device is not registered you will be asked to register it with STAPI02-RegisterDevice script under the event name 'NOT_REGISTERED'.
     ```
-    ```{figure} /_static/042particle/is_reg1.png
-    :scale: 50%
+    ```{figure} /_static/042particle/is_reg1.PNG
+    :width: 50%
     :name: is_reg1
 
     If the device is registered you will be able to see its details under the event name 'REGISTRATION_DETAILS'.
     ```
 2. Register the device with STAPI02_RegisterDevice. Fill in the details accordingly. Pay attention to the instructions written in the script to fill in the parameters.
-    ```{figure} /_static/042particle/register_dev.png
-    :scale: 50%
+    ```{figure} /_static/042particle/register_dev.PNG
+    :width: 50%
     :name: register_dev
 
     Fill in all the necessary parameters before flashing the script.
     ```
-    ```{figure} /_static/042particle/register_dev2.png
-    :scale: 50%
+    ```{figure} /_static/042particle/register_dev2.PNG
+    :width: 50%
     :name: register_dev2
 
     Details of the registration is published under the event name 'DETAILS'. Take not of the multi/datastreams id as you will need these ids for the STAPI06_PostObservations scripts.
     ```
-    ```{figure} /_static/042particle/register_dev1.png
-    :scale: 50%
+    ```{figure} /_static/042particle/register_dev1.PNG
+    :width: 50%
     :name: register_dev1
 
     If this device is already registered, you will be informed duplicates are found and the duplicate id on the database under the event name 'INSTRUCTION'.
@@ -77,8 +77,8 @@ https://go.particle.io/shared_apps/5fd269b0483a480017a34ddb
 
     <br/><br/>
     a. If the sensor you are using for the deployment is not registered in the database. Use script STAPI04_RegisterSensor to register the new sensor. Fill in the parameters accordingly and pay attention to the instruction given on the script. One sensor only has to be registered once and it can be used again. Just remember the id of the sensor.
-    ```{figure} /_static/042particle/reg_sensor.png
-    :scale: 50%
+    ```{figure} /_static/042particle/reg_sensor.PNG
+    :width: 50%
     :name: reg_sensor
 
     Details of the registration is published under the event name 'REGISTRATION_DETAILS'. Pay attention to the sensor @iot.id, you will need this id for the STAPI02_RegisterDevice script.
@@ -86,28 +86,28 @@ https://go.particle.io/shared_apps/5fd269b0483a480017a34ddb
 
     <br/><br/>
     b. If the Observed Property you are using for the deployment is not registered in the database. Use script STAPI05_RegisterObservedProp to register the new property. Fill in the parameters accordingly and pay attention to the instruction given on the script. One property only has to be registered once and it can be used again. Just remember the id of the property.
-    ```{figure} /_static/042particle/reg_prop.png
-    :scale: 50%
+    ```{figure} /_static/042particle/reg_prop.PNG
+    :width: 50%
     :name: reg_prop
 
     Details of the registration is published under the event name 'REGISTRATION_DETAILS'. Pay attention to the property @iot.id, you will need this id for the STAPI02_RegisterDevice script.
     ```
 3. If you are re-purposing the device. Use STAPI03_RegisterNewDeployment to register the same device in the database but with a different deployment parameter. Fill in the parameters, pay attention to the instruction on the script.
-    ```{figure} /_static/042particle/reg_new_deploy.png
-    :scale: 50%
+    ```{figure} /_static/042particle/reg_new_deploy.PNG
+    :width: 50%
     :name: reg_new_deploy
 
     Details of the the registration is published under the event name 'DETAILS'. Take not of the multi/datastreams id as you will need these ids for the STAPI06_PostObservations scripts.
     ```
-    ```{figure} /_static/042particle/reg_new_deploy1.png
-    :scale: 50%
+    ```{figure} /_static/042particle/reg_new_deploy1.PNG
+    :width: 50%
     :name: reg_new_deploy1
 
     If this device is already registered, you will be informed duplicates are found and the duplicate id on the database under the event name 'INSTRUCTION'.
     ```
 4. With the multi/datastream ids use STAPI06_PostObservations to post your observations to the database. The script is only a template, make necessary adjustments to the script for your project.
-    ```{figure} /_static/042particle/post_obs.png
-    :scale: 50%
+    ```{figure} /_static/042particle/post_obs.PNG
+    :width: 50%
     :name: post_obs
 
     Observations are posted to the database.

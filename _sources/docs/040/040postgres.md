@@ -49,22 +49,22 @@ I will use the pgAdmin software, which is a GUI for managing the Postgresql data
     ```
 ## Setting FROST-Server Authentication
 1. Right click the table USERS -> View/Edit Data -> All Rows. You will see the table with all the information below. There are three users defined in this table:admin, read and write.
-    ```{figure} /_static/031postgres/user_pw.png
-    :scale: 80%
+    ```{figure} /_static/031postgres/user_pw.PNG
+    :width: 80%
     :name: user_pw
 
     All the username and their password.
     ```
     a. I will rename "admin" to my desired username. In this case, I will name it "new_user_name". Double-click on the cell. Change the name. Then click on the "Save Data Change" button. You can change the password similarly here.
-    ```{figure} /_static/031postgres/user_edit.png
-    :scale: 80%
+    ```{figure} /_static/031postgres/user_edit.PNG
+    :width: 80%
     :name: user_edit
 
     Editing the username and password.
     ```
 2. Now right-click on the table USER_ROLES -> View/Edit Data -> All Rows. The change is reflected in this table. According to the table, the USER_NAME: new_user_name has the ROLES of admin, create, delete, read and update. It means the user new_user_name is able to do all these actions. So you can create new users and their roles for accessing the Sensorthings API by manipulating these two tables.
-    ```{figure} /_static/031postgres/user_roles.png
-    :scale: 80%
+    ```{figure} /_static/031postgres/user_roles.PNG
+    :width: 80%
     :name: user_roles
 
     All the username and their roles.
