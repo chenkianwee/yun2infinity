@@ -107,11 +107,15 @@ upstream grafana {
   server $CONTAINERNAME3:3000;
 }
 
+#limit_req_zone $binary_remote_addr zone=myzone:10m rate=5r/s;
+
 server {
     server_name  localhost;
     listen       80;
     access_log  /var/log/nginx/host.access.log;
-    error_log  /var/log/nginx/host.access.log;
+    error_log  /var/log/nginx/host.error.log;
+    
+    #limit_req zone=myzone burst=10 nodelay;
     
     location / {
         proxy_pass		   http://$CONTAINERNAME4:8000;
@@ -258,6 +262,7 @@ docker run -d --name "$CONTAINERNAME5"\
     -p 443:443\
     -v "y2i:/yun2inf_project/www/static/"\
     -v "letsencrypt:/etc/letsencrypt"\
+    -v "/var/log/nginx:/var/log/nginx"\
     nginx:1.24-alpine3.17-slim
 
 docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
