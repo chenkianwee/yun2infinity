@@ -376,6 +376,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.2. Setting up route53 when website goes down</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
 </ul>
             </nav>
         </div>
@@ -390,7 +392,14 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="deploy-to-aws-server-with-a-wix-subdomain">
 <h1><span class="section-number">2. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this headline">#</a></h1>
 <ul class="simple">
-<li><p>A good tutorial on configuring nginx as web server <a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a> .</p></li>
+<li><p>A good tutorial on configuring nginx as web server (<a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a>).</p></li>
+<li><p>resizing your AWS as workload changes</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta">https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html</a></p></li>
+</ul>
+</li>
 </ul>
 <ol class="arabic">
 <li><p>configure wix subdomain</p>
@@ -530,6 +539,11 @@ proxy_set_header   Host \$host;
 </pre></div>
 </div>
 </li>
+<li><p>do a renew dry run to make sure renewal will work.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">certbot</span> <span class="n">renew</span> <span class="o">--</span><span class="n">dry</span><span class="o">-</span><span class="n">run</span>
+</pre></div>
+</div>
+</li>
 <li><p>uncomment this line in the /etc/nginx/conf.d/nginx.conf file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server_tokens</span>   <span class="n">off</span><span class="p">;</span>
 </pre></div>
@@ -547,7 +561,7 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
 
-    <span class="n">include</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">security_header</span><span class="o">.</span><span class="n">conf</span>
+    <span class="n">include</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">security_header</span><span class="o">.</span><span class="n">conf</span><span class="p">;</span>
     
     <span class="o">....</span> <span class="n">other</span> <span class="n">stuff</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">server</span> <span class="n">block</span> <span class="o">....</span>
 <span class="p">}</span>
@@ -567,6 +581,93 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">cp</span> <span class="n">yun2inf_nginx</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">zip</span> <span class="o">.</span>
 
 <span class="n">sudo</span> <span class="n">docker</span> <span class="n">cp</span> <span class="n">yun2inf_nginx</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">nginx</span><span class="o">.</span><span class="n">conf</span> <span class="o">.</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="setting-up-route53-when-website-goes-down">
+<h2><span class="section-number">2.2. </span>Setting up route53 when website goes down<a class="headerlink" href="#setting-up-route53-when-website-goes-down" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://eladnava.com/monitoring-http-health-email-alerts-aws/">https://eladnava.com/monitoring-http-health-email-alerts-aws/</a></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>It is important to setup healthcheck so that you are informed immediately once the website is down.</p></li>
+</ol>
+</section>
+<section id="setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">
+<h2><span class="section-number">2.3. </span>Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks<a class="headerlink" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Stack Overflow</p>
+<ul>
+<li><p><a class="reference external" href="https://serverfault.com/questions/1063352/ec2-relatively-small-network-out-spikes-cause-100-cpu-usage">https://serverfault.com/questions/1063352/ec2-relatively-small-network-out-spikes-cause-100-cpu-usage</a></p></li>
+</ul>
+</li>
+<li><p>fail2ban</p>
+<ul>
+<li><p><a class="reference external" href="https://sysopstechnix.com/protect-web-servers-from-ddos-attacks-using-fail2ban/">https://sysopstechnix.com/protect-web-servers-from-ddos-attacks-using-fail2ban/</a></p></li>
+<li><p><a class="reference external" href="https://www.the-lazy-dev.com/en/install-fail2ban-with-docker/">https://www.the-lazy-dev.com/en/install-fail2ban-with-docker/</a></p></li>
+<li><p><a class="reference external" href="https://seifer.guru/2021/01/2021-01-fail2ban-with-nginx-in-container/">https://seifer.guru/2021/01/2021-01-fail2ban-with-nginx-in-container/</a></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic">
+<li><p>uncomment these lines from the nginx.conf file. They at the top of the file and in the server block.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>limit_req_zone $binary_remote_addr zone=myzone:20m rate=5r/s;
+
+limit_req zone=myzone burst=5 nodelay;
+</pre></div>
+</div>
+</li>
+<li><p>Install fail2ban</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">fail2ban</span>
+</pre></div>
+</div>
+</li>
+<li><p>copy /etc/fail2ban/jail.conf and create a new file jail.local</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">cp</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fail2ban</span><span class="o">/</span><span class="n">jail</span><span class="o">.</span><span class="n">conf</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fail2ban</span><span class="o">/</span><span class="n">jail</span><span class="o">.</span><span class="n">local</span> 
+</pre></div>
+</div>
+</li>
+<li><p>edit /etc/fail2ban/jail.local , look for the the [nginx-limit-req] block and enter the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enabled</span> <span class="o">=</span> <span class="n">true</span>
+<span class="nb">filter</span> <span class="o">=</span> <span class="n">nginx</span><span class="o">-</span><span class="n">limit</span><span class="o">-</span><span class="n">req</span>
+<span class="n">action</span> <span class="o">=</span> <span class="n">iptables</span><span class="o">-</span><span class="n">multiport</span><span class="p">[</span><span class="n">name</span><span class="o">=</span><span class="n">ReqLimit</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;http,https&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">tcp</span><span class="p">]</span>
+<span class="n">logpath</span> <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">host</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">log</span>
+<span class="n">findtime</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="n">maxretry</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">bantime</span> <span class="o">=</span> <span class="mi">3600</span>
+</pre></div>
+</div>
+</li>
+<li><p>configure the banaction of fail2ban for a docker setup. Run the following command to make the ban works for a docker setup.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">fail2ban</span><span class="o">/</span><span class="n">action</span><span class="o">.</span><span class="n">d</span>
+
+<span class="n">sudo</span> <span class="n">cp</span> <span class="n">iptables</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">conf</span> <span class="n">iptables</span><span class="o">-</span><span class="n">common</span><span class="o">-</span><span class="n">forward</span><span class="o">.</span><span class="n">conf</span>
+<span class="n">sudo</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/INPUT/FORWARD/g&#39;</span> <span class="n">iptables</span><span class="o">-</span><span class="n">common</span><span class="o">-</span><span class="n">forward</span><span class="o">.</span><span class="n">conf</span>
+
+<span class="n">sudo</span> <span class="n">cp</span> <span class="n">iptables</span><span class="o">-</span><span class="n">multiport</span><span class="o">.</span><span class="n">conf</span> <span class="n">iptables</span><span class="o">-</span><span class="n">multiport</span><span class="o">-</span><span class="n">forward</span><span class="o">.</span><span class="n">conf</span>
+<span class="n">sudo</span> <span class="n">sed</span> <span class="o">-</span><span class="n">i</span> <span class="s1">&#39;s/iptables-common.conf/iptables-common-forward.conf/g&#39;</span> <span class="n">iptables</span><span class="o">-</span><span class="n">multiport</span><span class="o">-</span><span class="n">forward</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+</li>
+<li><p>reconfigure jail.local to use our new banaction</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">nginx</span><span class="o">-</span><span class="n">limit</span><span class="o">-</span><span class="n">req</span><span class="p">]</span>
+<span class="o">...</span>
+<span class="n">action</span> <span class="o">=</span> <span class="n">iptables</span><span class="o">-</span><span class="n">multiport</span><span class="o">-</span><span class="n">forward</span><span class="p">[</span><span class="n">name</span><span class="o">=</span><span class="n">ReqLimit</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;http,https&quot;</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">tcp</span><span class="p">]</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+</li>
+<li><p>restart the fail2ban system and check that its running with these commands.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">restart</span> <span class="n">fail2ban</span><span class="o">.</span><span class="n">service</span>
+
+<span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">status</span> <span class="n">fail2ban</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+</li>
+<li><p>check ip banned list with this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">fail2ban</span><span class="o">-</span><span class="n">client</span> <span class="n">status</span> <span class="n">nginx</span><span class="o">-</span><span class="n">limit</span><span class="o">-</span><span class="n">req</span>
 </pre></div>
 </div>
 </li>
@@ -642,6 +743,8 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.2. Setting up route53 when website goes down</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
 </ul>
   </nav></div>
 

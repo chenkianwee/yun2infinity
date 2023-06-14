@@ -1,5 +1,10 @@
 # Deploy to AWS server with a wix subdomain
-- A good tutorial on configuring nginx as web server https://realpython.com/django-nginx-gunicorn/ .
+- A good tutorial on configuring nginx as web server (https://realpython.com/django-nginx-gunicorn/).
+- resizing your AWS as workload changes 
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html
+    - https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
+
 1. configure wix subdomain
     - https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site
     - https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource
@@ -111,26 +116,30 @@
     
     0   12  *   *   *   certbot renew --quiet
     ```
-5. uncomment this line in the /etc/nginx/conf.d/nginx.conf file.
+5. do a renew dry run to make sure renewal will work.
+    ```
+    certbot renew --dry-run
+    ```
+6. uncomment this line in the /etc/nginx/conf.d/nginx.conf file.
     ```
     server_tokens   off;
     ```
-5. uncomment these two lines in each location block in the /etc/nginx/conf.d/nginx.conf file.
+7. uncomment these two lines in each location block in the /etc/nginx/conf.d/nginx.conf file.
     ```
     proxy_set_header      X-Forwarded-Proto $scheme;
     proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
     ```
-6. add more security to the /etc/nginx/conf.d/nginx.conf file by including the following commands in both the http and https server block (https://serverfault.com/questions/874936/adding-hsts-to-nginx-config).
+8. add more security to the /etc/nginx/conf.d/nginx.conf file by including the following commands in both the http and https server block (https://serverfault.com/questions/874936/adding-hsts-to-nginx-config).
     - make changes to the add_header Strict-Transport-Security "max-age=300;" always; increase the max-age=31536000 (a year) in the /etc/nginx/security_header.conf as you feel more confident everything is working.
     ```
     server {
     
-        include /etc/nginx/security_header.conf
+        include /etc/nginx/security_header.conf;
         
         .... other stuff in the server block ....
     }
     ```
-7. backup the certificates. Install zip.
+9. backup the certificates. Install zip.
     ```
     apk add zip
     
@@ -139,9 +148,77 @@
     zip -r letsencrypt.zip letsencrypt/
     ```
 
-8. Exit the container and copy the zipfile and config file out. Back it up.
+10. Exit the container and copy the zipfile and config file out. Back it up.
     ```
     sudo docker cp yun2inf_nginx:/etc/letsencrypt.zip .
     
     sudo docker cp yun2inf_nginx:/etc/nginx/conf.d/nginx.conf .
     ```
+## Setting up route53 when website goes down
+- https://eladnava.com/monitoring-http-health-email-alerts-aws/
+
+1. It is important to setup healthcheck so that you are informed immediately once the website is down.
+
+## Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks
+- Stack Overflow
+    - https://serverfault.com/questions/1063352/ec2-relatively-small-network-out-spikes-cause-100-cpu-usage
+
+- fail2ban
+    - https://sysopstechnix.com/protect-web-servers-from-ddos-attacks-using-fail2ban/
+    - https://www.the-lazy-dev.com/en/install-fail2ban-with-docker/
+    - https://seifer.guru/2021/01/2021-01-fail2ban-with-nginx-in-container/
+    
+1. uncomment these lines from the nginx.conf file. They at the top of the file and in the server block.
+    ```
+    limit_req_zone $binary_remote_addr zone=myzone:20m rate=5r/s;
+    
+    limit_req zone=myzone burst=5 nodelay;
+    ``` 
+2. Install fail2ban
+    ```
+    sudo apt install fail2ban
+    ```
+3. copy /etc/fail2ban/jail.conf and create a new file jail.local
+    ```
+    sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local 
+    ``` 
+4. edit /etc/fail2ban/jail.local , look for the the [nginx-limit-req] block and enter the following
+    ```
+    enabled = true
+	filter = nginx-limit-req
+	action = iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]
+	logpath = /var/log/nginx/host.error.log
+	findtime = 300
+	maxretry = 3
+	bantime = 3600
+    ```
+    
+5. configure the banaction of fail2ban for a docker setup. Run the following command to make the ban works for a docker setup.
+    ```
+    cd /etc/fail2ban/action.d
+    
+    sudo cp iptables-common.conf iptables-common-forward.conf
+    sudo sed -i 's/INPUT/FORWARD/g' iptables-common-forward.conf
+
+    sudo cp iptables-multiport.conf iptables-multiport-forward.conf
+    sudo sed -i 's/iptables-common.conf/iptables-common-forward.conf/g' iptables-multiport-forward.conf
+    ```
+6. reconfigure jail.local to use our new banaction
+    ```
+    [nginx-limit-req]
+    ...
+    action = iptables-multiport-forward[name=ReqLimit, port="http,https", protocol=tcp]
+    ...
+    ```
+5. restart the fail2ban system and check that its running with these commands.
+    ```
+    sudo systemctl restart fail2ban.service
+    
+    sudo systemctl status fail2ban.service
+    ```
+
+6. check ip banned list with this command.
+    ```
+    sudo fail2ban-client status nginx-limit-req
+    ```
+    

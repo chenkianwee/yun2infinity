@@ -1,42 +1,13 @@
 # Visualisation with Grafana
-## Install Grafana
 
-1. If you have not installed Docker. Install Docker {doc}`here <../020/020installation>`.
-2. If you have not installed Masa3DB. Install Masa3DB {doc}`here <../020/020installation>`.
-3. Run this command to install Grafana.
-    ```
-    $ sudo docker run -d --network masa3db -p 3000:3000 --name grafana chenkianwee/grafana-sensorthings  
-    ```
-4. Go to the server where you have installed your Grafana. In my case, I have installed it at http://chaosbox.princeton.edu:3000 (will need to VPN into the local intranet). For the first time, login to Grafana with username:admin and password:admin. Once login change the password and username.
 ## Install LinkSmart SensorThings Plugin
-1. Run this command to get into the grafana container.
-    ```
-    $ sudo docker exec -u root -it grafana bash
-    ```
-2. Run this command in the bash to install the SensorThings Plugin.
-    ```
-    $ grafana-cli plugins install linksmart-sensorthings-datasource
-    ```
-3. Exit the container by running this command.
-    ```
-    $ exit
-    ```
-4. Restart the Grafana container for the plugin to work.
-    ```
-    $ sudo docker restart grafana
-    ```
-5. Once installed. Login to Grafana. On the side bar, go to Configuration -> Data Sources - Add data source. Search for sensorthings and you will see
-    ```{figure} /_static/046grafana/sensorthings_plugin.PNG
-    :width: 100%
-    :name: sensorthings_plugin
+1. Make sure you are logged in as adminstrator. Go to the menu -> Plugins. Search for FROST SensorThings API Plugin. Install the plugin
 
-    Select the LinkSmart SensorThings.
+2. Go to menu -> Data sources. Click on Add data source. Search for FROST SensorThings API Plugin.
+3. Fill in the necessary parameters to create the data source. You should get a success msg if you fill in everything correctly.
     ```
-6. Next configure the settings as follows.Remember to substitute your frost server container name below.
-    ```
-    Name: LinkSmart SensorThings
-    URL: http://frost-server-containername:8080/FROST-Server/v1.0
-    Access: Server (default)
+    Name: Name of your data source
+    URL: https://frost-server.com/frost/v1.1
 
     Basic auth
     Basic Auth Details
@@ -46,9 +17,4 @@
 ## Create Dashboards
 1. Go to the side bar, Create -> Dashboard -> Add new panel.
 2. At the datasource tab, choose the Sensorthing datasource that you have setup.
-    ```{figure} /_static/046grafana/sensorthings_plugin1.PNG
-    :width: 100%
-    :name: sensorthings_plugin1
-
-    Select the LinkSmart SensorThings as datasource.
-    ```
+3. Basic -> Select Entrypoint. You will be able to choose the Things and its datastreams.
