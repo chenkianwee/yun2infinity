@@ -221,4 +221,7 @@
     ```
     sudo fail2ban-client status nginx-limit-req
     ```
-    
+7. unban ip with this command
+    ```
+    sudo fail2ban-client set nginx-limit-req unbanip 10.xx.15x.12x
+    ```

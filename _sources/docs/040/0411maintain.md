@@ -4,7 +4,7 @@ You have to get into the container hosting the PostgreSQL.
     $ sudo docker exec -it container_name bash
 
 ## Backup and Restore database
-This instructions are based on the official timescaleDB documentation [here](https://docs.timescale.com/latest/using-timescaledb/backup)
+This instructions are based on the official timescaleDB documentation [here](https://docs.timescale.com/self-hosted/latest/backup-and-restore/)
 
 1. Backup your database with pg_dump. The error messages are [harmless](https://github.com/timescale/timescaledb/issues/1581).
     ```

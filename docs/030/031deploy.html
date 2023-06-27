@@ -182,6 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../050/054containerize.html">5. Building the Yun2Infinity Project with Django and Jupyter-Book</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/056nginx.html">7. Nginx configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/057replicate.html">8. Replicate</a></li>
 </ul>
 
     </div>
@@ -668,6 +669,11 @@ limit_req zone=myzone burst=5 nodelay;
 </li>
 <li><p>check ip banned list with this command.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">fail2ban</span><span class="o">-</span><span class="n">client</span> <span class="n">status</span> <span class="n">nginx</span><span class="o">-</span><span class="n">limit</span><span class="o">-</span><span class="n">req</span>
+</pre></div>
+</div>
+</li>
+<li><p>unban ip with this command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">fail2ban</span><span class="o">-</span><span class="n">client</span> <span class="nb">set</span> <span class="n">nginx</span><span class="o">-</span><span class="n">limit</span><span class="o">-</span><span class="n">req</span> <span class="n">unbanip</span> <span class="mf">10.</span><span class="n">xx</span><span class="mf">.15</span><span class="n">x</span><span class="mf">.12</span><span class="n">x</span>
 </pre></div>
 </div>
 </li>

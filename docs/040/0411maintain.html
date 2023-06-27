@@ -182,6 +182,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../050/054containerize.html">5. Building the Yun2Infinity Project with Django and Jupyter-Book</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/056nginx.html">7. Nginx configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/057replicate.html">8. Replicate</a></li>
 </ul>
 
     </div>
@@ -395,7 +396,7 @@ document.write(`
 </div>
 <section id="backup-and-restore-database">
 <h2><span class="section-number">12.1. </span>Backup and Restore database<a class="headerlink" href="#backup-and-restore-database" title="Permalink to this headline">#</a></h2>
-<p>This instructions are based on the official timescaleDB documentation <a class="reference external" href="https://docs.timescale.com/latest/using-timescaledb/backup">here</a></p>
+<p>This instructions are based on the official timescaleDB documentation <a class="reference external" href="https://docs.timescale.com/self-hosted/latest/backup-and-restore/">here</a></p>
 <ol class="arabic">
 <li><p>Backup your database with pg_dump. The error messages are <a class="reference external" href="https://github.com/timescale/timescaledb/issues/1581">harmless</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pg_dump -U $username -Fc -f backup.bak $database_to_backup
