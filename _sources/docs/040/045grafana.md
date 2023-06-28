@@ -18,3 +18,12 @@
 1. Go to the side bar, Create -> Dashboard -> Add new panel.
 2. At the datasource tab, choose the Sensorthing datasource that you have setup.
 3. Basic -> Select Entrypoint. You will be able to choose the Things and its datastreams.
+
+## Dual Axis
+- https://community.grafana.com/t/secondary-axis-option-vanished/77745
+
+1. Go to overrides -> add a property -> Axis > Placement -> Right
+2. add a property ->  Axis > Label 
+
+## Overiddes
+1. To change the name of the legend add an overide - fields with name, and add an override property Standard options > Display name. Put in the name you want for your legend. 

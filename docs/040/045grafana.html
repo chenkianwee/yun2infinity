@@ -183,6 +183,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../050/055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/056nginx.html">7. Nginx configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/057replicate.html">8. Replicate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../050/058auth.html">9. Advance authentication with nginx</a></li>
 </ul>
 
     </div>
@@ -378,6 +379,8 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">6.1. Install LinkSmart SensorThings Plugin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dashboards">6.2. Create Dashboards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-axis">6.3. Dual Axis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overiddes">6.4. Overiddes</a></li>
 </ul>
             </nav>
         </div>
@@ -415,6 +418,22 @@ document.write(`
 <li><p>Go to the side bar, Create -&gt; Dashboard -&gt; Add new panel.</p></li>
 <li><p>At the datasource tab, choose the Sensorthing datasource that you have setup.</p></li>
 <li><p>Basic -&gt; Select Entrypoint. You will be able to choose the Things and its datastreams.</p></li>
+</ol>
+</section>
+<section id="dual-axis">
+<h2><span class="section-number">6.3. </span>Dual Axis<a class="headerlink" href="#dual-axis" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://community.grafana.com/t/secondary-axis-option-vanished/77745">https://community.grafana.com/t/secondary-axis-option-vanished/77745</a></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Go to overrides -&gt; add a property -&gt; Axis &gt; Placement -&gt; Right</p></li>
+<li><p>add a property -&gt;  Axis &gt; Label</p></li>
+</ol>
+</section>
+<section id="overiddes">
+<h2><span class="section-number">6.4. </span>Overiddes<a class="headerlink" href="#overiddes" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>To change the name of the legend add an overide - fields with name, and add an override property Standard options &gt; Display name. Put in the name you want for your legend.</p></li>
 </ol>
 </section>
 </section>
@@ -488,6 +507,8 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">6.1. Install LinkSmart SensorThings Plugin</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dashboards">6.2. Create Dashboards</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-axis">6.3. Dual Axis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overiddes">6.4. Overiddes</a></li>
 </ul>
   </nav></div>
 
