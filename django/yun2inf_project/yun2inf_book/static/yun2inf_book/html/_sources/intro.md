@@ -3,3 +3,4 @@ Describe your customization of the project.
 ## Links
 - Grafana: http://localhost/grafana
 - FROST-Server: http://localhost/frost
+- BIMServer: http://localhost/bimserver

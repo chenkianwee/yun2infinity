@@ -55,8 +55,9 @@ Temporary Items
 dist
 geomie3d.egg-info
 
-#exclude the user manual folder
+#exclude the user manual and presentation folder
 user_manual
+presentation
 
 # exclude PyCharm files
 .idea/

@@ -9,18 +9,26 @@ echo '------------------------------------------------------'
 echo 'Enter DB Container Name'
 read -p "(default=spatempdb): " CONTAINERNAME1
 CONTAINERNAME1=${CONTAINERNAME1:-spatempdb}
+echo 
 echo 'Enter FROST-Server Container Name'
 read -p "(default=frost): " CONTAINERNAME2
 CONTAINERNAME2=${CONTAINERNAME2:-frost}
+echo 
 echo 'Enter Grafana Container Name'
 read -p "(default=grafana_viz): " CONTAINERNAME3
 CONTAINERNAME3=${CONTAINERNAME3:-grafana_viz}
+echo 
 echo 'Enter yun2inf_proj Container Name'
 read -p "(default=yun2inf_proj): " CONTAINERNAME4
 CONTAINERNAME4=${CONTAINERNAME4:-yun2inf_proj}
+echo 
+echo 'Enter bimserver Container Name'
+read -p "(default=bimserver): " CONTAINERNAME5
+CONTAINERNAME5=${CONTAINERNAME5:-bimserver}
+echo 
 echo 'Enter nginx Container Name'
-read -p "(default=yun2inf_nginx): " CONTAINERNAME5
-CONTAINERNAME5=${CONTAINERNAME5:-yun2inf_nginx}
+read -p "(default=yun2inf_nginx): " CONTAINERNAME6
+CONTAINERNAME6=${CONTAINERNAME6:-yun2inf_nginx}
 echo 
 #PRINT SETTING
 echo 'Removing these containers, network and volume'
@@ -30,9 +38,11 @@ echo 'Container Name2:' $CONTAINERNAME2
 echo 'Container Name3:' $CONTAINERNAME3
 echo 'Container Name4:' $CONTAINERNAME4
 echo 'Container Name5:' $CONTAINERNAME5
+echo 'Container Name6:' $CONTAINERNAME6
 echo 'Network: yun2inf'
 echo 'Volume1: spatempdb_volume'
 echo 'Volume2: y2i'
+echo 'Volume3: letsencrypt'
 echo '--------------------------------'
 
 # Remove Database Container  
@@ -48,12 +58,18 @@ docker rm "$CONTAINERNAME3" -v
 echo 'Trying to remove yun2inf_proj container now...'
 docker stop "$CONTAINERNAME4"
 docker rm "$CONTAINERNAME4" -v
-echo 'Trying to remove nginx container now ...'
+echo 'Trying to remove bimserver container now ...'
 docker stop "$CONTAINERNAME5"
 docker rm "$CONTAINERNAME5" -v
+echo 'Trying to remove nginx container now ...'
+docker stop "$CONTAINERNAME6"
+docker rm "$CONTAINERNAME6" -v
+
 echo 'Trying to remove network now ...'
 docker network rm yun2inf
 echo 'Trying to remove the volume now ...'
 docker volume rm y2i
 echo 'Trying to remove the volume now ...'
 docker volume rm spatempdb_volume
+echo 'Trying to remove the volume now ...'
+docker volume rm letsencrypt
