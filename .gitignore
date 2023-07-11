@@ -51,6 +51,9 @@ Temporary Items
 =======
 *.pyc
 
+#exclude hidden key file
+.DJANGO_SET_KEY
+
 #exclude build files 
 dist
 geomie3d.egg-info
