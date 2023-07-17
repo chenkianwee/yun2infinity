@@ -219,7 +219,7 @@ These instructions are based on these online tutorials.
     ```
 3. Run this command to build the image. This command will find the Dockerfile in the directory and build the image according to the file. Refer to this [website](https://thenewstack.io/docker-basics-how-to-use-dockerfiles/) for a quick understanding  of the Dockerfile.
     ```
-    sudo docker build . -t chenkianwee/yun2inf_django_gunicorn:x.x.x
+    sudo docker build . -t chenkianwee/yun2inf:x.x.x
     ```
 4. Run the docker image with the -v command to create a volume that can be used by another nginx container.
     ```

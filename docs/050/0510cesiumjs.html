@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>6. Visualisation with Grafana &#8212; Yun2Infinity User Manual</title>
+    <title>11. Building a cesiumJS viewer with Django &#8212; Yun2Infinity User Manual</title>
   
   
   
@@ -60,11 +60,10 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/040/045grafana';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/050/0510cesiumjs';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="7. Install 3DcityDB Web Map Client" href="046cesium3d.html" />
-    <link rel="prev" title="5. Import CityGML" href="044import_citygml.html" />
+    <link rel="prev" title="10. Integrating BIMServer" href="059bimserver.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -159,33 +158,33 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../030/031deploy.html">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="040postgres.html">1. PostgreSQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="041particle.html">2. Masa3DB with Particle Devices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="042python.html">3. Masa3DB with Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="043citydb.html">4. Initialising 3DCityDB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="044import_citygml.html">5. Import CityGML</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Visualisation with Grafana</a></li>
-<li class="toctree-l1"><a class="reference internal" href="046cesium3d.html">7. Install 3DcityDB Web Map Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="047analysis.html">8. Analysis Using TimescaleDB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="048ssl_cert.html">9. Get SSL Certificate for you FROST-Server and Grafana Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="049wfs.html">10. Install Web Feature Service (WFS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0410expgltf.html">11. Export glTF</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0411maintain.html">12. Maintenance</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../040/040postgres.html">1. PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/041particle.html">2. Masa3DB with Particle Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/042python.html">3. Masa3DB with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/043citydb.html">4. Initialising 3DCityDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/044import_citygml.html">5. Import CityGML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/045grafana.html">6. Visualisation with Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/046cesium3d.html">7. Install 3DcityDB Web Map Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/047analysis.html">8. Analysis Using TimescaleDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/048ssl_cert.html">9. Get SSL Certificate for you FROST-Server and Grafana Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/049wfs.html">10. Install Web Feature Service (WFS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/0410expgltf.html">11. Export glTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../040/0411maintain.html">12. Maintenance</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Integration</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../050/050integration.html">1. Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/051docker_image.html">2. Timescale-3DCityDB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/052webhooks.html">3. Particle Webhooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/053integrate3.html">4. Bucardo Syncing (Failed)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/054containerize.html">5. Building the Yun2Infinity Project with Django and Jupyter-Book</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/056nginx.html">7. Nginx configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/057replicate.html">8. Replicate</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/058auth.html">9. Advance authentication with nginx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/059bimserver.html">10. Integrating BIMServer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../050/0510cesiumjs.html">11. Building a cesiumJS viewer with Django</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="050integration.html">1. Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="051docker_image.html">2. Timescale-3DCityDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="052webhooks.html">3. Particle Webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="053integrate3.html">4. Bucardo Syncing (Failed)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="054containerize.html">5. Building the Yun2Infinity Project with Django and Jupyter-Book</a></li>
+<li class="toctree-l1"><a class="reference internal" href="055grafana.html">6. Running Grafana behind a reverse proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="056nginx.html">7. Nginx configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="057replicate.html">8. Replicate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="058auth.html">9. Advance authentication with nginx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="059bimserver.html">10. Integrating BIMServer</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">11. Building a cesiumJS viewer with Django</a></li>
 </ul>
 
     </div>
@@ -257,7 +256,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/045grafana.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/050/0510cesiumjs.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -287,7 +286,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/040/045grafana.md" target="_blank"
+      <li><a href="../../_sources/docs/050/0510cesiumjs.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -356,9 +355,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -369,22 +366,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Visualisation with Grafana</h1>
+    <h1>Building a cesiumJS viewer with Django</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">6.1. Install LinkSmart SensorThings Plugin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dashboards">6.2. Create Dashboards</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-axis">6.3. Dual Axis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overiddes">6.4. Overiddes</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -394,50 +380,146 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="visualisation-with-grafana">
-<h1><span class="section-number">6. </span>Visualisation with Grafana<a class="headerlink" href="#visualisation-with-grafana" title="Permalink to this headline">#</a></h1>
-<section id="install-linksmart-sensorthings-plugin">
-<h2><span class="section-number">6.1. </span>Install LinkSmart SensorThings Plugin<a class="headerlink" href="#install-linksmart-sensorthings-plugin" title="Permalink to this headline">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="building-a-cesiumjs-viewer-with-django">
+<h1><span class="section-number">11. </span>Building a cesiumJS viewer with Django<a class="headerlink" href="#building-a-cesiumjs-viewer-with-django" title="Permalink to this headline">#</a></h1>
 <ol class="arabic">
-<li><p>Make sure you are logged in as adminstrator. Go to the menu -&gt; Plugins. Search for FROST SensorThings API Plugin. Install the plugin</p></li>
-<li><p>Go to menu -&gt; Data sources. Click on Add data source. Search for FROST SensorThings API Plugin.</p></li>
-<li><p>Fill in the necessary parameters to create the data source. You should get a success msg if you fill in everything correctly.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Name</span><span class="p">:</span> <span class="n">Name</span> <span class="n">of</span> <span class="n">your</span> <span class="n">data</span> <span class="n">source</span>
-<span class="n">URL</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">frost</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">frost</span><span class="o">/</span><span class="n">v1</span><span class="mf">.1</span>
-
-<span class="n">Basic</span> <span class="n">auth</span>
-<span class="n">Basic</span> <span class="n">Auth</span> <span class="n">Details</span>
-<span class="n">User</span><span class="p">:</span> <span class="n">your</span> <span class="n">user</span> <span class="n">name</span>
-<span class="n">Password</span><span class="p">:</span> <span class="n">your</span> <span class="n">password</span>
+<li><p>Refer to previous document for understanding the Django app (refer to this doc [<a class="reference internal" href="054containerize.html"><span class="doc">Building the Yun2Infinity Project with Django and Jupyter-Book</span></a>])</p></li>
+<li><p>Go to the django/yun2inf_project folder.</p></li>
+<li><p>Create the csviewer app with this command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">startapp</span> <span class="n">csviewer</span>
 </pre></div>
 </div>
 </li>
+<li><p>In the csviewer app create a folder called templates/csviewer. In the csviewer folder create a html file called viewer.html</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        {% load static %}
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;script src=&quot;https://cesium.com/downloads/cesiumjs/releases/1.107/Build/Cesium/Cesium.js&quot;&gt;&lt;/script&gt;
+        &lt;link href=&quot;https://cesium.com/downloads/cesiumjs/releases/1.107/Build/Cesium/Widgets/widgets.css&quot; rel=&quot;stylesheet&quot;&gt;          
+    &lt;/head&gt;
+    &lt;body&gt;
+    	&lt;div id=&quot;cesiumContainer&quot;&gt;&lt;/div&gt;
+        	&lt;script type=&quot;module&quot; src=&quot;/static/cesium_script/csviz.js&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</li>
+<li><p>in the csviewer app create a folder called static. Create two folders 3dtiles and cesium_script folders.  Download the 3dtiles from <a class="reference external" href="https://github.com/CesiumGS/3d-tiles-samples/tree/main/1.0/TilesetWithRequestVolume">here</a> and place it in the 3dtiles folder.</p></li>
+<li><p>In the cesium_script folders create a javascript file called csviz.js</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Set the Cesium Ion token to `null` to avoid warnings
+Cesium.Ion.defaultAccessToken = null;
+
+/* Stamen&#39;s website (http://maps.stamen.com) as of 2019-08-28 says that the
+ * maps they host may be used free of charge.  For http access, use a url like
+ * http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png */
+let StamenAttribution = &#39;Map tiles by &lt;a href=&quot;http://stamen.com&quot;&gt;Stamen &#39; +
+  &#39;Design&lt;/a&gt;, under &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0&quot;&gt;&#39; +
+  &#39;CC BY 3.0&lt;/a&gt;. Data by &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&#39; +
+  &#39;&lt;/a&gt;, under &lt;a href=&quot;http://www.openstreetmap.org/copyright&quot;&gt;ODbL&lt;/a&gt;.&#39;;
+
+/* Per Carto&#39;s website regarding basemap attribution: https://carto.com/help/working-with-data/attribution/#basemaps */
+let CartoAttribution = &#39;Map tiles by &lt;a href=&quot;https://carto.com&quot;&gt;Carto&lt;/a&gt;, under CC BY 3.0. Data by &lt;a href=&quot;https://www.openstreetmap.org/&quot;&gt;OpenStreetMap&lt;/a&gt;, under ODbL.&#39;
+
+// Create ProviderViewModel based on different imagery sources
+// - these can be used without Cesium Ion
+var imageryViewModels = [];
+
+imageryViewModels.push(new Cesium.ProviderViewModel({
+  name: &#39;Positron&#39;,
+  tooltip: &#39;CartoDB Positron basemap&#39;,
+  iconUrl: &#39;http://a.basemaps.cartocdn.com/light_all/5/15/12.png&#39;,
+  creationFunction: function() {
+    return new Cesium.UrlTemplateImageryProvider({
+      url: &#39;http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png&#39;,
+      credit: CartoAttribution,
+      minimumLevel: 0,
+      maximumLevel: 18
+    });
+  }
+}));
+
+// Initialize the viewer - this works without a token!
+const viewer = new Cesium.Viewer(&#39;cesiumContainer&#39;, {
+  		imageryProviderViewModels: imageryViewModels,
+  		selectedImageryProviderViewModel: imageryViewModels[0],
+  		animation: true,
+  		timeline: true,
+  		infoBox: false,
+  		homeButton: false,
+  		fullscreenButton: false,
+  		selectionIndicator: true,
+  		geocoder: false,
+  		creditContainer: document.createElement(&quot;none&quot;)
+		});
+
+// Remove the Terrain section of the baseLayerPicker
+viewer.baseLayerPicker.viewModel.terrainProviderViewModels.removeAll();
+const scene = viewer.scene;
+
+const tileset = await Cesium.Cesium3DTileset.fromUrl(&quot;http://localhost/static/3dtiles/TilesetWithRequestVolume/tileset.json&quot;);  
+
+viewer.scene.primitives.add(tileset)
+viewer.flyTo(tileset);
+
+</pre></div>
+</div>
+</li>
+<li><p>Go to <a class="reference external" href="http://views.py">views.py</a> file and put in these codes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">HttpResponse</span>
+<span class="kn">from</span> <span class="nn">django.template</span> <span class="kn">import</span> <span class="n">loader</span>
+
+<span class="k">def</span> <span class="nf">cesium_viewer</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s1">&#39;csviewer/viewer.html&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">HttpResponse</span><span class="p">(</span><span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">())</span>
+</pre></div>
+</div>
+</li>
+<li><p>Go to the <a class="reference external" href="http://urls.py">urls.py</a> fildes and put in these codes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">path</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">views</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">views</span><span class="o">.</span><span class="n">cesium_viewer</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cesium_viewer&#39;</span><span class="p">),</span>
+<span class="p">]</span>
+
+</pre></div>
+</div>
+</li>
+<li><p>Go to yun2inf_project/urls.py and input these codes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">django.urls</span> <span class="kn">import</span> <span class="n">include</span><span class="p">,</span> <span class="n">path</span>
+
+<span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;yun2inf_book.urls&#39;</span><span class="p">)),</span>
+    <span class="n">path</span><span class="p">(</span><span class="s1">&#39;csviewer/&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s1">&#39;csviewer.urls&#39;</span><span class="p">)),</span>
+<span class="p">]</span>
+
+</pre></div>
+</div>
+</li>
+<li><p>Go to yun2inf_project/settings.py and add the csviewer app.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;django.contrib.admin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;django.contrib.auth&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;django.contrib.contenttypes&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;django.contrib.sessions&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;django.contrib.messages&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;django.contrib.staticfiles&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;yun2inf_book&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;csviewer&quot;</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Then run this command.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">manage</span><span class="o">.</span><span class="n">py</span> <span class="n">migrate</span>
+</pre></div>
+</div>
+</li>
+<li><p>refer to <a class="reference internal" href="054containerize.html"><span class="doc">Building the Yun2Infinity Project with Django and Jupyter-Book</span></a> containerize section to build a new container image of the django app.</p></li>
 </ol>
-</section>
-<section id="create-dashboards">
-<h2><span class="section-number">6.2. </span>Create Dashboards<a class="headerlink" href="#create-dashboards" title="Permalink to this headline">#</a></h2>
-<ol class="arabic simple">
-<li><p>Go to the side bar, Create -&gt; Dashboard -&gt; Add new panel.</p></li>
-<li><p>At the datasource tab, choose the Sensorthing datasource that you have setup.</p></li>
-<li><p>Basic -&gt; Select Entrypoint. You will be able to choose the Things and its datastreams.</p></li>
-</ol>
-</section>
-<section id="dual-axis">
-<h2><span class="section-number">6.3. </span>Dual Axis<a class="headerlink" href="#dual-axis" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://community.grafana.com/t/secondary-axis-option-vanished/77745">https://community.grafana.com/t/secondary-axis-option-vanished/77745</a></p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>Go to overrides -&gt; add a property -&gt; Axis &gt; Placement -&gt; Right</p></li>
-<li><p>add a property -&gt;  Axis &gt; Label</p></li>
-</ol>
-</section>
-<section id="overiddes">
-<h2><span class="section-number">6.4. </span>Overiddes<a class="headerlink" href="#overiddes" title="Permalink to this headline">#</a></h2>
-<ol class="arabic simple">
-<li><p>To change the name of the legend add an overide - fields with name, and add an override property Standard options &gt; Display name. Put in the name you want for your legend.</p></li>
-</ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -453,7 +535,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/040"
+            path: "./docs/050"
         },
         predefinedOutput: true
     }
@@ -472,22 +554,13 @@ document.write(`
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="044import_citygml.html"
+       href="059bimserver.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Import CityGML</p>
+        <p class="prev-next-title"><span class="section-number">10. </span>Integrating BIMServer</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="046cesium3d.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Install 3DcityDB Web Map Client</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div></div>
   
@@ -498,23 +571,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#install-linksmart-sensorthings-plugin">6.1. Install LinkSmart SensorThings Plugin</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#create-dashboards">6.2. Create Dashboards</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dual-axis">6.3. Dual Axis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overiddes">6.4. Overiddes</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
