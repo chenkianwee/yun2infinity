@@ -136,3 +136,18 @@
     ```
 
 12. refer to {doc}`054containerize` containerize section to build a new container image of the django app.
+
+## Resources 
+- Cesium js without ion token
+    - https://gist.github.com/banesullivan/e3cc15a3e2e865d5ab8bae6719733752
+    - https://stackoverflow.com/questions/76015471/how-can-i-prevent-the-cesium-ion-logo-from-showing-up
+
+- Configure cesiumjs search bar
+    - https://stackoverflow.com/questions/44372068/find-object-through-search-box-with-cesium-js
+
+- CesiumJS offline
+    - https://github.com/CesiumGS/cesium/tree/main/Documentation/OfflineGuide
+    - https://cesium.com/learn/3d-tiling/on-prem/hosting-3d-content/a2zQ
+
+- 3dtiles sample
+    - https://github.com/CesiumGS/3d-tiles-samples
