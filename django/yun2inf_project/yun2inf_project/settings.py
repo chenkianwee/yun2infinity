@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "yun2inf_book"
+    "yun2inf_book",
+    "csviewer"
 ]
 
 MIDDLEWARE = [

@@ -290,9 +290,8 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.2
+    chenkianwee/yun2inf:0.0.3
 
-docker cp ../django/settings.py "$CONTAINERNAME4":/yun2inf_project/yun2inf_project/settings.py
 docker restart "$CONTAINERNAME4"
 
 echo '------------------------------------------------------'
