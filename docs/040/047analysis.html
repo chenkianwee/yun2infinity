@@ -395,40 +395,65 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="analysis-using-timescaledb">
 <h1><span class="section-number">8. </span>Analysis Using TimescaleDB<a class="headerlink" href="#analysis-using-timescaledb" title="Permalink to this headline">#</a></h1>
 <p>Get all the results within a time period.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
-<span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;ipaddress.com&#39;</span><span class="p">),</span>
-                        <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
-                        <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="kn">import</span> <span class="n">SSHTunnelForwarder</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pytz</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
-                                <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                                <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-                                <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
-                                <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+<span class="n">ds_id</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;/home/usr/res.csv&#39;</span>
+<span class="n">rows2d</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">]]</span>
+<span class="n">st_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-19 08:00:00-4&#39;</span>
+<span class="n">end_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-20 17:30:00-4&#39;</span>
+<span class="c1">#%% Function</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">):</span>
+    <span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
+    <span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;chaosbox.com&#39;</span><span class="p">),</span>
+                            <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;usrname&#39;</span><span class="p">,</span>
+                            <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;password&#39;</span><span class="p">,</span>
+                            <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
+                            <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+    
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
+                                    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">,</span>
+                                    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+                                    <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;postgres&#39;</span><span class="p">)</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;connected&#39;</span><span class="p">,</span> <span class="n">cursor</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+    
+        <span class="n">ds_id</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ds_id</span><span class="p">)</span> <span class="c1"># the datastream id you want to query</span>
+        <span class="n">st_time</span> <span class="o">=</span> <span class="n">st_time_str</span> <span class="c1">#&#39;2021-03-30 12:29:00-4&#39;</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">end_time_str</span> <span class="c1">#&#39;2021-03-30 13:29:00-4&#39;</span>
+        
+        <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT &quot;RESULT_TIME&quot;, </span>
+<span class="s2">                    &quot;RESULT_NUMBER&quot;</span>
+<span class="s2">                    FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                    WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                    ORDER BY &quot;RESULT_TIME&quot; ASC;</span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rows</span>
+<span class="c1">#%% Main</span>
+<span class="n">rows1</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows1</span><span class="p">:</span>
+    <span class="n">local_time</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">))</span>
+    <span class="n">lt_str</span> <span class="o">=</span> <span class="n">local_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">rows2d</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lt_str</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 
-    <span class="n">ds_id</span> <span class="o">=</span> <span class="s1">&#39;27&#39;</span> <span class="c1"># the datastream id you want to query</span>
-    <span class="n">st_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 12:29:00-4&#39;</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 13:29:00-4&#39;</span>
-
-    <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                SELECT &quot;RESULT_NUMBER&quot;</span>
-<span class="s2">                FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;;</span>
-<span class="s2">                &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span> 
+    <span class="c1"># creating a csv writer object </span>
+    <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span> 
+    <span class="c1"># writing the data rows </span>
+    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows2d</span><span class="p">)</span>
+    
 </pre></div>
 </div>
 <section id="time-bucket">
@@ -437,83 +462,95 @@ document.write(`
 <p>We are using the Python library psycopg2 to access masa3db. Here is an example script to extract data from the OBSERVATIONS table of the FROST-Server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="kn">import</span> <span class="n">SSHTunnelForwarder</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pytz</span>
 
-<span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
-<span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;ipaddress.com&#39;</span><span class="p">),</span>
-                        <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
-                        <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+<span class="n">ds_id</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;/home/usr/res.csv&#39;</span>
+<span class="n">rows2d</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">]]</span>
+<span class="n">st_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-19 08:00:00-4&#39;</span>
+<span class="n">end_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-20 17:30:00-4&#39;</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
-                                <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                                <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-                                <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
-                                <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+<span class="c1">#%% Function</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">):</span>
+    <span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
+    <span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;ipaddress.com&#39;</span><span class="p">),</span>
+                            <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
+                            <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+    
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
+                                    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+                                    <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+    
+        <span class="c1">#===============================================================================================</span>
+        <span class="c1">#Get the median of the results</span>
+        <span class="c1">#===============================================================================================</span>
+        <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT time_bucket(&#39;15 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
+<span class="s2">                    percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value</span>
+<span class="s2">                    FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                    WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                    GROUP BY avg_time</span>
+<span class="s2">                    ORDER BY avg_time DESC;</span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
-    <span class="n">ds_id</span> <span class="o">=</span> <span class="s1">&#39;27&#39;</span> <span class="c1"># the datastream id you want to query</span>
-    <span class="n">st_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 12:29:00-4&#39;</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 13:29:00-4&#39;</span>
-    <span class="c1">#===============================================================================================</span>
-    <span class="c1">#Get the median of the results</span>
-    <span class="c1">#===============================================================================================</span>
-    <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                SELECT time_bucket(&#39;15 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
-<span class="s2">                percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value</span>
-<span class="s2">                FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
-<span class="s2">                GROUP BY avg_time</span>
-<span class="s2">                ORDER BY avg_time DESC;</span>
-<span class="s2">                &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
+        <span class="c1">#===============================================================================================</span>
+        <span class="c1">#Get the average of the results</span>
+        <span class="c1">#===============================================================================================</span>
+        <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT time_bucket(&#39;1 hour&#39;, &quot;RESULT_TIME&quot;) AS avg_time, AVG(&quot;RESULT_NUMBER&quot;)</span>
+<span class="s2">                    FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                    WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                    GROUP BY avg_time</span>
+<span class="s2">                    ORDER BY avg_time DESC;</span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+ 
+        <span class="c1">#===============================================================================================</span>
+        <span class="c1">#Get the minimum, median and maximum of the results</span>
+        <span class="c1">#===============================================================================================</span>
+        <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT time_bucket(&#39;15 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
+<span class="s2">                    percentile_cont(0.0) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
+<span class="s2">                    percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
+<span class="s2">                    percentile_cont(1.0) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value</span>
+<span class="s2">                    FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                    WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                    GROUP BY avg_time</span>
+<span class="s2">                    ORDER BY avg_time DESC;</span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rows</span>
+        
+<span class="c1">#%% Main</span>
+<span class="n">rows1</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows1</span><span class="p">:</span>
+    <span class="n">local_time</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">))</span>
+    <span class="n">lt_str</span> <span class="o">=</span> <span class="n">local_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">rows2d</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lt_str</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-    <span class="c1">#===============================================================================================</span>
-    <span class="c1">#Get the average of the results</span>
-    <span class="c1">#===============================================================================================</span>
-    <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                SELECT time_bucket(&#39;1 hour&#39;, &quot;RESULT_TIME&quot;) AS avg_time, AVG(&quot;RESULT_NUMBER&quot;)</span>
-<span class="s2">                FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
-<span class="s2">                GROUP BY avg_time</span>
-<span class="s2">                ORDER BY avg_time DESC;</span>
-<span class="s2">                &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-
-    <span class="c1">#===============================================================================================</span>
-    <span class="c1">#Get the minimum, median and maximum of the results</span>
-    <span class="c1">#===============================================================================================</span>
-    <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                SELECT time_bucket(&#39;15 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
-<span class="s2">                percentile_cont(0.0) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
-<span class="s2">                percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
-<span class="s2">                percentile_cont(1.0) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value</span>
-<span class="s2">                FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
-<span class="s2">                GROUP BY avg_time</span>
-<span class="s2">                ORDER BY avg_time DESC;</span>
-<span class="s2">                &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time</span><span class="p">,</span><span class="n">end_time</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span> 
+    <span class="c1"># creating a csv writer object </span>
+    <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span> 
+    <span class="c1"># writing the data rows </span>
+    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows2d</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -522,72 +559,90 @@ document.write(`
 <p>Similar to time_bucket but will automatically fill in results if there are no data. <a href="https://docs.timescale.com/api/latest/hyperfunctions/gapfilling-interpolation/time_bucket_gapfill/#required-arguments" target="_blank">time_bucket_gapfill() documentation</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="kn">import</span> <span class="n">SSHTunnelForwarder</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">pytz</span>
 
-<span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
-<span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;ipaddress&#39;</span><span class="p">),</span>
-                        <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                        <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
-                        <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+<span class="n">ds_id</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="n">res_path</span> <span class="o">=</span> <span class="s1">&#39;/home/usr/res.csv&#39;</span>
+<span class="n">rows2d</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">]]</span>
+<span class="n">st_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-19 08:00:00-4&#39;</span>
+<span class="n">end_time_str</span> <span class="o">=</span> <span class="s1">&#39;2023-07-20 17:30:00-4&#39;</span>
 
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
-                                <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-                                <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
-                                <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
-                                <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
-    <span class="k">except</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+<span class="c1">#%% Function</span>
+<span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">):</span>
+    <span class="n">PORT</span><span class="o">=</span><span class="mi">5432</span>
+    <span class="k">with</span> <span class="n">SSHTunnelForwarder</span><span class="p">((</span><span class="s1">&#39;ipaddress&#39;</span><span class="p">),</span>
+                            <span class="n">ssh_username</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="n">ssh_password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                            <span class="n">remote_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span>
+                            <span class="n">local_bind_address</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)):</span>
+    
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s1">&#39;spatempdb&#39;</span><span class="p">,</span>
+                                    <span class="n">user</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                                    <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+                                    <span class="n">port</span> <span class="o">=</span> <span class="mi">5432</span><span class="p">,</span>
+                                    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">cursor</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;notconnected&#39;</span><span class="p">)</span>
+    
+        <span class="n">ds_id</span> <span class="o">=</span> <span class="s1">&#39;27&#39;</span>
+        <span class="n">st_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 12:29:00-4&#39;</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 13:29:00-4&#39;</span>
+    
+        <span class="c1">#===============================================================================================</span>
+        <span class="c1">#time bucket gapfill filling gap with previously seen value</span>
+        <span class="c1">#===============================================================================================</span>
+    
+        <span class="n">command</span> <span class="o">=</span>   <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                    SELECT time_bucket_gapfill(&#39;3 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
+<span class="s2">                    percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
+<span class="s2">                    locf(percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;))</span>
+<span class="s2">                    FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                    WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                    GROUP BY avg_time</span>
+<span class="s2">                    ORDER BY avg_time ASC;</span>
+<span class="s2">       </span>
+<span class="s2">                    &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span> <span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    
+        <span class="c1">#===============================================================================================</span>
+        <span class="c1">#time bucket gapfill filling gap interpolating between values</span>
+        <span class="c1">#===============================================================================================</span>
+    
+        <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">                     SELECT time_bucket_gapfill(&#39;3 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
+<span class="s2">                     percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
+<span class="s2">                     interpolate(percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;))</span>
+<span class="s2">                     FROM public.&quot;OBSERVATIONS&quot;</span>
+<span class="s2">                     WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
+<span class="s2">                     GROUP BY avg_time</span>
+<span class="s2">                     ORDER BY avg_time ASC;</span>
+<span class="s2">    </span>
+<span class="s2">                     &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span> <span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    
+        <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">rows</span>
+        
+<span class="c1">#%% Main</span>
+<span class="n">rows1</span> <span class="o">=</span> <span class="n">get_data</span><span class="p">(</span><span class="n">ds_id</span><span class="p">,</span> <span class="n">st_time_str</span><span class="p">,</span> <span class="n">end_time_str</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows1</span><span class="p">:</span>
+    <span class="n">local_time</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">pytz</span><span class="o">.</span><span class="n">timezone</span><span class="p">(</span><span class="s1">&#39;America/New_York&#39;</span><span class="p">))</span>
+    <span class="n">lt_str</span> <span class="o">=</span> <span class="n">local_time</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+    <span class="n">rows2d</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">lt_str</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
 
-    <span class="n">ds_id</span> <span class="o">=</span> <span class="s1">&#39;27&#39;</span>
-    <span class="n">st_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 12:29:00-4&#39;</span>
-    <span class="n">end_time</span> <span class="o">=</span> <span class="s1">&#39;2021-03-30 13:29:00-4&#39;</span>
-
-    <span class="c1">#===============================================================================================</span>
-    <span class="c1">#time bucket gapfill filling gap with previously seen value</span>
-    <span class="c1">#===============================================================================================</span>
-
-    <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                 SELECT time_bucket_gapfill(&#39;3 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
-<span class="s2">                 percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
-<span class="s2">                 locf(percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;))</span>
-<span class="s2">                 FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                 WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
-<span class="s2">                 GROUP BY avg_time</span>
-<span class="s2">                 ORDER BY avg_time ASC;</span>
-
-<span class="s2">                 &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span> <span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-    <span class="c1">#===============================================================================================</span>
-    <span class="c1">#time bucket gapfill filling gap interpolating between values</span>
-    <span class="c1">#===============================================================================================</span>
-
-    <span class="n">command</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">                 SELECT time_bucket_gapfill(&#39;3 minute&#39;, &quot;RESULT_TIME&quot;) AS avg_time,</span>
-<span class="s2">                 percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;) AS median_value,</span>
-<span class="s2">                 interpolate(percentile_cont(0.5) WITHIN GROUP (ORDER BY &quot;RESULT_NUMBER&quot;))</span>
-<span class="s2">                 FROM public.&quot;OBSERVATIONS&quot;</span>
-<span class="s2">                 WHERE &quot;DATASTREAM_ID&quot; = </span><span class="si">%s</span><span class="s2"> and &quot;RESULT_TIME&quot; &gt; &#39;</span><span class="si">%s</span><span class="s2">&#39; and &quot;RESULT_TIME&quot; &lt; &#39;</span><span class="si">%s</span><span class="s2">&#39;</span>
-<span class="s2">                 GROUP BY avg_time</span>
-<span class="s2">                 ORDER BY avg_time ASC;</span>
-
-<span class="s2">                 &quot;&quot;&quot;</span> <span class="o">%</span><span class="p">(</span><span class="n">ds_id</span> <span class="p">,</span> <span class="n">st_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">command</span><span class="p">)</span>
-    <span class="n">rows</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">))</span>
-    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-
-    <span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">res_path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span> 
+    <span class="c1"># creating a csv writer object </span>
+    <span class="n">csvwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span> 
+    <span class="c1"># writing the data rows </span>
+    <span class="n">csvwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="n">rows2d</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
