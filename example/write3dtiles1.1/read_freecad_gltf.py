@@ -2,7 +2,7 @@ from pygltflib import GLTF2
 #===================================================================================================
 # region ----- Parameters -----
 #===================================================================================================
-gltf_path = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/example/gltf/arch_eg.glb'
+gltf_path = '/yun2inf/example/gltf/arch_eg.glb'
 # endregion
 #===================================================================================================
 # region ----- Main -----

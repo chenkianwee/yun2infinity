@@ -5,7 +5,7 @@ import geomie3d
 import numpy as np
 from pygltflib import GLTF2, Node, Scene, Mesh, Primitive, Buffer, BufferView, Accessor, ELEMENT_ARRAY_BUFFER, ARRAY_BUFFER, UNSIGNED_SHORT, FLOAT, SCALAR, VEC3
 
-res_path = '/home/chenkianwee/kianwee_work/get/2023_06_to_2023_12/cesiumjs/test.gltf'
+res_path = '/cesiumjs/test.gltf'
 #===================================================================================================
 #Function
 #===================================================================================================

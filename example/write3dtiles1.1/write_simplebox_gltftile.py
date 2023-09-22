@@ -6,9 +6,9 @@ from pygltflib import GLTF2, Node, Scene, Mesh, Primitive, Buffer, BufferView, A
 #=================================================================================================================================
 # region: PARAMETERS
 #=================================================================================================================================
-tileset_path = '/home/chenkianwee/kianwee_work/get/2023_06_to_2023_12/cesiumjs/3dtiles/example' 
-gltf_respath = '/home/chenkianwee/kianwee_work/get/2023_06_to_2023_12/cesiumjs/gltf/test.gltf'
-gltf_respath2 = '/home/chenkianwee/kianwee_work/get/2023_06_to_2023_12/cesiumjs/gltf/test2.gltf'
+tileset_path = '/cesiumjs/3dtiles/example' 
+gltf_respath = '/cesiumjs/gltf/test.gltf'
+gltf_respath2 = '/cesiumjs/gltf/test2.gltf'
 # endregion: Parameters
 #=================================================================================================================================
 # region: MAIN

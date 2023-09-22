@@ -6,8 +6,8 @@ from pygltflib import GLTF2, Buffer, BufferView
 #===================================================================================================
 # region: PARAMETERS
 #===================================================================================================
-tileset_path = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/django/yun2inf_project/csviewer/static/3dtiles/arch_eg/'
-gltf_respath = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/example/gltf/arch_eg.glb'
+tileset_path = '/yun2inf/django/yun2inf_project/csviewer/static/3dtiles/arch_eg/'
+gltf_respath = '/yun2inf/example/gltf/arch_eg.glb'
 geo_loc = [103.78244865132135, 1.4957790803607318, 0.0] # this corresponds to local model_loc
 model_loc = [2, 1.5, 0.0] # corresponding location of the geo-location in the 3d model
 # endregion: PARAMETERS
