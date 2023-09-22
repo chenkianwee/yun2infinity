@@ -290,7 +290,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.3
+    chenkianwee/yun2inf:0.0.4
 
 docker restart "$CONTAINERNAME4"
 
@@ -321,6 +321,7 @@ docker cp ../nginx/security_header.conf "$CONTAINERNAME6":/etc/nginx/security_he
 docker exec -it "$CONTAINERNAME6" rm /etc/nginx/conf.d/default.conf
 docker restart "$CONTAINERNAME6"
 mv yun2inf.conf ../nginx/yun2inf.conf
+
 echo '------------------------------------------------------'
 echo 'Successfully installed yun2infinity'
 echo '------------------------------------------------------'
