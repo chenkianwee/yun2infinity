@@ -6,8 +6,8 @@ from pygltflib import GLTF2, Buffer, BufferView
 #===================================================================================================
 # region: PARAMETERS
 #===================================================================================================
-tileset_path = '/yun2inf/django/yun2inf_project/csviewer/static/3dtiles/arch_eg/'
-gltf_respath = '/yun2inf/example/gltf/arch_eg.glb'
+tileset_path = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/django/yun2inf_project/csviewer/static/3dtiles/arch_eg/'
+gltf_respath = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/example/gltf/arch_eg.glb'
 geo_loc = [103.78244865132135, 1.4957790803607318, 0.0] # this corresponds to local model_loc
 model_loc = [2, 1.5, 0.0] # corresponding location of the geo-location in the 3d model
 # endregion: PARAMETERS
@@ -29,11 +29,14 @@ meshes = gltf.meshes
 # add EXT_mesh_features onto the gltf
 py3dtileslib.mesh_features.add_extmeshfeatures(gltf)
 #---------------------------------------------------------------------------------------------------------------------------------
+# # add CESIUM_primitive_outline onto the gltf
+buffer_indx = py3dtileslib.cesium_prim_outline.add_cs_prim_outline(gltf) # make sure the buffer index is not None, if None means already got existing extension
+#---------------------------------------------------------------------------------------------------------------------------------
 # add EXT_structural_metadata to the gltf
 # define and create the classes in the EXT_structural_metadata
 class_name = 'BIM_class'
 classes = py3dtileslib.struct_metadata.create_classes(class_name, 'IFC properties of a building')
-#---------------------------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------------------------------------------------------
 # define and create the properties
 prop_id1 = 'building_component'
 str_prop = py3dtileslib.struct_metadata.create_classes_prop('building component', 'this property describe the building component of the geometry', 'STRING')
@@ -41,20 +44,31 @@ py3dtileslib.struct_metadata.add_property2classes(classes, prop_id1, str_prop)
 
 featureids = []
 bldg_comp_list = []
+ncnt = 0
 for node in nodes:
     children = node.children
     name = node.name
+    scale = node.scale
+    rot = node.rotation
+    trsl = node.translation
     mesh_id = node.mesh
+    print(name)
     if mesh_id is not None:
         mesh = meshes[mesh_id]
         bldg_comp_list.append(mesh.name)
         primitives = mesh.primitives
         featureids.append(mesh_id)
-        for prim in primitives:
+        for pcnt, prim in enumerate(primitives):
+            if name == '1' or name == '2' or name == '3' or name == '4' or name == '5':
+                print('outline does not work on array yet')
+            else:
+                #outline the primitives
+                py3dtileslib.cesium_prim_outline.add_outline2prim(prim, gltf, buffer_indx)
             verts = py3dtileslib.utils.get_pos_frm_primitive(prim, gltf)
             nverts = len(verts)
             fid_list = np.repeat(mesh_id ,nverts)
             py3dtileslib.mesh_features.add_extmeshfeatures_by_vertex(prim, gltf, fid_list)
+    ncnt+=1
 
 # change the metadata into buffers
 buffer_data = bytearray()
@@ -70,13 +84,13 @@ gltf.buffers.append(buffer1)
 #---------------------------------------------------------------------------------------------------------------------------------
 # create bufferviews for the metadata
 buffer_view_meta1 = BufferView()
-buffer_view_meta1.buffer = 1
+buffer_view_meta1.buffer = len(gltf.buffers) - 1
 buffer_view_meta1.byteOffset = 0
 buffer_view_meta1.byteLength = len(packed_string)
 gltf.bufferViews.append(buffer_view_meta1)
 
 buffer_view_meta2 = BufferView()
-buffer_view_meta2.buffer = 1
+buffer_view_meta2.buffer = len(gltf.buffers) - 1
 buffer_view_meta2.byteOffset = len(packed_string)
 buffer_view_meta2.byteLength = len(packed_offset)
 gltf.bufferViews.append(buffer_view_meta2)

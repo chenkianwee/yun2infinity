@@ -3,16 +3,19 @@
     <head>
         {% load static %}
         <meta charset="utf-8">
-        <script src="https://cesium.com/downloads/cesiumjs/releases/1.107/Build/Cesium/Cesium.js"></script>
+        <script src="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Cesium.js"></script>
+        <link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+        <link href="https://cesium.com/downloads/cesiumjs/releases/1.110/Build/Cesium/Widgets/lighter.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.3/build/global/luxon.min.js"></script>
-        <link href="https://cesium.com/downloads/cesiumjs/releases/1.107/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-        <link href="https://cesium.com/downloads/cesiumjs/releases/1.107/Build/Cesium/Widgets/lighter.css" rel="stylesheet">
         <style>
             @import url("/static/css/bucket.css");
         </style>
     </head>
     <body>
         <div id="toolbar">
+            <button class="cesium-button" data-bind="click: getCamera">
+                Get Camera Placement
+            </button>
             <select id= "input1" data-bind="options: exampleTypes, value: currentExampleType"></select>
             <select id= "input2" data-bind="options: views, value: currentView"></select>
             <input id= "input3" type="checkbox" value="false" data-bind="checked: clippingPlanesEnabled, valueUpdate: 'input'">

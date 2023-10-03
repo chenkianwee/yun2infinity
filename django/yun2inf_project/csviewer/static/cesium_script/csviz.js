@@ -154,6 +154,7 @@ const viewModel = {
   currentView: views[0],
   clippingPlanesEnabled: true,
   parameterX: 1.0,
+  getCamera: getCamera,
 };
 const toolbar = document.getElementById("toolbar");
 Cesium.knockout.track(viewModel);
@@ -233,12 +234,27 @@ clippingPlanes = new Cesium.ClippingPlaneCollection({
   edgeColor: Cesium.Color.RED
 });
 const tileset = await Cesium.Cesium3DTileset.fromUrl("http://localhost/static/3dtiles/arch_eg/tileset.json", { clippingPlanes: clippingPlanes });
-
+// const tileset = await Cesium.Cesium3DTileset.fromUrl("http://localhost/static/3dtiles/example/tileset.json", { clippingPlanes: clippingPlanes });
 viewer.scene.primitives.add(tileset)
+
 // tileset.debugShowBoundingVolume = true;
 const boundingSphere = tileset.boundingSphere;
 const radius = boundingSphere.radius;
 viewer.zoomTo(tileset, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(45.0), Cesium.Math.toRadians(-30.0), radius * 6.0));
+
+// clippingPlanes.enabled = false;
+// const camera = viewer.scene.camera;
+// camera.flyTo(
+//   { destination: new Cesium.Cartesian3(-1527601.3933178782, 6191037.41454063, 148510.76065356252),
+//     orientation: { heading: 5.497787804425644, pitch: -0.7854478654523169, roll: 2.281340751864036e-7},
+//     complete: function () {
+//         camera.flyTo(
+//           { destination: new Cesium.Cartesian3(-1527255.466943182, 6190794.7012644075, 148706.82265927928),
+//             orientation: { heading: 1.8134772162830712, pitch: -0.04693238319283788, roll: 2.642284604448264e-7},
+//           });
+//         clippingPlanes.enabled = true;}
+//         });
+
 // #endregion
 //=============================================================
 // #region : viz the cutting plane
@@ -428,6 +444,16 @@ viewer.screenSpaceEventHandler.setInputAction(function onLeftClick(movement) {
 // =============================================================
 // #region : interactivity of the knockout
 // =============================================================
+function getCamera() {
+  var pos = viewer.scene.camera.position;
+  var head = viewer.scene.camera.heading;
+  var pitch = viewer.scene.camera.pitch;
+  var roll = viewer.scene.camera.roll;
+  const prop = "Position:" + pos.toString() + "\nHead:" + head.toString() + "\nPitch: " + pitch.toString()  + "\nRoll: " + roll.toString() + '\nLook at console'
+  alert(prop);
+  console.log(prop);
+}
+
 Cesium.knockout
   .getObservable(viewModel, "clippingPlanesEnabled")
   .subscribe(function (value) {

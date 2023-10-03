@@ -6,16 +6,17 @@ from pygltflib import GLTF2, Node, Scene, Mesh, Primitive, Buffer, BufferView, A
 #=================================================================================================================================
 # region: PARAMETERS
 #=================================================================================================================================
-tileset_path = '/cesiumjs/3dtiles/example' 
-gltf_respath = '/cesiumjs/gltf/test.gltf'
-gltf_respath2 = '/cesiumjs/gltf/test2.gltf'
+tileset_path = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/django/yun2inf_project/csviewer/static/3dtiles/example' 
+gltf_respath = '/home/chenkianwee/kianwee_work/code_workspace/yun2inf/example/gltf/test.gltf'
+geo_loc = [103.78244865132135, 1.4957790803607318, 5.0] # this corresponds to local model_loc
+model_loc = [0.0, 0.0, 0.0] # corresponding location of the geo-location in the 3d model
+# gltf_respath2 = '/cesiumjs/gltf/test2.gltf'
 # endregion: Parameters
 #=================================================================================================================================
 # region: MAIN
 #=================================================================================================================================
 # region: CREATE A SIMPLE GLTF BOX
 box = geomie3d.create.box(10, 10, 10)
-box = geomie3d.modify.move_topo(box, (0,0,5), (0,0,0))
 edges = geomie3d.get.wires_frm_solid(box)
 # geomie3d.viz.viz([{'topo_list':edges, 'colour':'red'}])
 face_list = geomie3d.get.faces_frm_solid(box)
@@ -81,10 +82,10 @@ gltf.scenes.append(scene)
 
 node = Node()
 node.mesh = 0
-node.matrix = [1,0,0,0,
-               0,0,-1,0,
-               0,1,0,0,
-               0,0,0,1] #column major transformation
+node.matrix = [1, 0, 0, 0,
+               0, 0,-1, 0,
+               0, 1, 0, 0,
+               0, 0, 0, 1] #column major transformation
 
 gltf.nodes.append(node)
 
@@ -178,6 +179,11 @@ py3dtileslib.mesh_features.add_extmeshfeatures(gltf)
 # add the EXT_mesh_features onto the primitive
 py3dtileslib.mesh_features.add_extmeshfeatures_by_vertex(prim, gltf, fid_list)
 #---------------------------------------------------------------------------------------------------------------------------------
+# add CESIUM_primitive_outline onto the gltf
+buffer_indx = py3dtileslib.cesium_prim_outline.add_cs_prim_outline(gltf) # make sure the buffer index is not None, if None means already got existing extension
+py3dtileslib.cesium_prim_outline.add_outline2prim(prim, gltf, buffer_indx)
+
+#---------------------------------------------------------------------------------------------------------------------------------
 # add EXT_structural_metadata to the gltf
 # define and create the classes in the EXT_structural_metadata
 class_name = 'example_class'
@@ -226,25 +232,25 @@ gltf.buffers.append(buffer2)
 #---------------------------------------------------------------------------------------------------------------------------------
 # create bufferviews for the metadata
 buffer_view_meta1 = BufferView()
-buffer_view_meta1.buffer = 1
+buffer_view_meta1.buffer = 2
 buffer_view_meta1.byteOffset = 0
 buffer_view_meta1.byteLength = len(packed_string)
 gltf.bufferViews.append(buffer_view_meta1)
 
 buffer_view_meta2 = BufferView()
-buffer_view_meta2.buffer = 1
+buffer_view_meta2.buffer = 2
 buffer_view_meta2.byteOffset = len(packed_string)
 buffer_view_meta2.byteLength = len(packed_offset)
 gltf.bufferViews.append(buffer_view_meta2)
 
 buffer_view_meta3 = BufferView()
-buffer_view_meta3.buffer = 1
+buffer_view_meta3.buffer = 2
 buffer_view_meta3.byteOffset = len(packed_string) + len(packed_offset)
 buffer_view_meta3.byteLength = len(packed_float)
 gltf.bufferViews.append(buffer_view_meta3)
 
 buffer_view_meta4 = BufferView()
-buffer_view_meta4.buffer = 1
+buffer_view_meta4.buffer = 2
 buffer_view_meta4.byteOffset = len(packed_string) + len(packed_offset) + len(packed_float)
 buffer_view_meta4.byteLength = len(packed_enum)
 gltf.bufferViews.append(buffer_view_meta4)
@@ -260,7 +266,7 @@ py3dtileslib.struct_metadata.add_table_property(prop_table, prop_id3, len(gltf.b
 py3dtileslib.struct_metadata.add_extstructmetadata(gltf, 'example_schema', classes, [prop_table], enums=enums)
 sel_featureid = gltf.meshes[0].primitives[0].extensions['EXT_mesh_features']['featureIds'][0]
 py3dtileslib.struct_metadata.add_prop_table2featureid(0, sel_featureid)
-gltf.save(gltf_respath2)
+# gltf.save(gltf_respath2)
 # endregion: CREATE A GLTF with EXT_mesh_features and EXT_structural_metadata
 
 #---------------------------------------------------------------------------------------------------------------------------------
@@ -268,7 +274,28 @@ gltf.save(gltf_respath2)
 # create the tileset 
 tileset = py3dtileslib.Tileset(tileset_path, 1.1)
 root_node = py3dtileslib.Node('root')
+
+mat = np.array([[1, 0, 0, 0],
+                [0, 1, 0, 0],
+                [0, 0, 1, 0],
+                [0, 0, 0, 1]])
+
 pos_list = py3dtileslib.utils.get_pos_frm_gltf(gltf)
+pos_list = geomie3d.calculate.trsf_xyzs(pos_list, mat)
+bbox = geomie3d.calculate.bbox_frm_xyzs(pos_list)
+midpt_xyz = geomie3d.calculate.bbox_centre(bbox)
+
+xdim = bbox.maxx - bbox.minx
+ydim = bbox.maxy - bbox.miny
+zdim = bbox.maxz - bbox.minz
+bbox = py3dtileslib.utils.define_bbox(midpt_xyz, xdim, ydim, zdim)
+
+# if model_loc is not [0,0,0] we have to transfer the model_loc to the model origin
+trsl_mat = geomie3d.calculate.translate_matrice(0-model_loc[0], 0-model_loc[1], 0-model_loc[2])
+trsf_mat = py3dtileslib.utils.compute_trsfmat4enu_frm_gcs_coord(geo_loc)
+trsf_mat = trsf_mat@trsl_mat
+trsf_mat = trsf_mat.T.flatten().tolist()
+root_node.add_transform(trsf_mat)
 
 bbox = py3dtileslib.utils.compute_tile_bbox(pos_list)
 root_node.add_box(bbox)
@@ -279,7 +306,8 @@ root_node.add_tile_content(gltf)
 tileset.add_root(root_node)
 tileset.add_error(10.0)
 tileset.to_tileset()
-# endregion: CREATE A SIMPLE TILESET
 
+# endregion: CREATE A SIMPLE TILESET
 # endregion: MAIN
 #=================================================================================================================================
+
