@@ -1,4 +1,4 @@
-FROM python:3.11.5-alpine
+FROM python:3.11.6-alpine
 
 # Set environment varibles
 ENV PYTHONDONTWRITEBYTECODE 1

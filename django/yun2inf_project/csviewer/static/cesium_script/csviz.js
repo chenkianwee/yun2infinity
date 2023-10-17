@@ -72,10 +72,21 @@ let dateTime = DateTime.now();
 dateTime = dateTime.setZone(timeZoneLong);
 var timeZone = dateTime.toISO();
 timeZone = timeZone.substr(timeZone.length - 6);
-let date1 = DateTime.fromISO(dateTime.toISODate() + "T00:00:00" + timeZone);
-date1 = date1.setZone(timeZoneLong);
+//6pm of the day 
+let day6am = DateTime.fromISO(dateTime.toISODate() + "T06:00:00" + timeZone);
+day6am = day6am.setZone(timeZoneLong);
+// is it bef or after 6pm now
+let date1;
+let date2;
 var dur = luxon.Duration.fromObject({"days": 1});
-let date2 = date1.plus(dur);
+if (dateTime < day6am) {
+  date1 = day6am.minus(dur);
+} else {
+  date1 = day6am
+}
+var dur2 = luxon.Duration.fromObject({"minutes": 5});
+// date2 = date1.plus(dur);
+date2 = dateTime.plus(dur2);
 
 const clock = new Cesium.Clock({
   startTime: Cesium.JulianDate.fromIso8601(date1.toISO()),
@@ -242,18 +253,26 @@ const boundingSphere = tileset.boundingSphere;
 const radius = boundingSphere.radius;
 viewer.zoomTo(tileset, new Cesium.HeadingPitchRange(Cesium.Math.toRadians(45.0), Cesium.Math.toRadians(-30.0), radius * 6.0));
 
-// clippingPlanes.enabled = false;
-// const camera = viewer.scene.camera;
 // camera.flyTo(
-//   { destination: new Cesium.Cartesian3(-1527601.3933178782, 6191037.41454063, 148510.76065356252),
-//     orientation: { heading: 5.497787804425644, pitch: -0.7854478654523169, roll: 2.281340751864036e-7},
+//   { destination: new Cesium.Cartesian3(-1537208.9568848056, 6243950.736813731, 149050.24326118626),
+//     orientation: { heading: 6.232497274754154, pitch: -1.5706967139588732, roll: 0.0},
 //     complete: function () {
-//         camera.flyTo(
-//           { destination: new Cesium.Cartesian3(-1527255.466943182, 6190794.7012644075, 148706.82265927928),
-//             orientation: { heading: 1.8134772162830712, pitch: -0.04693238319283788, roll: 2.642284604448264e-7},
-//           });
-//         clippingPlanes.enabled = true;}
-//         });
+//         setTimeout(function () {
+//           camera.flyTo(
+//             { destination: new Cesium.Cartesian3(-1527508.7312540275, 6191011.437993621, 148471.09369672707),
+//               orientation: { heading: 5.7742604719375175, pitch: -0.803883441771009, roll: 6.26132135788863},
+//               complete: function() {
+//                 camera.flyTo(
+//                   { destination: new Cesium.Cartesian3(-1527253.2222008316, 6190807.613055745, 148715.51603420844),
+//                     orientation: { heading: 1.8564735434534176, pitch: -0.6865544445580372, roll:  8.239294704281974e-7},
+//                   });
+//                   clippingPlanes.enabled = true
+//               }
+//             });
+//             }, 1000)
+//         },
+//     duration: 5
+//     });
 
 // #endregion
 //=============================================================
@@ -304,7 +323,7 @@ for (let i = 0; i < clippingPlanes.length; ++i) {
 // ====================================================================
 // #region : Stream a czml in near real-time
 // ====================================================================
-const upInterval = 10000;
+
 // Create new CZML datasource
 var czmlStream = new Cesium.CzmlDataSource();
 // Put the datasource into Cesium
@@ -318,9 +337,38 @@ async function update(czmlStream, url) {
   const json = await response.json();
   const czml = json['czml'];
   czmlStream.process(json["czml"]);
+  console.log('updated!!');
+
+  const DateTime = luxon.DateTime;
+  let dateTime = DateTime.now();
+  var newStopTime = dateTime.plus({"minutes": 5});
+  viewer.clock.stopTime = Cesium.JulianDate.fromIso8601(newStopTime.toISO());
+
+  // If you want to set a specific timezone
+  dateTime = dateTime.setZone("local");
+  console.log(dateTime.toISO());
 }
+
 update(czmlStream, datasourceURL1);
-var intervalId = setInterval(function () { update(czmlStream, datasourceURL1); }, upInterval);
+
+
+const upInterval = 5 * 60 * 1000
+var intervalId;
+var toId;
+
+function setIntervalUpdate(upInterval, dataSourceURL) {
+  var date = new Date();
+  const remain = ((60-(date.getSeconds())) + ((4 - (date.getMinutes()%5)) * 60) + 10) * 1000;
+  toId = setTimeout(function() {
+    update(czmlStream, dataSourceURL);
+    intervalId = setInterval(function () { update(czmlStream, dataSourceURL); }, upInterval);
+  }, remain);
+}
+
+setIntervalUpdate(upInterval, datasourceURL1);
+
+// update(czmlStream, datasourceURL1);
+// var intervalId = setInterval(function () { update(czmlStream, datasourceURL1); }, upInterval);
 // =============================================================
 // #load a static czml
 // =============================================================
@@ -480,12 +528,12 @@ Cesium.knockout
       czmlStream = new Cesium.CzmlDataSource();
       viewer.dataSources.add(czmlStream);
       update(czmlStream, datasourceURL1);
-      intervalId = setInterval(function () { update(czmlStream, datasourceURL1); }, upInterval);
+      setIntervalUpdate(upInterval, datasourceURL1);
     } else if (newValue === exampleTypes[1]) {
       czmlStream = new Cesium.CzmlDataSource();
       viewer.dataSources.add(czmlStream);
       update(czmlStream, datasourceURL2);
-      intervalId = setInterval(function () { update(czmlStream, datasourceURL2); }, upInterval);
+      setIntervalUpdate(upInterval, datasourceURL2);
     }
   });
 

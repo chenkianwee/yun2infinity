@@ -4,7 +4,7 @@
 #-----------------------------------------------------------
 echo '------------------------------------------------------'
 echo 'This will help you setup your Yun2inf Docker Network'
-echo '5 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)BIMServer 5)nginx'
+echo '6 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)BIMServer 6)nginx'
 echo '------------------------------------------------------'
 #---------------------------------------------------------
 # POSTGRES
@@ -216,7 +216,7 @@ docker run -d --name "$CONTAINERNAME1"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
 	-v "spatempdb_volume:/var/lib/postgresql/data"\
-	chenkianwee/timescale-3dcitydb:2.10.3-4.1.0
+	chenkianwee/timescale-3dcitydb:2.12.1-4.4.0
 
 echo '------------------------------------------------------'
 echo 'Trying to start FROST-Server Container ...'
@@ -248,7 +248,8 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_max=20"\
 	-e "auth_db_conn_idle_max=10"\
 	-e "auth_db_conn_idle_min=-1"\
-	fraunhoferiosb/frost-server:2.1.2
+    -e "plugins.openApi.enable=true"\
+	fraunhoferiosb/frost-server:2.2.0
 
 #wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
@@ -275,9 +276,10 @@ echo 'Trying to start grafana container now ...'
 echo '------------------------------------------------------'
 docker run -d --name "$CONTAINERNAME3"\
     -h "$CONTAINERNAME3"\
+    -e GF_FEATURE_TOGGLES_ENABLE=publicDashboards\
 	--network "yun2inf"\
     -p $GPORT:3000\
-    grafana/grafana-oss:9.5.2-ubuntu
+    grafana/grafana-oss:10.1.5-ubuntu
 
 docker cp ../grafana/defaults.ini "$CONTAINERNAME3":/usr/share/grafana/conf/defaults.ini
 docker restart "$CONTAINERNAME3"
@@ -290,7 +292,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.4
+    chenkianwee/yun2inf:0.0.5
 
 docker restart "$CONTAINERNAME4"
 

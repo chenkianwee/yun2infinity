@@ -14,3 +14,7 @@
 #toolbar .header {
     font-weight: bold;
 }
+
+#toolbar .attribution {
+    font-size: 10px;
+}
