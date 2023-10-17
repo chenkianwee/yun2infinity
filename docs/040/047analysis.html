@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>8. Analysis Using TimescaleDB &#8212; Yun2Infinity User Manual</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="9. Get SSL Certificate for you FROST-Server and Grafana Server" href="048ssl_cert.html" />
     <link rel="prev" title="7. Install 3DcityDB Web Map Client" href="046cesium3d.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -155,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../030/030update.html">1. Update the Container Images - FROST-Server Image Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../030/030update.html">1. Update all the container images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../030/031deploy.html">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
@@ -393,7 +394,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="analysis-using-timescaledb">
-<h1><span class="section-number">8. </span>Analysis Using TimescaleDB<a class="headerlink" href="#analysis-using-timescaledb" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">8. </span>Analysis Using TimescaleDB<a class="headerlink" href="#analysis-using-timescaledb" title="Permalink to this heading">#</a></h1>
 <p>Get all the results within a time period.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="kn">import</span> <span class="n">SSHTunnelForwarder</span>
@@ -457,7 +458,7 @@ document.write(`
 </pre></div>
 </div>
 <section id="time-bucket">
-<h2><span class="section-number">8.1. </span>time_bucket()<a class="headerlink" href="#time-bucket" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.1. </span>time_bucket()<a class="headerlink" href="#time-bucket" title="Permalink to this heading">#</a></h2>
 <p>time_bucket() allows you to average out the results at arbitrary intervals. For example you can extract the results for every 1 hour, 1 week or 15 minute. TimescaleDB will do the averaging for you. For more information refer to the  <a href="https://docs.timescale.com/api/latest/hyperfunctions/time_bucket/#time-bucket" target="_blank">time_bucket() documentation</a></p>
 <p>We are using the Python library psycopg2 to access masa3db. Here is an example script to extract data from the OBSERVATIONS table of the FROST-Server.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
@@ -555,7 +556,7 @@ document.write(`
 </div>
 </section>
 <section id="time-bucket-gapfill">
-<h2><span class="section-number">8.2. </span>time_bucket_gapfill()<a class="headerlink" href="#time-bucket-gapfill" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">8.2. </span>time_bucket_gapfill()<a class="headerlink" href="#time-bucket-gapfill" title="Permalink to this heading">#</a></h2>
 <p>Similar to time_bucket but will automatically fill in results if there are no data. <a href="https://docs.timescale.com/api/latest/hyperfunctions/gapfilling-interpolation/time_bucket_gapfill/#required-arguments" target="_blank">time_bucket_gapfill() documentation</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="kn">from</span> <span class="nn">sshtunnel</span> <span class="kn">import</span> <span class="n">SSHTunnelForwarder</span>

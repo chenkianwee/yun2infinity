@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>12. Maintenance &#8212; Yun2Infinity User Manual</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="1. Integration" href="../050/050integration.html" />
     <link rel="prev" title="11. Export glTF" href="0410expgltf.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -155,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../030/030update.html">1. Update the Container Images - FROST-Server Image Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../030/030update.html">1. Update all the container images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../030/031deploy.html">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
@@ -392,13 +393,13 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="maintenance">
-<h1><span class="section-number">12. </span>Maintenance<a class="headerlink" href="#maintenance" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">12. </span>Maintenance<a class="headerlink" href="#maintenance" title="Permalink to this heading">#</a></h1>
 <p>You have to get into the container hosting the PostgreSQL.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo docker exec -it container_name bash
 </pre></div>
 </div>
 <section id="backup-and-restore-database">
-<h2><span class="section-number">12.1. </span>Backup and Restore database<a class="headerlink" href="#backup-and-restore-database" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">12.1. </span>Backup and Restore database<a class="headerlink" href="#backup-and-restore-database" title="Permalink to this heading">#</a></h2>
 <p>This instructions are based on the official timescaleDB documentation <a class="reference external" href="https://docs.timescale.com/self-hosted/latest/backup-and-restore/">here</a></p>
 <ol class="arabic">
 <li><p>Backup your database with pg_dump. The error messages are <a class="reference external" href="https://github.com/timescale/timescaledb/issues/1581">harmless</a>.</p>

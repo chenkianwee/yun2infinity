@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>2. Deploy to AWS server with a wix subdomain &#8212; Yun2Infinity User Manual</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -64,9 +65,9 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="1. PostgreSQL" href="../040/040postgres.html" />
-    <link rel="prev" title="1. Update the Container Images - FROST-Server Image Update" href="030update.html" />
+    <link rel="prev" title="1. Update all the container images" href="030update.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -155,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="030update.html">1. Update the Container Images - FROST-Server Image Update</a></li>
+<li class="toctree-l1"><a class="reference internal" href="030update.html">1. Update all the container images</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
@@ -394,7 +395,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="deploy-to-aws-server-with-a-wix-subdomain">
-<h1><span class="section-number">2. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this headline">#</a></h1>
+<h1><span class="section-number">2. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this heading">#</a></h1>
 <ul class="simple">
 <li><p>A good tutorial on configuring nginx as web server (<a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a>).</p></li>
 <li><p>resizing your AWS as workload changes</p>
@@ -500,7 +501,7 @@ proxy_set_header   Host \$host;
 </li>
 </ol>
 <section id="accessing-your-site-over-https-with-ssl-tls-certificate">
-<h2><span class="section-number">2.1. </span>Accessing your site over HTTPS with SSL/TLS certificate<a class="headerlink" href="#accessing-your-site-over-https-with-ssl-tls-certificate" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.1. </span>Accessing your site over HTTPS with SSL/TLS certificate<a class="headerlink" href="#accessing-your-site-over-https-with-ssl-tls-certificate" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>ssl certificate</p>
 <ul>
@@ -591,7 +592,7 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
 </ol>
 </section>
 <section id="setting-up-route53-when-website-goes-down">
-<h2><span class="section-number">2.2. </span>Setting up route53 when website goes down<a class="headerlink" href="#setting-up-route53-when-website-goes-down" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.2. </span>Setting up route53 when website goes down<a class="headerlink" href="#setting-up-route53-when-website-goes-down" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://eladnava.com/monitoring-http-health-email-alerts-aws/">https://eladnava.com/monitoring-http-health-email-alerts-aws/</a></p></li>
 </ul>
@@ -600,7 +601,7 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
 </ol>
 </section>
 <section id="setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">
-<h2><span class="section-number">2.3. </span>Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks<a class="headerlink" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks" title="Permalink to this headline">#</a></h2>
+<h2><span class="section-number">2.3. </span>Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks<a class="headerlink" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Stack Overflow</p>
 <ul>
@@ -721,7 +722,7 @@ limit_req zone=myzone burst=5 nodelay;
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Update all the container images</p>
       </div>
     </a>
     <a class="right-next"

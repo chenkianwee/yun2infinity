@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1. Update the Container Images - FROST-Server Image Update &#8212; Yun2Infinity User Manual</title>
+    <title>1. Update all the container images &#8212; Yun2Infinity User Manual</title>
   
   
   
@@ -44,6 +44,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -66,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="next" title="2. Deploy to AWS server with a wix subdomain" href="031deploy.html" />
     <link rel="prev" title="1. Installation" href="../020/020installation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -155,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Update the Container Images - FROST-Server Image Update</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Update all the container images</a></li>
 <li class="toctree-l1"><a class="reference internal" href="031deploy.html">2. Deploy to AWS server with a wix subdomain</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
@@ -356,7 +357,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -367,11 +370,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Update the Container Images - FROST-Server Image Update</h1>
+    <h1>Update all the container images</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-container-images-frost-server-image-update">1.1. Update the Container Images - FROST-Server Image Update</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -381,8 +392,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="update-the-container-images-frost-server-image-update">
-<h1><span class="section-number">1. </span>Update the Container Images - FROST-Server Image Update<a class="headerlink" href="#update-the-container-images-frost-server-image-update" title="Permalink to this headline">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="update-all-the-container-images">
+<h1><span class="section-number">1. </span>Update all the container images<a class="headerlink" href="#update-all-the-container-images" title="Permalink to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Check for new releases for the timescale-3dcitydb image.</p>
+<ul class="simple">
+<li><p>Check for latest timescale container image at dockerhub <a class="reference external" href="https://hub.docker.com/r/timescale/timescaledb-ha/tags">timescale/timescaledb-ha</a></p></li>
+<li><p>Check for latest 3dcitydb release <a class="reference external" href="https://github.com/3dcitydb/3dcitydb/releases/">here</a></p></li>
+<li><p>build the docker image using the dockerfile in timescale-3dcitydb folder</p></li>
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+<li><p>Check for new releases for frost server <a class="reference external" href="https://hub.docker.com/r/fraunhoferiosb/frost-server/tags">here</a>.</p>
+<ul class="simple">
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+<li><p>Check for new releases for the grafana container <a class="reference external" href="https://hub.docker.com/r/grafana/grafana-oss/tags">here</a></p>
+<ul class="simple">
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+<li><p>Check for new releases for the django container yun2inf container.</p>
+<ul class="simple">
+<li><p>check the requirments.txt to make sure all the libraries are up to date</p></li>
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+<li><p>Check for new releases for the bimserver <a class="reference external" href="https://github.com/opensourceBIM/BIMserver/releases">here</a>.</p>
+<ul class="simple">
+<li><p>if there are new release. Rebuild the bimserver container with the dockerfile.</p></li>
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+<li><p>Check for new releases for nginx <a class="reference external" href="https://nginx.org/en/download.html">here</a> and then download the container <a class="reference external" href="https://hub.docker.com/_/nginx/tags">here</a>.</p>
+<ul class="simple">
+<li><p>make necessary changes to the parameters and the container name in the setup_yun2inf.sh</p></li>
+</ul>
+</li>
+</ol>
+<section id="update-the-container-images-frost-server-image-update">
+<h2><span class="section-number">1.1. </span>Update the Container Images - FROST-Server Image Update<a class="headerlink" href="#update-the-container-images-frost-server-image-update" title="Permalink to this heading">#</a></h2>
 <p>In this example we will update the FROST-Server image to the latest image.</p>
 <ol class="arabic">
 <li><p>Backup the database before doing any update. Follow the instruction here: <a class="reference internal" href="../040/0411maintain.html"><span class="doc">Maintenance</span></a>.</p></li>
@@ -395,6 +445,7 @@ document.write(`
 <li><p>Once all the containers are removed. We can then restore them with the restore script. You will need to specify the path of the backup file required for restoring the database.</p></li>
 <li><p>If FROST Server does not load on your browser. While the browser is loading, restart your DB container with docker restart to force the webpage to load.</p></li>
 </ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -455,6 +506,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#update-the-container-images-frost-server-image-update">1.1. Update the Container Images - FROST-Server Image Update</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
