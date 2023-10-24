@@ -4,59 +4,47 @@ You have to get into the container hosting the PostgreSQL.
     $ sudo docker exec -it container_name bash
 
 ## Backup and Restore database
-This instructions are based on the official timescaleDB documentation [here](https://docs.timescale.com/self-hosted/latest/backup-and-restore/)
-
-1. Backup your database with pg_dump. The error messages are [harmless](https://github.com/timescale/timescaledb/issues/1581).
+This instructions are based on the official timescaleDB documentation [here](https://docs.timescale.com/self-hosted/latest/backup-and-restore/) and [here](https://docs.timescale.com/migrate/latest/pg-dump-and-restore/pg-dump-restore-from-timescaledb/) 
+1. Backup your database with pg_dump
     ```
-    $ pg_dump -U $username -Fc -f backup.bak $database_to_backup
+    pg_dumpall --dbname="postgres://username@localhost:5432/spatempdb"  --quote-all-identifiers --roles-only --file=roles.sql
+    ```
+2. Backup your database with pg_dump. The error messages are [harmless](https://github.com/timescale/timescaledb/issues/1581) 
+    ```
+    pg_dump --dbname="postgres://username@localhost:5432/spatempdb" --format=plain --quote-all-identifiers --no-tablespaces --no-owner --no-privileges --file=backup.sql
+    ```
+3. Copy it into your local host. Get out of the container and run this command. This will copy the backup file onto the current directory of your local machine. Then use this file to restore the database in a new machine.
+    ```
+    sudo docker cp spatempdb:backup.sql .
     ```
     ```
-    Ignore this error message they are harmless:
-    pg_dump: warning: there are circular foreign-key constraints on this table:
-    pg_dump:   hypertable
-    pg_dump: You might not be able to restore the dump without using --disable-triggers or temporarily dropping the constraints.
-    pg_dump: Consider using a full dump instead of a --data-only dump to avoid this problem.
-    pg_dump: warning: there are circular foreign-key constraints on this table:
-    pg_dump:   chunk
-    pg_dump: You might not be able to restore the dump without using --disable-triggers or temporarily dropping the constraints.
-    pg_dump: Consider using a full dump instead of a --data-only dump to avoid this problem.
-    pg_dump: NOTICE:  hypertable data are in the chunks, no data will be copied
-    DETAIL:  Data for hypertables are stored in the chunks of a hypertable so COPY TO of a hypertable will not copy any data.
-    HINT:  Use "COPY (SELECT * FROM <hypertable>) TO ..." to copy all data in hypertable, or copy each chunk individually.
-    ```
-2. Copy it into your local host. Get out of the container and run this command. This will copy the backup file onto the current directory of your local machine. Then use this file to restore the database in a new machine.
-    ```
-    $ sudo docker cp spatempdb:spatempdb.bak .
+    sudo docker cp spatempdb:roles.sql .
     ```
 
-3. Copy the backup file into the container you want to restore to.
+4. Copy the backup file into the container you want to restore to.
     ```
-    $ sudo docker cp backup.bak containername:.
-    ```
-
-4. Perform the restore with these command. Go into the PostgreSQL container you want to restore to. Connect to PostgreSQL with this command.
-    ```
-    $ psql -U username database_name
+    sudo docker cp backup.sql containername:.
     ```
 
-    a. Once you get into psql, if you want to restore it to a new database. Create a new database.
-    ```
-    CREATE DATABASE database_to_restore;
-    \c database_to_restore --connect to the db where we'll perform the restore
-    CREATE EXTENSION IF NOT EXISTS timescaledb;
-    ```
+5. Perform the restore with these command. Go into the PostgreSQL container you want to restore to. Connect to PostgreSQL with this command.
 
-    b. Before the restore remember to run this command.
+    a. delete the existing spatempdb and create a clean database to be restored
     ```
-    SELECT timescaledb_pre_restore();
+    docker exec -it "$CONTAINERNAME" psql -U "$DBUSER" -d "postgres" -c "DROP DATABASE spatempdb;"
+    docker exec -it "$CONTAINERNAME" psql -U "$DBUSER" -d "postgres" -c "CREATE DATABASE spatempdb;"
+    docker exec -it "$CONTAINERNAME" psql -U "$DBUSER" -d "$DBNAME" -c 'CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;'
     ```
+    
+    b. go into the docker container and execute the following psql commands.
+    ```
+    psql postgres://$USERNAME@localhost:5432/spatempdb -v ON_ERROR_STOP=1 --echo-errors -f roles.sql -c "SELECT timescaledb_pre_restore();" -f backup.sql -c "SELECT timescaledb_post_restore();"
+    ```
+6. You can use the restore script to restore your database.
 
-    c. Exit the psql and then execute pg_restore
-    ```
-    $ pg_restore -U username -Fc -d database_to_restore spatempdb.bak
-    ```
+7. Once restored, it will take some time for FROST-Server to register the change (close to >15mins  ).
+## Upgrade timescaledb with Docker
+- https://docs.timescale.com/self-hosted/latest/upgrades/upgrade-docker/
+- https://docs.timescale.com/self-hosted/latest/upgrades/downgrade/
 
-    c. Once restored enter into the psql again and execute this command.
-    ```
-    SELECT timescaledb_post_restore();
-    ```
+
+
