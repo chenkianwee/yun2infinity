@@ -21,19 +21,8 @@
         ```
         scp -i pem,key user@instance_ip_add
         ``` 
-    - On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the 'setup_yun2inf.sh'.
-    ```
-    echo '------------------------------------------------------'
-    echo 'Trying to start django container now ...'
-    echo '------------------------------------------------------'
-    docker run -d --name "$CONTAINERNAME4"\
-        -h "$CONTAINERNAME4"\
-    	--network "yun2inf"\
-        -p $YPORT:8000\
-        -v "y2i:/yun2inf_project/www/static/"\
-        chenkianwee/yun2inf:0.0.1 !!! change this image name to the new image you have build !!! 
-    ``` 
-6. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the server name to your domain name
+    
+7. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the server name to your domain name
     ```
     server {
     server_name  .your_domain_name.com;
@@ -43,7 +32,7 @@
     }
 
     ```
-7. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the proxy_redirect to your domain name. Based on this post https://github.com/FraunhoferIOSB/FROST-Server/issues/235
+8. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the proxy_redirect to your domain name. Based on this post https://github.com/FraunhoferIOSB/FROST-Server/issues/235
     ```
     location /frost/ {
 	proxy_pass		    http://$CONTAINERNAME2:8080/FROST-Server/;
@@ -53,7 +42,7 @@
     proxy_set_header   Host \$host;
     }
     ```
-8. change the yun2inf/grafana/defaults.ini domain to your domain name
+9. change the yun2inf/grafana/defaults.ini domain to your domain name
     ```
     [server]
     # Protocol (http, https, h2, socket)
@@ -72,17 +61,29 @@
     # Prevents DNS rebinding attacks
     enforce_domain = false
     ```
-9. change the yun2inf/django/settings.py and input your domain into the allowed host variable and turn off debg.
+10. change the yun2inf/django/settings.py and input your domain into the allowed host variable and turn off debg.
     ```
     DEBUG = False
     ALLOWED_HOSTS = [".your_domain_name.com"]
     ```
 
-10. cd to the shellscript directory
+11. On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the 'setup_yun2inf.sh'.
+    ```
+    echo '------------------------------------------------------'
+    echo 'Trying to start django container now ...'
+    echo '------------------------------------------------------'
+    docker run -d --name "$CONTAINERNAME4"\
+        -h "$CONTAINERNAME4"\
+    	--network "yun2inf"\
+        -p $YPORT:8000\
+        -v "y2i:/yun2inf_project/www/static/"\
+        chenkianwee/yun2inf:0.0.1 !!! change this image name to the new image you have build !!! 
+    ``` 
+12. cd to the shellscript directory
     ```
     cd shellscript
     ```
-11. execute the setup_yun2inf.sh and follow the instructions from the prompt.
+13. execute the setup_yun2inf.sh and follow the instructions from the prompt.
     ```
     sudo sh setup_yun2inf.sh
     ```
@@ -138,21 +139,6 @@
         
         .... other stuff in the server block ....
     }
-    ```
-9. backup the certificates. Install zip.
-    ```
-    apk add zip
-    
-    cd /etc/letsencrypt
-    
-    zip -r letsencrypt.zip letsencrypt/
-    ```
-
-10. Exit the container and copy the zipfile and config file out. Back it up.
-    ```
-    sudo docker cp yun2inf_nginx:/etc/letsencrypt.zip .
-    
-    sudo docker cp yun2inf_nginx:/etc/nginx/conf.d/nginx.conf .
     ```
 ## Setting up route53 when website goes down
 - https://eladnava.com/monitoring-http-health-email-alerts-aws/

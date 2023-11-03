@@ -427,19 +427,7 @@ document.write(`
 </pre></div>
 </div>
 </li>
-<li><p>On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the ‘setup_yun2inf.sh’.</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;------------------------------------------------------&#39;
-echo &#39;Trying to start django container now ...&#39;
-echo &#39;------------------------------------------------------&#39;
-docker run -d --name &quot;$CONTAINERNAME4&quot;\
-    -h &quot;$CONTAINERNAME4&quot;\
-	--network &quot;yun2inf&quot;\
-    -p $YPORT:8000\
-    -v &quot;y2i:/yun2inf_project/www/static/&quot;\
-    chenkianwee/yun2inf:0.0.1 !!! change this image name to the new image you have build !!! 
-</pre></div>
-</div>
 </li>
 <li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the server name to your domain name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
@@ -486,6 +474,19 @@ proxy_set_header   Host \$host;
 <li><p>change the yun2inf/django/settings.py and input your domain into the allowed host variable and turn off debg.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.your_domain_name.com&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the ‘setup_yun2inf.sh’.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;------------------------------------------------------&#39;
+echo &#39;Trying to start django container now ...&#39;
+echo &#39;------------------------------------------------------&#39;
+docker run -d --name &quot;$CONTAINERNAME4&quot;\
+    -h &quot;$CONTAINERNAME4&quot;\
+	--network &quot;yun2inf&quot;\
+    -p $YPORT:8000\
+    -v &quot;y2i:/yun2inf_project/www/static/&quot;\
+    chenkianwee/yun2inf:0.0.1 !!! change this image name to the new image you have build !!! 
 </pre></div>
 </div>
 </li>
@@ -570,22 +571,6 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
     
     <span class="o">....</span> <span class="n">other</span> <span class="n">stuff</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">server</span> <span class="n">block</span> <span class="o">....</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-</li>
-<li><p>backup the certificates. Install zip.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apk</span> <span class="n">add</span> <span class="nb">zip</span>
-
-<span class="n">cd</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span>
-
-<span class="nb">zip</span> <span class="o">-</span><span class="n">r</span> <span class="n">letsencrypt</span><span class="o">.</span><span class="n">zip</span> <span class="n">letsencrypt</span><span class="o">/</span>
-</pre></div>
-</div>
-</li>
-<li><p>Exit the container and copy the zipfile and config file out. Back it up.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">docker</span> <span class="n">cp</span> <span class="n">yun2inf_nginx</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">.</span><span class="n">zip</span> <span class="o">.</span>
-
-<span class="n">sudo</span> <span class="n">docker</span> <span class="n">cp</span> <span class="n">yun2inf_nginx</span><span class="p">:</span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">conf</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">nginx</span><span class="o">.</span><span class="n">conf</span> <span class="o">.</span>
 </pre></div>
 </div>
 </li>
