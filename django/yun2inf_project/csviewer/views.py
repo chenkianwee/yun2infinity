@@ -5,12 +5,19 @@ import pytz
 import random
 import datetime
 from dateutil import parser
+from django.conf import settings
 
 def cesium_viewer(request):
     template = loader.get_template('csviewer/viewer.html')
     return HttpResponse(template.render())
 
+def tiles_url(request):
+    url = "http://localhost/static/3dtiles/arch_eg/tileset.json"
+    return JsonResponse({"tiles_url": url})
+
 def update_timeseries_data(request):
+    # auth_user = settings.AUTH_USER
+    # auth_pass = settings.AUTH_PW
     czml_data, dt_now_spore = update_time('dataset1')
     pos_list = [[ 103.78244865132135, 1.4957790803607318, 0.3 ],
                 [ 103.78244865132135, 1.4957790803607318, 1.0 ],

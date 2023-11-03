@@ -244,8 +244,12 @@ clippingPlanes = new Cesium.ClippingPlaneCollection({
   edgeWidth: 10.0,
   edgeColor: Cesium.Color.RED
 });
-const tileset = await Cesium.Cesium3DTileset.fromUrl("http://localhost/static/3dtiles/arch_eg/tileset.json", { clippingPlanes: clippingPlanes });
-// const tileset = await Cesium.Cesium3DTileset.fromUrl("http://localhost/static/3dtiles/example/tileset.json", { clippingPlanes: clippingPlanes });
+
+const response = await fetch('gettilesurl');
+const json = await response.json();
+const tilesURL = json['tiles_url'];
+const tileset = await Cesium.Cesium3DTileset.fromUrl(tilesURL, { clippingPlanes: clippingPlanes });
+// const tileset = await Cesium.Cesium3DTileset.fromUrl(tilesURL, { clippingPlanes: clippingPlanes });
 viewer.scene.primitives.add(tileset)
 
 // tileset.debugShowBoundingVolume = true;

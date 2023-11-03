@@ -169,7 +169,7 @@ server {
     location /grafana/ {                                                   
         #limit_req zone=myzone burst=10 nodelay;                           
         proxy_set_header        Host \$http_host;                           
-        proxy_pass              http://grafana/;                           
+        proxy_pass              http://grafana;                           
         #proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;
         #proxy_set_header       X-Forwarded-Proto \$scheme;                 
     }                                                                      
@@ -180,7 +180,7 @@ server {
         proxy_set_header        Upgrade \$http_upgrade;                        
         proxy_set_header        Connection \$connection_upgrade;            
         proxy_set_header        Host \$http_host;                           
-        proxy_pass              http://grafana/;                           
+        proxy_pass              http://grafana;                           
         }  
         
     location /bimserver/ {                                                 

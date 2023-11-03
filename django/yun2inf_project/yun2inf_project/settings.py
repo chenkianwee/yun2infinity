@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+import pathlib
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,6 +125,11 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATIC_ROOT = "/yun2inf_project/www/static/"
 
+# env = environ.Env()
+# env_path = pathlib.PurePath(Path(__file__).resolve().parent, '.env')
+# environ.Env.read_env(env_path)
+# AUTH_USER = env('AUTH_USER')
+# AUTH_PW = env('AUTH_PW')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

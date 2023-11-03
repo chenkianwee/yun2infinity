@@ -54,6 +54,7 @@ Temporary Items
 #exclude hidden key file
 .DJANGO_SET_KEY
 .DJANGO_SECRET_KEY
+.env
 
 #exclude build files 
 dist
