@@ -70,3 +70,35 @@
     add_header X-XSS-Protection "1; mode=block";
     add_header Referrer-Policy "origin";
     ```
+## Basic authentication for NGINX
+- for more information refer to the full article here https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/
+
+1. Go into the ngnx docker container after it is installed.
+    ```
+    sudo docker exec -it yun2inf_nginx sh
+    ```
+2. Install apache2-utils
+    ```
+    apk add apache2-utils
+    ```
+3. Make a apache2 directory
+    ```
+    mkdir /etc/apache2
+    ```
+4. Configure the password file. 
+    ```
+    htpasswd -c /etc/apache2/.htpasswd $username
+    ```
+5. If you need to add new user, use this command
+    ```
+    htpasswd /etc/apache2/.htpasswd $new_username
+    ```
+
+6. Go to the /etc/nginx/conf.d/nginx.conf and add in the following lines to the directory you want to restrict.
+    ```
+    location / {
+    auth_basic "Restricted Area";
+    auth_basic_user_file /etc/apache2/.htpasswd;
+    
+    }
+    ```
