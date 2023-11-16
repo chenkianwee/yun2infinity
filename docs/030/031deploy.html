@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>2. Deploy to AWS server with a wix subdomain &#8212; Yun2Infinity User Manual</title>
+    <title>2. Deploy the Stack to a Server &#8212; Yun2Infinity User Manual</title>
   
   
   
@@ -157,7 +157,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="030update.html">1. Update all the container images</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Deploy to AWS server with a wix subdomain</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Deploy the Stack to a Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="032stapi_eg.html">3. Example Python Script to Post to a FROST Server (Sensorthing API)</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
@@ -371,7 +371,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Deploy to AWS server with a wix subdomain</h1>
+    <h1>Deploy the Stack to a Server</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -381,9 +381,13 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.2. Setting up route53 when website goes down</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-on-the-server">2.1. Configuration on the Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.2. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-aws-server-with-a-wix-subdomain">2.4. Deploy to AWS server with a wix subdomain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.4.1. Setting up route53 when website goes down</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -395,42 +399,25 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="deploy-to-aws-server-with-a-wix-subdomain">
-<h1><span class="section-number">2. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this heading">#</a></h1>
-<ul class="simple">
-<li><p>A good tutorial on configuring nginx as web server (<a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a>).</p></li>
-<li><p>resizing your AWS as workload changes</p>
-<ul>
-<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html</a></p></li>
-<li><p><a class="reference external" href="https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta">https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta</a></p></li>
-<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html</a></p></li>
-</ul>
-</li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="deploy-the-stack-to-a-server">
+<h1><span class="section-number">2. </span>Deploy the Stack to a Server<a class="headerlink" href="#deploy-the-stack-to-a-server" title="Permalink to this heading">#</a></h1>
+<section id="configuration-on-the-server">
+<h2><span class="section-number">2.1. </span>Configuration on the Server<a class="headerlink" href="#configuration-on-the-server" title="Permalink to this heading">#</a></h2>
 <ol class="arabic">
-<li><p>configure wix subdomain</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site">https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site</a></p></li>
-<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource">https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource</a></p></li>
-<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site">https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site</a></p></li>
-<li><p><a class="reference external" href="https://support.wix.com/article/request-third-party-ssl-certificates">https://support.wix.com/article/request-third-party-ssl-certificates</a></p></li>
-</ul>
-</li>
-<li><p>Setup your account for an ec2 virtual machine. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html">here</a>.</p></li>
-<li><p>Connect to your AWS instance. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html">here</a></p></li>
-<li><p>Associate an Elastic IP for the instance.</p></li>
 <li><p>Download and unzip the latest yun2infinity-x.x.x.zip file from <a class="github reference external" href="https://github.com/chenkianwee/yun2infinity/releases/">chenkianwee/yun2infinity</a></p></li>
 <li><p>Customize your yun2inf_book app by following the instruction in <a class="reference internal" href="../050/054containerize.html"><span class="doc">Building the Yun2Infinity Project with Django and Jupyter-Book</span></a>.</p>
 <ul>
 <li><p>I will make the necessary changes on my local computer, e.g. generate jupyterbook and add in new information etc.</p></li>
-<li><p>then zip the folder and push it onto my AWS instance with the scp command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">i</span> <span class="n">pem</span><span class="p">,</span><span class="n">key</span> <span class="n">user</span><span class="nd">@instance_ip_add</span>
+<li><p>then zip the folder and push it onto my server instance with the scp command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="o">-</span><span class="n">i</span> <span class="n">pem</span><span class="o">.</span><span class="n">key</span> <span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">the</span><span class="o">/</span><span class="n">xyz</span><span class="o">.</span><span class="n">zip</span> <span class="n">user</span><span class="nd">@instance_ip_addr</span><span class="p">:</span><span class="o">/</span><span class="n">path</span><span class="o">/</span>
+
+<span class="n">remove</span> <span class="n">the</span> <span class="o">-</span><span class="n">i</span> <span class="n">command</span> <span class="k">if</span> <span class="n">your</span> <span class="n">server</span> <span class="n">do</span> <span class="ow">not</span> <span class="n">require</span> <span class="n">a</span> <span class="n">pem</span><span class="o">.</span><span class="n">key</span>
 </pre></div>
 </div>
 </li>
 </ul>
 </li>
-<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the server name to your domain name</p>
+<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the <strong>server name</strong> to your domain name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="p">{</span>
 <span class="n">server_name</span>  <span class="o">.</span><span class="n">your_domain_name</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
 <span class="n">listen</span>       <span class="mi">80</span><span class="p">;</span>
@@ -441,7 +428,7 @@ document.write(`
 </pre></div>
 </div>
 </li>
-<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the proxy_redirect to your domain name. Based on this post <a class="github reference external" href="https://github.com/FraunhoferIOSB/FROST-Server/issues/235">FraunhoferIOSB/FROST-Server#235</a></p>
+<li><p>change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the “# CONFIGURE THE REVERSE PROXY OF NGINX” and change the <strong>proxy_redirect</strong> from “<a class="reference external" href="http://localhost">http://localhost</a>” to your domain name. Based on this post <a class="github reference external" href="https://github.com/FraunhoferIOSB/FROST-Server/issues/235">FraunhoferIOSB/FROST-Server#235</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>location /frost/ {
 proxy_pass		    http://$CONTAINERNAME2:8080/FROST-Server/;
 proxy_redirect      http://$CONTAINERNAME2:8080 http://localhost;
@@ -452,7 +439,7 @@ proxy_set_header   Host \$host;
 </pre></div>
 </div>
 </li>
-<li><p>change the yun2inf/grafana/defaults.ini domain to your domain name</p>
+<li><p>change the yun2inf/grafana/defaults.ini <strong>domain</strong> to your domain name</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
 <span class="c1"># Protocol (http, https, h2, socket)</span>
 <span class="n">protocol</span> <span class="o">=</span> <span class="n">http</span>
@@ -472,13 +459,13 @@ proxy_set_header   Host \$host;
 </pre></div>
 </div>
 </li>
-<li><p>change the yun2inf/django/settings.py and input your domain into the allowed host variable and turn off debg.</p>
+<li><p>change the yun2inf/django/yun2inf_project/yun2inf_project/settings.py and input your domain into the allowed host variable and turn off debg.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">ALLOWED_HOSTS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;.your_domain_name.com&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </li>
-<li><p>On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the ‘setup_yun2inf.sh’.</p>
+<li><p>On your server install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the ‘setup_yun2inf.sh’.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo &#39;------------------------------------------------------&#39;
 echo &#39;Trying to start django container now ...&#39;
 echo &#39;------------------------------------------------------&#39;
@@ -502,8 +489,9 @@ docker run -d --name &quot;$CONTAINERNAME4&quot;\
 </div>
 </li>
 </ol>
+</section>
 <section id="accessing-your-site-over-https-with-ssl-tls-certificate">
-<h2><span class="section-number">2.1. </span>Accessing your site over HTTPS with SSL/TLS certificate<a class="headerlink" href="#accessing-your-site-over-https-with-ssl-tls-certificate" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Accessing your site over HTTPS with SSL/TLS certificate<a class="headerlink" href="#accessing-your-site-over-https-with-ssl-tls-certificate" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>ssl certificate</p>
 <ul>
@@ -577,17 +565,8 @@ proxy_set_header      X-Forwarded-For $proxy_add_x_forwarded_for;
 </li>
 </ol>
 </section>
-<section id="setting-up-route53-when-website-goes-down">
-<h2><span class="section-number">2.2. </span>Setting up route53 when website goes down<a class="headerlink" href="#setting-up-route53-when-website-goes-down" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://eladnava.com/monitoring-http-health-email-alerts-aws/">https://eladnava.com/monitoring-http-health-email-alerts-aws/</a></p></li>
-</ul>
-<ol class="arabic simple">
-<li><p>It is important to setup healthcheck so that you are informed immediately once the website is down.</p></li>
-</ol>
-</section>
-<section id="setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">
-<h2><span class="section-number">2.3. </span>Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks<a class="headerlink" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks" title="Permalink to this heading">#</a></h2>
+<section id="setting-up-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">
+<h2><span class="section-number">2.3. </span>Setting up fail2ban and nginx-limit-req module to prevent DDOS attacks<a class="headerlink" href="#setting-up-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Stack Overflow</p>
 <ul>
@@ -669,6 +648,41 @@ limit_req zone=myzone burst=5 nodelay;
 </li>
 </ol>
 </section>
+<section id="deploy-to-aws-server-with-a-wix-subdomain">
+<h2><span class="section-number">2.4. </span>Deploy to AWS server with a wix subdomain<a class="headerlink" href="#deploy-to-aws-server-with-a-wix-subdomain" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>A good tutorial on configuring nginx as web server (<a class="reference external" href="https://realpython.com/django-nginx-gunicorn/">https://realpython.com/django-nginx-gunicorn/</a>).</p></li>
+<li><p>resizing your AWS as workload changes, from experience you at least need a <strong>t2.small</strong> instance.</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html</a></p></li>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta">https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html</a></p></li>
+</ul>
+</li>
+</ul>
+<ol class="arabic simple">
+<li><p>configure wix subdomain</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site">https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site</a></p></li>
+<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource">https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource</a></p></li>
+<li><p><a class="reference external" href="https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site">https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site</a></p></li>
+<li><p><a class="reference external" href="https://support.wix.com/article/request-third-party-ssl-certificates">https://support.wix.com/article/request-third-party-ssl-certificates</a></p></li>
+</ul>
+</li>
+<li><p>Setup your account for an ec2 virtual machine. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html">here</a>.</p></li>
+<li><p>Connect to your AWS instance. Follow instructions <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html">here</a></p></li>
+<li><p>Associate an Elastic IP for the instance.</p></li>
+</ol>
+<section id="setting-up-route53-when-website-goes-down">
+<h3><span class="section-number">2.4.1. </span>Setting up route53 when website goes down<a class="headerlink" href="#setting-up-route53-when-website-goes-down" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://eladnava.com/monitoring-http-health-email-alerts-aws/">https://eladnava.com/monitoring-http-health-email-alerts-aws/</a></p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>It is important to setup healthcheck so that you are informed immediately once the website is down.</p></li>
+</ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -738,9 +752,13 @@ limit_req zone=myzone burst=5 nodelay;
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.1. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.2. Setting up route53 when website goes down</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-aws-with-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#configuration-on-the-server">2.1. Configuration on the Server</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-your-site-over-https-with-ssl-tls-certificate">2.2. Accessing your site over HTTPS with SSL/TLS certificate</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-fail2ban-and-nginx-limit-req-module-to-prevent-ddos-attacks">2.3. Setting up fail2ban and nginx-limit-req module to prevent DDOS attacks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deploy-to-aws-server-with-a-wix-subdomain">2.4. Deploy to AWS server with a wix subdomain</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-up-route53-when-website-goes-down">2.4.1. Setting up route53 when website goes down</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

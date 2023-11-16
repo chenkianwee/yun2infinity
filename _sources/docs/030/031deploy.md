@@ -1,28 +1,17 @@
-# Deploy to AWS server with a wix subdomain
-- A good tutorial on configuring nginx as web server (https://realpython.com/django-nginx-gunicorn/).
-- resizing your AWS as workload changes 
-    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html
-    - https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta
-    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
+# Deploy the Stack to a Server
 
-1. configure wix subdomain
-    - https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site
-    - https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource
-    - https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site
-    - https://support.wix.com/article/request-third-party-ssl-certificates
-    
-2. Setup your account for an ec2 virtual machine. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html).
-3. Connect to your AWS instance. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
-4. Associate an Elastic IP for the instance.
-5. Download and unzip the latest yun2infinity-x.x.x.zip file from https://github.com/chenkianwee/yun2infinity/releases/  
-6. Customize your yun2inf_book app by following the instruction in {doc}`../050/054containerize`. 
+## Configuration on the Server
+1. Download and unzip the latest yun2infinity-x.x.x.zip file from https://github.com/chenkianwee/yun2infinity/releases/  
+2. Customize your yun2inf_book app by following the instruction in {doc}`../050/054containerize`. 
     - I will make the necessary changes on my local computer, e.g. generate jupyterbook and add in new information etc. 
-    - then zip the folder and push it onto my AWS instance with the scp command
+    - then zip the folder and push it onto my server instance with the scp command
         ```
-        scp -i pem,key user@instance_ip_add
+        scp -i pem.key /local/path/to/the/xyz.zip user@instance_ip_addr:/path/
+
+        remove the -i command if your server do not require a pem.key
         ``` 
     
-7. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the server name to your domain name
+7. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the **server name** to your domain name
     ```
     server {
     server_name  .your_domain_name.com;
@@ -32,7 +21,7 @@
     }
 
     ```
-8. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the proxy_redirect to your domain name. Based on this post https://github.com/FraunhoferIOSB/FROST-Server/issues/235
+8. change the yun2inf/shellscript/setup_yun2inf.sh file. Go to the "# CONFIGURE THE REVERSE PROXY OF NGINX" and change the **proxy_redirect** from "http://localhost" to your domain name. Based on this post https://github.com/FraunhoferIOSB/FROST-Server/issues/235
     ```
     location /frost/ {
 	proxy_pass		    http://$CONTAINERNAME2:8080/FROST-Server/;
@@ -42,7 +31,7 @@
     proxy_set_header   Host \$host;
     }
     ```
-9. change the yun2inf/grafana/defaults.ini domain to your domain name
+9. change the yun2inf/grafana/defaults.ini **domain** to your domain name
     ```
     [server]
     # Protocol (http, https, h2, socket)
@@ -61,13 +50,13 @@
     # Prevents DNS rebinding attacks
     enforce_domain = false
     ```
-10. change the yun2inf/django/settings.py and input your domain into the allowed host variable and turn off debg.
+10. change the yun2inf/django/yun2inf_project/yun2inf_project/settings.py and input your domain into the allowed host variable and turn off debg.
     ```
     DEBUG = False
     ALLOWED_HOSTS = [".your_domain_name.com"]
     ```
 
-11. On the AWS install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the 'setup_yun2inf.sh'.
+11. On your server install docker and build the new image. After you have build the new docker image for yun2inf. Make the appropriate changes in the 'setup_yun2inf.sh'.
     ```
     echo '------------------------------------------------------'
     echo 'Trying to start django container now ...'
@@ -140,12 +129,7 @@
         .... other stuff in the server block ....
     }
     ```
-## Setting up route53 when website goes down
-- https://eladnava.com/monitoring-http-health-email-alerts-aws/
-
-1. It is important to setup healthcheck so that you are informed immediately once the website is down.
-
-## Setting up AWS with fail2ban and nginx-limit-req module to prevent DDOS attacks
+## Setting up fail2ban and nginx-limit-req module to prevent DDOS attacks
 - Stack Overflow
     - https://serverfault.com/questions/1063352/ec2-relatively-small-network-out-spikes-cause-100-cpu-usage
 
@@ -211,3 +195,25 @@
     ```
     sudo fail2ban-client set nginx-limit-req unbanip 10.xx.15x.12x
     ```
+
+## Deploy to AWS server with a wix subdomain
+- A good tutorial on configuring nginx as web server (https://realpython.com/django-nginx-gunicorn/).
+- resizing your AWS as workload changes, from experience you at least need a **t2.small** instance.
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html
+    - https://stackoverflow.com/questions/69741113/increase-the-root-volume-hard-disk-of-ec2-linux-running-instance-without-resta
+    - https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recognize-expanded-volume-linux.html
+
+1. configure wix subdomain
+    - https://support.wix.com/en/article/connecting-a-subdomain-to-a-site-in-your-wix-account#connecting-a-subdomain-to-your-wix-site
+    - https://support.wix.com/en/article/connecting-a-subdomain-to-an-external-resource
+    - https://support.wix.com/en/article/connecting-a-wix-domain-to-an-external-site
+    - https://support.wix.com/article/request-third-party-ssl-certificates
+    
+2. Setup your account for an ec2 virtual machine. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html).
+3. Connect to your AWS instance. Follow instructions [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstances.html)
+4. Associate an Elastic IP for the instance.
+
+### Setting up route53 when website goes down
+- https://eladnava.com/monitoring-http-health-email-alerts-aws/
+
+1. It is important to setup healthcheck so that you are informed immediately once the website is down.
