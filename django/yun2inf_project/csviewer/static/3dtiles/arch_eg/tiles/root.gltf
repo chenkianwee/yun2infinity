@@ -7277,7 +7277,7 @@
     }
   ],
   "asset": {
-    "generator": "pygltflib@v1.16.0",
+    "generator": "pygltflib@v1.16.2",
     "version": "2.0"
   },
   "bufferViews": [

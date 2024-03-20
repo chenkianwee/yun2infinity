@@ -1,2 +1,2 @@
 # Yun2Infinity Project
-database that can handle spatial time-series data
+Open software stack for handling GIS, BIM and Time-series data

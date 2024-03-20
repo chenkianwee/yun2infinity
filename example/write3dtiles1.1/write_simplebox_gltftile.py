@@ -283,7 +283,7 @@ mat = np.array([[1, 0, 0, 0],
 pos_list = py3dtileslib.utils.get_pos_frm_gltf(gltf)
 pos_list = geomie3d.calculate.trsf_xyzs(pos_list, mat)
 bbox = geomie3d.calculate.bbox_frm_xyzs(pos_list)
-midpt_xyz = geomie3d.calculate.bbox_centre(bbox)
+midpt_xyz = geomie3d.calculate.bboxes_centre([bbox])[0]
 
 xdim = bbox.maxx - bbox.minx
 ydim = bbox.maxy - bbox.miny

@@ -1,0 +1,317 @@
+{
+  "extensions": {
+    "EXT_structural_metadata": {
+      "schema": {
+        "id": "example_schema",
+        "classes": {
+          "example_class": {
+            "name": "example_class",
+            "description": "this is an example class",
+            "properties": {
+              "example_string": {
+                "name": "example_str",
+                "description": "example string property",
+                "type": "STRING"
+              },
+              "example_float": {
+                "name": "example_float",
+                "description": "example float property",
+                "type": "SCALAR",
+                "componentType": "FLOAT32"
+              },
+              "example_enum": {
+                "name": "example_enum",
+                "description": "example enum property",
+                "type": "ENUM",
+                "enumType": "example_enum"
+              }
+            }
+          }
+        },
+        "enums": {
+          "example_enum": {
+            "name": "example_enum",
+            "description": "example of enums",
+            "values": [
+              {
+                "name": "this0",
+                "value": 0
+              },
+              {
+                "name": "this1",
+                "value": 1
+              },
+              {
+                "name": "this2",
+                "value": 2
+              },
+              {
+                "name": "this3",
+                "value": 3
+              },
+              {
+                "name": "this4",
+                "value": 4
+              },
+              {
+                "name": "this5",
+                "value": 5
+              }
+            ]
+          }
+        }
+      },
+      "propertyTables": [
+        {
+          "name": "example property table",
+          "class": "example_class",
+          "count": 6,
+          "properties": {
+            "example_string": {
+              "values": 4,
+              "stringOffsets": 5
+            },
+            "example_float": {
+              "values": 6
+            },
+            "example_enum": {
+              "values": 7
+            }
+          }
+        }
+      ]
+    }
+  },
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "normalized": false,
+      "count": 24,
+      "type": "VEC3",
+      "max": [
+        5.0,
+        5.0,
+        5.0
+      ],
+      "min": [
+        -5.0,
+        -5.0,
+        -5.0
+      ]
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 288,
+      "componentType": 5126,
+      "normalized": false,
+      "count": 24,
+      "type": "VEC3",
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 0,
+      "componentType": 5123,
+      "normalized": false,
+      "count": 36,
+      "type": "SCALAR",
+      "max": [
+        23
+      ],
+      "min": [
+        0
+      ]
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "normalized": false,
+      "count": 24,
+      "type": "SCALAR",
+      "max": [
+        5
+      ],
+      "min": [
+        0
+      ]
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 0,
+      "componentType": 5122,
+      "normalized": false,
+      "count": 48,
+      "type": "SCALAR",
+      "max": [
+        23
+      ],
+      "min": [
+        0
+      ]
+    }
+  ],
+  "asset": {
+    "generator": "pygltflib@v1.16.2",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 576,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 576,
+      "byteLength": 72,
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 648,
+      "byteLength": 96,
+      "target": 34962
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 0,
+      "byteLength": 96
+    },
+    {
+      "buffer": 2,
+      "byteOffset": 0,
+      "byteLength": 53
+    },
+    {
+      "buffer": 2,
+      "byteOffset": 53,
+      "byteLength": 28
+    },
+    {
+      "buffer": 2,
+      "byteOffset": 81,
+      "byteLength": 24
+    },
+    {
+      "buffer": 2,
+      "byteOffset": 105,
+      "byteLength": 12
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "data:application/octet-stream;base64,AACgwAAAoMAAAKDAAACgwAAAoEAAAKDAAACgQAAAoEAAAKDAAACgQAAAoMAAAKDAAACgwAAAoEAAAKDAAACgwAAAoMAAAKDAAACgwAAAoMAAAKBAAACgwAAAoEAAAKBAAACgwAAAoMAAAKDAAACgQAAAoMAAAKDAAACgQAAAoMAAAKBAAACgwAAAoMAAAKBAAACgQAAAoMAAAKDAAACgQAAAoEAAAKDAAACgQAAAoEAAAKBAAACgQAAAoMAAAKBAAACgQAAAoEAAAKDAAACgwAAAoEAAAKDAAACgwAAAoEAAAKBAAACgQAAAoEAAAKBAAACgwAAAoMAAAKBAAACgQAAAoMAAAKBAAACgQAAAoEAAAKBAAACgwAAAoEAAAKBAAAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAACAvwAAAAAAAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAgD8AAACAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AwAAAAEAAQACAAMABwAEAAUABQAGAAcACwAIAAkACQAKAAsADwAMAA0ADQAOAA8AEwAQABEAEQASABMAFgAXABQAFAAVABYAAAAAAAAAAAAAAAAAAAAAAAAAgD8AAIA/AACAPwAAgD8AAABAAAAAQAAAAEAAAABAAABAQAAAQEAAAEBAAABAQAAAgEAAAIBAAACAQAAAgEAAAKBAAACgQAAAoEAAAKBA",
+      "byteLength": 744
+    },
+    {
+      "uri": "data:application/octet-stream;base64,AAABAAMAAAABAAIAAgADAAQABQAHAAQABQAGAAYABwAIAAkACwAIAAkACgAKAAsADAANAA8ADAANAA4ADgAPABAAEQATABAAEQASABIAEwAUABUAFwAUABUAFgAWABcA",
+      "byteLength": 96
+    },
+    {
+      "uri": "data:application/octet-stream;base64,c3VyZmFjZTEwc3VyZmFjZTJzdXJmYWNlMzAwc3VyZmFjZTRzdXJmYWNlNTBzdXJmYWNlMDYAAAAACQAAABEAAAAbAAAAIwAAACwAAAA1AAAAAAAAAAAAgD8AAABAAABAQAAAgEAAAKBAAAABAAIAAwAEAAUA",
+      "byteLength": 117
+    }
+  ],
+  "extensionsUsed": [
+    "EXT_mesh_features",
+    "CESIUM_primitive_outline",
+    "EXT_structural_metadata"
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.3,
+          0.3,
+          0.3,
+          1.0
+        ],
+        "metallicFactor": 0.0,
+        "roughnessFactor": 1.0
+      },
+      "emissiveFactor": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "alphaMode": "OPAQUE",
+      "alphaCutoff": 0.5,
+      "doubleSided": true
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "extensions": {
+            "EXT_mesh_features": {
+              "featureIds": [
+                {
+                  "featureCount": 6,
+                  "attribute": 0,
+                  "propertyTable": 0
+                }
+              ]
+            },
+            "CESIUM_primitive_outline": {
+              "indices": 4
+            }
+          },
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "_FEATURE_ID_0": 3
+          },
+          "indices": 2,
+          "mode": 4,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}
