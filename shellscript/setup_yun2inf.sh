@@ -216,7 +216,7 @@ docker run -d --name "$CONTAINERNAME1"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
 	-v "spatempdb_volume:/var/lib/postgresql/data"\
-	chenkianwee/timescale-3dcitydb:2.12.1-4.4.0
+	chenkianwee/timescale-3dcitydb:2.16.1-4.4.0
 
 echo '------------------------------------------------------'
 echo 'Trying to start FROST-Server Container ...'
@@ -249,7 +249,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_idle_max=10"\
 	-e "auth_db_conn_idle_min=-1"\
     -e "plugins.openApi.enable=true"\
-	fraunhoferiosb/frost-server:2.2.0
+	fraunhoferiosb/frost-server:2.3.3
 
 #wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
@@ -279,7 +279,7 @@ docker run -d --name "$CONTAINERNAME3"\
     -e GF_FEATURE_TOGGLES_ENABLE=publicDashboards\
 	--network "yun2inf"\
     -p $GPORT:3000\
-    grafana/grafana-oss:10.1.5-ubuntu
+    grafana/grafana-oss:11.1.4-ubuntu
 
 docker cp ../grafana/defaults.ini "$CONTAINERNAME3":/usr/share/grafana/conf/defaults.ini
 docker restart "$CONTAINERNAME3"
@@ -292,7 +292,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.5
+    chenkianwee/yun2inf:0.0.6
 
 docker restart "$CONTAINERNAME4"
 
@@ -303,7 +303,7 @@ docker run -d --name "$CONTAINERNAME5"\
     -h "$CONTAINERNAME5"\
 	--network "yun2inf"\
     -p $BPORT:8080\
-    chenkianwee/tomcat-bimserver:9.0.76-1.5.184
+    chenkianwee/tomcat-bimserver:9.0.76-1.5.185
 
 echo '------------------------------------------------------'
 echo 'Trying to start nginx container now ...'
@@ -316,7 +316,7 @@ docker run -d --name "$CONTAINERNAME6"\
     -v "y2i:/yun2inf_project/www/static/"\
     -v "letsencrypt:/etc/letsencrypt"\
     -v "/var/log/nginx:/var/log/nginx"\
-    nginx:1.24-alpine3.17-slim
+    nginx:1.26.2-alpine-slim
 
 docker cp yun2inf.conf "$CONTAINERNAME6":/etc/nginx/conf.d/nginx.conf
 docker cp ../nginx/security_header.conf "$CONTAINERNAME6":/etc/nginx/security_header.conf

@@ -1,8 +1,9 @@
-FROM python:3.11.6-alpine
+FROM python:3.12.5-alpine3.20
+LABEL maintainer="chenkianwee chenkianwee@gmail.com"
 
 # Set environment varibles
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 RUN apk add --update --no-cache openssl
 

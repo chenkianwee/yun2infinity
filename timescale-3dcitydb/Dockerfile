@@ -1,5 +1,5 @@
-FROM timescale/timescaledb-ha:pg15.4-ts2.12.1-all-oss
-MAINTAINER chenkianwee chenkianwee@gmail.com
+FROM timescale/timescaledb-ha:pg16.4-ts2.16.1-all-oss
+LABEL maintainer="chenkianwee chenkianwee@gmail.com"
 
 USER root
 RUN apt-get update
