@@ -1,6 +1,6 @@
-# Masa3DB with Python
+# Yun2Infinity with Python
 ## Pre-requisite
-- Have already setup the Masa3DB {doc}`../020/020installation`
+- Have already setup the Yun2Infinity {doc}`../020/020installation`
 - Familiar with Python programming.
 
 ## Python Scripts

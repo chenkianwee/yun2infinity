@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>3. Example Python Script to Post to a FROST Server (Sensorthing API) &#8212; Yun2Infinity User Manual</title>
+    <title>15. Example Python Script to Post to a FROST Server (Sensorthing API) &#8212; Yun2Infinity User Manual</title>
   
   
   
@@ -19,53 +18,50 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
 
   
-  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/030/032stapi_eg';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/040/0414stapi_eg';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. PostgreSQL" href="../040/040postgres.html" />
-    <link rel="prev" title="2. Deploy the Stack to a Server" href="031deploy.html" />
+    <link rel="next" title="1. Integration" href="../050/050integration.html" />
+    <link rel="prev" title="14. Deploy the Stack to a Server" href="0413deploy.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -75,7 +71,16 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -109,12 +114,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <header>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
   
+  </header>
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -129,6 +142,7 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../010/010intro.html">
@@ -137,10 +151,22 @@ const thebe_selector_output = ".output, .cell_output"
   
   
   
+  
     <p class="title logo__title">Yun2Infinity User Manual</p>
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -154,28 +180,29 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../020/020installation.html">1. Installation</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tasks</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="030update.html">1. Update all the container images</a></li>
-<li class="toctree-l1"><a class="reference internal" href="031deploy.html">2. Deploy the Stack to a Server</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Example Python Script to Post to a FROST Server (Sensorthing API)</a></li>
-</ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sub-Tasks</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../040/040postgres.html">1. PostgreSQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/041particle.html">2. Masa3DB with Particle Devices</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/042python.html">3. Masa3DB with Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/043citydb.html">4. Initialising 3DCityDB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/044import_citygml.html">5. Import CityGML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/045grafana.html">6. Visualisation with Grafana</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/046cesium3d.html">7. Install 3DcityDB Web Map Client</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/047analysis.html">8. Analysis Using TimescaleDB</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/048ssl_cert.html">9. Get SSL Certificate for you FROST-Server and Grafana Server</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/049wfs.html">10. Install Web Feature Service (WFS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/0410expgltf.html">11. Export glTF</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../040/0411maintain.html">12. Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../030/030.html">1. Work in Progress …</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading"><span class="caption-text">Integration</span></p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">How-Tos</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="040postgres.html">1. PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="041particle.html">2. Yun2Infinity with Particle Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="042python.html">3. Yun2Infinity with Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="043citydb.html">4. Initialising 3DCityDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="044import_citygml.html">5. Import CityGML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="045grafana.html">6. Visualisation with Grafana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="046cesium3d.html">7. Install 3DcityDB Web Map Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="047analysis.html">8. Analysis Using TimescaleDB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="048ssl_cert.html">9. Get SSL Certificate for you FROST-Server and Grafana Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="049wfs.html">10. Install Web Feature Service (WFS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0410expgltf.html">11. Export glTF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0411maintain.html">12. Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0412update.html">13. Update all the container images</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0413deploy.html">14. Deploy the Stack to a Server</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">15. Example Python Script to Post to a FROST Server (Sensorthing API)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Integration References</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../050/050integration.html">1. Integration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../050/051docker_image.html">2. Timescale-3DCityDB</a></li>
@@ -259,7 +286,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/030/032stapi_eg.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdocs/040/0414stapi_eg.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -289,7 +316,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../../_sources/docs/030/032stapi_eg.md" target="_blank"
+      <li><a href="../../_sources/docs/040/0414stapi_eg.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,20 +368,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -381,8 +410,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-meta-data-of-the-datastream">3.1. Post Meta Data of the Datastream</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-observations-to-the-datastream">3.2. Post Observations to the Datastream</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-meta-data-of-the-datastream">15.1. Post Meta Data of the Datastream</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-observations-to-the-datastream">15.2. Post Observations to the Datastream</a></li>
 </ul>
             </nav>
         </div>
@@ -392,12 +421,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="example-python-script-to-post-to-a-frost-server-sensorthing-api">
-<h1><span class="section-number">3. </span>Example Python Script to Post to a FROST Server (Sensorthing API)<a class="headerlink" href="#example-python-script-to-post-to-a-frost-server-sensorthing-api" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">15. </span>Example Python Script to Post to a FROST Server (Sensorthing API)<a class="headerlink" href="#example-python-script-to-post-to-a-frost-server-sensorthing-api" title="Link to this heading">#</a></h1>
 <section id="post-meta-data-of-the-datastream">
-<h2><span class="section-number">3.1. </span>Post Meta Data of the Datastream<a class="headerlink" href="#post-meta-data-of-the-datastream" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">15.1. </span>Post Meta Data of the Datastream<a class="headerlink" href="#post-meta-data-of-the-datastream" title="Link to this heading">#</a></h2>
 <ol class="arabic">
 <li><p>Register the sensor and the property this sensor is observing.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
@@ -569,7 +598,7 @@ document.write(`
 </ol>
 </section>
 <section id="post-observations-to-the-datastream">
-<h2><span class="section-number">3.2. </span>Post Observations to the Datastream<a class="headerlink" href="#post-observations-to-the-datastream" title="Permalink to this heading">#</a></h2>
+<h2><span class="section-number">15.2. </span>Post Observations to the Datastream<a class="headerlink" href="#post-observations-to-the-datastream" title="Link to this heading">#</a></h2>
 <ol class="arabic" start="3">
 <li><p>Once all the meta data is setup. The sensor can post to the datastream with this script.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
@@ -624,7 +653,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./docs/030"
+            path: "./docs/040"
         },
         predefinedOutput: true
     }
@@ -636,34 +665,30 @@ document.write(`
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="031deploy.html"
+       href="0413deploy.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Deploy the Stack to a Server</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Deploy the Stack to a Server</p>
       </div>
     </a>
     <a class="right-next"
-       href="../040/040postgres.html"
+       href="../050/050integration.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>PostgreSQL</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Integration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -672,14 +697,15 @@ document.write(`
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
+
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-meta-data-of-the-datastream">3.1. Post Meta Data of the Datastream</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-observations-to-the-datastream">3.2. Post Observations to the Datastream</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-meta-data-of-the-datastream">15.1. Post Meta Data of the Datastream</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#post-observations-to-the-datastream">15.2. Post Observations to the Datastream</a></li>
 </ul>
   </nav></div>
 
@@ -701,9 +727,10 @@ By Kian Wee Chen
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -727,8 +754,8 @@ By Kian Wee Chen
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
 
   <footer class="bd-footer">
   </footer>

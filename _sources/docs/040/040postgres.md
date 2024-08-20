@@ -1,8 +1,8 @@
 # PostgreSQL
-All the open-source software used in Masa3DB is based on the PostgreSQL database. You can access the underlying PostgreSQL to see how the data are stored. This is also necessary for changing the username and passwords of the FROST-Server.
+All the open-source software used in Yun2Infinity is based on the PostgreSQL database. You can access the underlying PostgreSQL to see how the data are stored. This is also necessary for changing the username and passwords of the FROST-Server.
 
 ## Connecting to PostgreSQL using pgAdmin
-I will use the pgAdmin software, which is a GUI for managing the Postgresql database, to access the database. I am assuming you installed Masa3DB on a server computer. Now with your own laptop/PC you can access the database remotely.
+I will use the pgAdmin software, which is a GUI for managing the Postgresql database, to access the database. I am assuming you installed Yun2Infinity on a server computer. Now with your own laptop/PC you can access the database remotely.
 
 1. Download and install pgAdmin on your local computer. [Download pgAdmin](https://www.pgadmin.org/download/)
 2. First right click on the servers and create a new server.
@@ -19,7 +19,7 @@ I will use the pgAdmin software, which is a GUI for managing the Postgresql data
 
     Fill in the server name.
     ```
-    a. In the connection tab key in localhost for your host, and enter the username and password you entered while setting up the masa3db process.
+    a. In the connection tab key in localhost for your host, and enter the username and password you entered while setting up the Yun2Infinity process.
     ```{figure} /_static/031postgres/connection_detail.png
     :scale: 50%
     :name: connection_detail
@@ -33,7 +33,7 @@ I will use the pgAdmin software, which is a GUI for managing the Postgresql data
 
     Fill in the ssh tunnel details.
     ```
-    c. As you remember in the Masa3db setup script the database name that we created is spatempdb. Click on the extensions and you will be able to see all the extensions installed in the database. They should include all of the extensions shown below.
+    c. As you remember in the Yun2Infinity setup script the database name that we created is spatempdb. Click on the extensions and you will be able to see all the extensions installed in the database. They should include all of the extensions shown below.
     ```{figure} /_static/031postgres/db_extension.png
     :scale: 50%
     :name: db_extension

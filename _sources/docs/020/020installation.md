@@ -103,19 +103,3 @@ I am using [Docker](https://www.docker.com/) for running the database. So you wi
 
     $ sudo sh rmv_masa3db.sh
     ```
-    
-<del>Non Docker Installation (Not Maintained and Not Recommended)<del>
-1. <del>Install PostgreSQL 12 with PostGIS.<del>
-2. <del>Install 3DCityDB.<del>
-3. <del>Install the FROST server for Sensorthings API<del>
-4. <del>Install [Tomcat](https://tomcat.apache.org/download-90.cgi)<del>
-5. <del>Install the [FROST-Server](https://github.com/FraunhoferIOSB/FROST-Server)<del>
-6. <del>Installation procedure of FROST-Server can be found [here](https://fraunhoferiosb.github.io/FROST-Server/deployment/postgresql.html ).<del>
-
-    <del>a. Put the ware file in the webapp folder<del>
-
-7. <del>If you create a new schema remember to add the new schema to the search_path with this command.<del>
-    ```
-    alter database chaos_sim set search_path to sensorthings,citydb,citydb_pkg,“$user”,public;
-    ```
-8. <del>Set authentication according to this [instructions](https://fraunhoferiosb.github.io/FROST-Server/settings/auth.html).<del>
