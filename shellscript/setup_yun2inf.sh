@@ -216,7 +216,7 @@ docker run -d --name "$CONTAINERNAME1"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
 	-v "spatempdb_volume:/var/lib/postgresql/data"\
-	chenkianwee/timescale-3dcitydb:2.16.1-4.4.0
+	chenkianwee/timescale-3dcitydb:2.20.3-5.0.0
 
 echo '------------------------------------------------------'
 echo 'Trying to start FROST-Server Container ...'
@@ -303,7 +303,7 @@ docker run -d --name "$CONTAINERNAME5"\
     -h "$CONTAINERNAME5"\
 	--network "yun2inf"\
     -p $BPORT:8080\
-    chenkianwee/tomcat-bimserver:9.0.76-1.5.185
+    chenkianwee/tomcat-bimserver:9.0.106-1.5.187
 
 echo '------------------------------------------------------'
 echo 'Trying to start nginx container now ...'
