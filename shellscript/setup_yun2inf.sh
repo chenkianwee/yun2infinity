@@ -249,7 +249,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_idle_max=10"\
 	-e "auth_db_conn_idle_min=-1"\
     -e "plugins.openApi.enable=true"\
-	fraunhoferiosb/frost-server:2.3.3
+	fraunhoferiosb/frost-server:2.6
 
 #wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
@@ -279,7 +279,7 @@ docker run -d --name "$CONTAINERNAME3"\
     -e GF_FEATURE_TOGGLES_ENABLE=publicDashboards\
 	--network "yun2inf"\
     -p $GPORT:3000\
-    grafana/grafana-oss:11.1.4-ubuntu
+    grafana/grafana-oss:12.0.2-ubuntu
 
 docker cp ../grafana/defaults.ini "$CONTAINERNAME3":/usr/share/grafana/conf/defaults.ini
 docker restart "$CONTAINERNAME3"
@@ -292,7 +292,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.7
+    chenkianwee/yun2inf:0.0.8
 
 docker restart "$CONTAINERNAME4"
 
@@ -316,7 +316,7 @@ docker run -d --name "$CONTAINERNAME6"\
     -v "y2i:/yun2inf_project/www/static/"\
     -v "letsencrypt:/etc/letsencrypt"\
     -v "/var/log/nginx:/var/log/nginx"\
-    nginx:1.26.2-alpine-slim
+    nginx:1.28-alpine-slim
 
 docker cp yun2inf.conf "$CONTAINERNAME6":/etc/nginx/conf.d/nginx.conf
 docker cp ../nginx/security_header.conf "$CONTAINERNAME6":/etc/nginx/security_header.conf

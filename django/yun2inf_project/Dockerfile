@@ -1,4 +1,4 @@
-FROM python:3.12.5-alpine3.20
+FROM python:3.12.11-alpine3.22
 LABEL maintainer="chenkianwee chenkianwee@gmail.com"
 
 # Set environment varibles
