@@ -7,8 +7,15 @@ echo 'This will help you setup your Yun2inf Docker Network'
 echo '6 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)BIMServer 6)nginx'
 echo '------------------------------------------------------'
 #---------------------------------------------------------
+# AMD64 or ARM64
+#---------------------------------------------------------
+echo 'Is this an amd64 or arm64 Machine'
+read -p "(default=amd64): " ARCH
+ARCH=${ARCH:-amd64}
+#---------------------------------------------------------
 # POSTGRES
 #---------------------------------------------------------
+echo
 echo 'Enter DB Container Name'
 read -p "(default=spatempdb): " CONTAINERNAME1
 CONTAINERNAME1=${CONTAINERNAME1:-spatempdb}
@@ -102,6 +109,7 @@ NPORT=${NPORT:-80}
 
 #PRINT SETTING
 echo '---------------------------------'
+echo 'Machine Architecture:' $ARCH
 echo 'Container Name1:' $CONTAINERNAME1
 echo 'DBPort: ' $DBPORT
 echo 'Username: ' $DBUSER
@@ -216,7 +224,7 @@ docker run -d --name "$CONTAINERNAME1"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
 	-v "spatempdb_volume:/var/lib/postgresql/data"\
-	chenkianwee/timescale-3dcitydb:2.20.3-5.0.0
+	chenkianwee/timescale-3dcitydb:a-2.20.3-5.0.0
 
 echo '------------------------------------------------------'
 echo 'Trying to start FROST-Server Container ...'
@@ -250,26 +258,6 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_idle_min=-1"\
     -e "plugins.openApi.enable=true"\
 	fraunhoferiosb/frost-server:2.6
-
-#wait for abit before reconfiguring the FROST-server
-echo '------------------------------------------------------'
-echo 'Configuring the database container ... '
-echo '------------------------------------------------------'
-TOTAL=30
-TIME=0
-while [ $TIME -le $TOTAL ]
-do
-	echo "Configuring database, wait for $TOTAL seconds ... $TIME seconds"
-	TIME=$(($TIME + 10))
-	sleep 10
-done
-
-#docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c 'CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;'
-docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "ALTER TABLE \"OBSERVATIONS\" DROP CONSTRAINT \"OBSERVATIONS_pkey\";"
-docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "SELECT create_hypertable('\"OBSERVATIONS\"','PHENOMENON_TIME_START',chunk_time_interval => interval '7 days');"
-docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "CREATE INDEX \"OBSERVATIONS_pkey\" ON \"OBSERVATIONS\" USING btree(\"ID\");"
-docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "CREATE INDEX \"OBS-DS_ID-PHTIME_SE-O_ID\" on \"OBSERVATIONS\" using btree(\"DATASTREAM_ID\",\"PHENOMENON_TIME_START\" asc, \"PHENOMENON_TIME_END\" asc);"
-docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "ALTER TABLE \"OBSERVATIONS\" ADD PRIMARY KEY (\"ID\", \"PHENOMENON_TIME_START\");"
 
 echo '------------------------------------------------------'
 echo 'Trying to start grafana container now ...'
@@ -324,6 +312,36 @@ docker exec -it "$CONTAINERNAME6" rm /etc/nginx/conf.d/default.conf
 docker restart "$CONTAINERNAME6"
 mv yun2inf.conf ../nginx/yun2inf.conf
 
+#wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
-echo 'Successfully installed yun2infinity'
+echo 'Configuring the database container ... '
+echo '------------------------------------------------------'
+if [ $ARCH = "amd64" ]; then
+    echo "Automated timescale setup for amd64 machine"
+    TOTAL=30
+    TIME=0
+    while [ $TIME -le $TOTAL ]
+    do
+        echo "Configuring database, wait for $TOTAL seconds ... $TIME seconds"
+        TIME=$(($TIME + 10))
+        sleep 10
+    done
+
+    #docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c 'CREATE EXTENSION IF NOT EXISTS timescaledb CASCADE;'
+    docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "ALTER TABLE \"OBSERVATIONS\" DROP CONSTRAINT \"OBSERVATIONS_pkey\";"
+    docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "SELECT create_hypertable('\"OBSERVATIONS\"','PHENOMENON_TIME_START',chunk_time_interval => interval '7 days');"
+    docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "CREATE INDEX \"OBSERVATIONS_pkey\" ON \"OBSERVATIONS\" USING btree(\"ID\");"
+    docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "CREATE INDEX \"OBS-DS_ID-PHTIME_SE-O_ID\" on \"OBSERVATIONS\" using btree(\"DATASTREAM_ID\",\"PHENOMENON_TIME_START\" asc, \"PHENOMENON_TIME_END\" asc);"
+    docker exec -it "$CONTAINERNAME1" psql -U "$DBUSER" -d "$DBNAME" -c "ALTER TABLE \"OBSERVATIONS\" ADD PRIMARY KEY (\"ID\", \"PHENOMENON_TIME_START\");"
+elif [ $ARCH = "arm64" ]; then
+    echo "Instructions for arm64 machine to complete your timescale setup"
+    echo "For Raspberry Pi Installation, make sure your FROST-Server is working with your Postgresql before installing TimescaleDB"
+    echo "Visit https://chenkianwee.github.io/yun2infinity/docs/020/020installation.html#check-if-frost-server-is-successfully-configured to check if your FROST-server and postgresql is running properly"
+    echo "Run the tsdb4rpi.sh to install timescale with the following command: sudo sh tscitydb4rpi.sh"
+else
+    echo "Unsupported Machine Type"
+fi
+
+echo '------------------------------------------------------'
+echo 'End of Setup'
 echo '------------------------------------------------------'
