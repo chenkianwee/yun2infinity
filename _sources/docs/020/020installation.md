@@ -61,7 +61,8 @@ I am using [Docker](https://www.docker.com/) for running the database. So you wi
     ```
     $ sudo docker ps
     ```
-7. Go to http://you_public_ip_address/frost you will be able to see this landing page. This means that your sensorthings API is setup.
+### Check if FROST-Server is successfully configured
+1. Go to http://your_ip_address/frost you will be able to see this landing page. This means that your sensorthings API is setup.
     ```{figure} /_static/023setup/sensorthings_landing.png
     :width: 80%
     :name: sensorthings_landing
@@ -78,7 +79,7 @@ I am using [Docker](https://www.docker.com/) for running the database. So you wi
 
     Successfully updated the FROST-Server settings.
     ```
-8. Congratulation you have successfully installed yun2infinity.
+2. Congratulation you have successfully installed yun2infinity.
 
 ### Increase Paging of FROST-server for Improvement of Performance
 1. Increase the value of the maxTop parameter to 10000 in the conf/context.xml file to improve the performance making request.

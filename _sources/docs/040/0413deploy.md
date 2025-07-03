@@ -129,6 +129,11 @@
         .... other stuff in the server block ....
     }
     ```
+
+## Troubleshooting
+- if yun2inf_project container keeps giving you error e.g. internal server error
+- go into the docker container and check the gunicorn /var/log/gunicorn/error.log and figure out the error
+
 ## Setting up fail2ban and nginx-limit-req module to prevent DDOS attacks
 - Stack Overflow
     - https://serverfault.com/questions/1063352/ec2-relatively-small-network-out-spikes-cause-100-cpu-usage

@@ -19,7 +19,7 @@ Refer to [here](https://3dcitydb-docs.readthedocs.io) for the full documentation
     export PGHOST=localhost
     export PGPORT=5432
     export CITYDB=spatempdb
-    export PGUSER=username you specified when installing masa3db
+    export PGUSER=username you specified when installing Yun2Infinity
     #------------------------------------------------------------------------------
     ```
 4. Execute the CREATE_DB.sh. This should create a citydb schema in the database.
