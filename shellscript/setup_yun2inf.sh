@@ -338,6 +338,7 @@ elif [ $ARCH = "arm64" ]; then
     echo "For Raspberry Pi Installation, make sure your FROST-Server is working with your Postgresql before installing TimescaleDB"
     echo "Visit https://chenkianwee.github.io/yun2infinity/docs/020/020installation.html#check-if-frost-server-is-successfully-configured to check if your FROST-server and postgresql is running properly"
     echo "Run the tsdb4rpi.sh to install timescale with the following command: sudo sh tscitydb4rpi.sh"
+
 else
     echo "Unsupported Machine Type"
 fi
