@@ -1,4 +1,4 @@
-#wait for abit before reconfiguring the FROST-server
+#!/bin/bash
 echo '------------------------------------------------------'
 echo 'Configuring the database container ... '
 echo '------------------------------------------------------'
