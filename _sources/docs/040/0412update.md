@@ -1,10 +1,12 @@
 # Update all the container images
 
 1. Check for new releases for the timescale-3dcitydb image. 
-    - Check for latest timescale container image at dockerhub [timescale/timescaledb-ha](https://hub.docker.com/r/timescale/timescaledb-ha/tags)
+    - ~~Check for latest timescale container image at dockerhub [timescale/timescaledb-ha](https://hub.docker.com/r/timescale/timescaledb-ha/tags)~~
+    - Check for latest postgis container image at dockerhub [kartoza/postgis](https://hub.docker.com/r/kartoza/postgis/tags)
     - Check for latest 3dcitydb release [here](https://github.com/3dcitydb/3dcitydb/releases/)
     - build the docker image using the dockerfile in timescale-3dcitydb folder
-    - make necessary changes to the parameters and the container name in the setup_yun2inf.sh 
+    - make necessary changes to the parameters and the container name in the setup_yun2inf.sh
+    - make necessary changes to the timescaledb versioning in the tsdb4rpi.sh and tsdb4amd64.sh
 
 2. Check for new releases for frost server [here](https://hub.docker.com/r/fraunhoferiosb/frost-server/tags).
     - make necessary changes to the parameters and the container name in the setup_yun2inf.sh 
