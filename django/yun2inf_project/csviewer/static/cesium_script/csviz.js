@@ -9,21 +9,21 @@ Cesium.Ion.defaultAccessToken = null;
 // - these can be used without Cesium Ion
 // Per Carto's website regarding basemap attribution: https://carto.com/help/working-with-data/attribution/#basemaps
 // https://github.com/CartoDB/basemap-styles
-// let CartoAttribution = 'Map tiles by <a href="https://carto.com">Carto</a>, under CC BY 3.0. Data by <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.'
-// var imageryViewModels = [];
-// imageryViewModels.push(new Cesium.ProviderViewModel({
-//   name: 'Positron',
-//   tooltip: 'CartoDB Positron basemap',
-//   iconUrl: 'http://a.basemaps.cartocdn.com/light_all/5/15/12.png',
-//   creationFunction: function () {
-//     return new Cesium.UrlTemplateImageryProvider({
-//       url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-//       credit: CartoAttribution,
-//       minimumLevel: 0,
-//       maximumLevel: 18
-//     });
-//   }
-// }));
+let CartoAttribution = 'Map tiles by <a href="https://carto.com">Carto</a>, under CC BY 3.0. Data by <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.'
+var imageryViewModels = [];
+imageryViewModels.push(new Cesium.ProviderViewModel({
+  name: 'Positron',
+  tooltip: 'CartoDB Positron basemap',
+  iconUrl: 'https://raw.githubusercontent.com/chenkianwee/yun2infinity/refs/heads/master/example/icons/map_icon.png',
+  creationFunction: function () {
+    return new Cesium.UrlTemplateImageryProvider({
+      url: 'http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+      credit: CartoAttribution,
+      minimumLevel: 0,
+      maximumLevel: 18
+    });
+  }
+}));
 // ======================================================================
 // If WMTS is used 
 // ======================================================================
@@ -57,8 +57,8 @@ Cesium.Ion.defaultAccessToken = null;
 //   }));
 
 // Using the local low resolution basemap from cesiumJS 
-const imageryLayer = Cesium.ImageryLayer.fromProviderAsync(
-    Cesium.TileMapServiceImageryProvider.fromUrl(Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII")));
+// const imageryLayer = Cesium.ImageryLayer.fromProviderAsync(
+//     Cesium.TileMapServiceImageryProvider.fromUrl(Cesium.buildModuleUrl("Assets/Textures/NaturalEarthII")));
 
 // #endregion
 // ======================================================================
