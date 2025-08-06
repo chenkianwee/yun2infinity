@@ -6,16 +6,15 @@ echo
 echo 'Enter DB Container Name'
 read -p "(default=spatempdb): " CONTAINERNAME1
 CONTAINERNAME1=${CONTAINERNAME1:-spatempdb}
-#DBUSER
-echo
-echo 'Enter User for Database'
-read -p "(default=postgres): " DBUSER
-DBUSER=${DBUSER:-postgres}
+
 #DBNAME
 echo
 echo 'Enter Name for the Database'
 read -p "(default=spatempdb): " DBNAME
 DBNAME=${DBNAME:-spatempdb}
+
+#DBUSER
+DBUSER='postgres'
 
 docker exec -it -u root "$CONTAINERNAME1" apt-get install -y wget
 docker exec -it -u root "$CONTAINERNAME1" apt-get install -y unzip

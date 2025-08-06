@@ -6,23 +6,20 @@ echo
 echo 'Enter DB Container Name'
 read -p "(default=spatempdb): " CONTAINERNAME1
 CONTAINERNAME1=${CONTAINERNAME1:-spatempdb}
-#DBUSER
-echo
-echo 'Enter User for Database'
-read -p "(default=postgres): " DBUSER
-DBUSER=${DBUSER:-postgres}
 #DBNAME
 echo
 echo 'Enter Name for the Database'
 read -p "(default=spatempdb): " DBNAME
 DBNAME=${DBNAME:-spatempdb}
 
+DBUSER='postgres'
+
 # install timescaledb (https://docs.tigerdata.com/self-hosted/latest/install/installation-linux/)
 # timescaledb tuning tool (https://docs.tigerdata.com/self-hosted/latest/configuration/timescaledb-tune/)
 docker exec -u root "$CONTAINERNAME1" bash -c 'echo "deb https://packagecloud.io/timescale/timescaledb/debian/ $(lsb_release -c -s) main" | tee /etc/apt/sources.list.d/timescaledscaledb.list'
 docker exec -u root "$CONTAINERNAME1" bash -c 'wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | gpg --dearmor -o /etc/apt/trusted.gpg.d/timescaledb.gpg'
 docker exec -it -u root "$CONTAINERNAME1" apt-get update
-docker exec -it -u root "$CONTAINERNAME1" apt-get install -y timescaledb-2-oss-postgresql-17=2.21.0~debian12
+docker exec -it -u root "$CONTAINERNAME1" apt-get install -y timescaledb-2-oss-postgresql-17
 docker exec -it -u root "$CONTAINERNAME1" timescaledb-tune --quiet --yes
 docker exec -u root spatempdb bash -c "echo \"shared_preload_libraries = 'timescaledb,pg_cron'\" >> /etc/postgresql/17/main/postgresql.conf"
 docker restart "$CONTAINERNAME1"
