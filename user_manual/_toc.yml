@@ -1,0 +1,44 @@
+format: jb-book
+root: docs/010/010intro
+parts:
+- caption: Installation
+  numbered: true
+  chapters:
+  - file: docs/020/020installation
+- caption: Tutorials
+  numbered: true
+  chapters:
+  - file: docs/030/030
+- caption: How-Tos
+  numbered: true
+  chapters:
+  - file: docs/040/040postgres
+  - file: docs/040/041particle
+  - file: docs/040/042python
+  - file: docs/040/043citydb
+  - file: docs/040/044import_citygml
+  - file: docs/040/045grafana
+  - file: docs/040/046cesium3d
+  - file: docs/040/047analysis
+  - file: docs/040/048ssl_cert
+  - file: docs/040/049wfs
+  - file: docs/040/0410expgltf
+  - file: docs/040/0411maintain
+  - file: docs/040/0412update
+  - file: docs/040/0413deploy
+  - file: docs/040/0414stapi_eg
+- caption: Integration References
+  numbered: true
+  chapters:
+  - file: docs/050/050integration
+  - file: docs/050/051docker_image
+  - file: docs/050/052webhooks
+  - file: docs/050/053integrate3
+  - file: docs/050/054containerize
+  - file: docs/050/055grafana
+  - file: docs/050/056nginx
+  - file: docs/050/057replicate
+  - file: docs/050/058auth
+  - file: docs/050/059bimserver
+  - file: docs/050/0510cesiumjs
+  - file: docs/050/0511rpi
