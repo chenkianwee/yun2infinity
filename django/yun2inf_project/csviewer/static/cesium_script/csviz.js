@@ -356,7 +356,7 @@ async function update(czmlStream, url) {
 update(czmlStream, datasourceURL1);
 
 
-const upInterval = 5 * 60 * 1000
+const upInterval = 5 * 60 * 1000 //milliseconds 1000 = 1 second
 var intervalId;
 var toId;
 
