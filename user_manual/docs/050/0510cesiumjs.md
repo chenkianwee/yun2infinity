@@ -137,6 +137,11 @@
 
 12. refer to {doc}`054containerize` containerize section to build a new container image of the django app.
 
+## Retrieving parameters from html frontend
+- https://stackoverflow.com/questions/47465657/how-can-i-pass-values-parameters-from-html-to-django-views
+- https://lxadm.com/csrf-verification-failed-request-aborted/
+
+
 ## Resources 
 - Cesium js without ion token
     - https://gist.github.com/banesullivan/e3cc15a3e2e865d5ab8bae6719733752
