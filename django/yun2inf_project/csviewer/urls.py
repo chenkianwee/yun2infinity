@@ -6,4 +6,5 @@ urlpatterns = [
     path('gettilesurl', views.tiles_url, name = 'tiles_url'),
     path('updatets', views.update_timeseries_data, name = 'update_timeseries_data'),
     path('updatets2', views.update_timeseries_data2, name = 'update_timeseries_data2'),
+    path('updatesetpt', views.set_thermostat_setpt, name = 'set_thermostat_setpt'),
 ]

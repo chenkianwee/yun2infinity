@@ -34,8 +34,16 @@
                         </td>
                     </tr>
                 </tbody>
-              </table>
-              <p class="attribution">Data by <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.</p>
+            </table>
+            <form action="{% url 'set_thermostat_setpt' %}" method="post">
+                {% csrf_token %}
+                <label for="your_input">Setpoint:</label>
+                <input type="text" id="input5" name="setpt_val">
+                <button type="submit" name="update_setpt" class="cesium-button">
+                    Update Thermostat Setpoint
+                </button>
+            </form>
+            <p class="attribution">Data by <a href="https://www.openstreetmap.org/">OpenStreetMap</a>, under ODbL.</p>
         </div>
     	<div id="cesiumContainer"></div>
         <script type="module" src="/static/cesium_script/csviz.js"></script>

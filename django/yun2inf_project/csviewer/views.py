@@ -1,5 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 from django.template import loader
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 import pytz
 import random
@@ -8,12 +10,21 @@ from dateutil import parser
 from django.conf import settings
 
 def cesium_viewer(request):
-    template = loader.get_template('csviewer/viewer.html')
-    return HttpResponse(template.render())
+    return render(request, 'csviewer/viewer.html')
 
 def tiles_url(request):
     url = "http://localhost/static/3dtiles/arch_eg/tileset.json"
     return JsonResponse({"tiles_url": url})
+
+def set_thermostat_setpt(request):
+    if 'update_setpt' in request.POST:
+        setpt_val = request.POST.get("setpt_val")
+        # do something with the setpt val here 
+        # Add success message
+        messages.success(request, f"Thermostat setpoint updated to {setpt_val}")
+        return redirect("/csviewer")
+        
+    return render(request, "csviewer/viewer.html")
 
 def update_timeseries_data(request):
     # auth_user = settings.AUTH_USER
