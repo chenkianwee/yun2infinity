@@ -7,7 +7,7 @@
 3. Fill in the necessary parameters to create the data source. You should get a success msg if you fill in everything correctly.
     ```
     Name: Name of your data source
-    URL: http://frost:8080/frost/v1.1/
+    URL: http://frost:8080/FROST-Server/v1.1/
 
     Basic auth
     Basic Auth Details
