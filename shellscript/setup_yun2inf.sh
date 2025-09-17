@@ -275,7 +275,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.9
+    chenkianwee/yun2inf:0.0.10
 
 docker restart "$CONTAINERNAME4"
 

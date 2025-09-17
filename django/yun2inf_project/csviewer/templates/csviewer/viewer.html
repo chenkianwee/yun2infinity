@@ -12,6 +12,16 @@
         </style>
     </head>
     <body>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="message {{ message.tags }}">
+                    {{ message }}
+                    <button class="close-btn" onclick="this.parentElement.style.display='none';">&times;</button>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <div id="toolbar">
             <button class="cesium-button" data-bind="click: getCamera">
                 Get Camera Placement
