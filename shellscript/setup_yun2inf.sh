@@ -79,24 +79,14 @@ echo
 echo 'Enter Port to listen to for the yun2inf_proj Container.'
 read -p "(default=8000): " YPORT
 YPORT=${YPORT:-8000}
-#---------------------------------------------------------
-# BIMSERVER
-#---------------------------------------------------------
-echo
-echo 'Enter bimserver Container Name'
-read -p "(default=bimserver): " CONTAINERNAME5
-CONTAINERNAME5=${CONTAINERNAME5:-bimserver}
-echo
-echo 'Enter HTTP Port for bimserver'
-read -p "(default=8888): " BPORT
-BPORT=${BPORT:-8888}
+
 #---------------------------------------------------------
 # NGINX
 #---------------------------------------------------------
 echo
 echo 'Enter nginx Container Name'
 read -p "(default=yun2inf_nginx): " CONTAINERNAME6
-CONTAINERNAME6=${CONTAINERNAME6:-yun2inf_nginx}
+CONTAINERNAME5=${CONTAINERNAME5:-yun2inf_nginx}
 echo
 echo 'Enter HTTP Port for nginx'
 read -p "(default=80): " NPORT
@@ -121,8 +111,6 @@ echo 'Container Name4:' $CONTAINERNAME4
 echo 'YPort: ' $YPORT
 echo 'Container Name5:' $CONTAINERNAME5
 echo 'BPort: ' $BPORT
-echo 'Container Name6:' $CONTAINERNAME6
-echo 'NPort: ' $NPORT
 echo '--------------------------------'
 #=======================================================================
 # CONFIGURE THE REVERSE PROXY OF NGINX
@@ -186,21 +174,6 @@ server {
         proxy_pass              http://grafana;                           
         }  
         
-    location /bimserver/ {                                                 
-        #limit_req zone=myzone burst=10 nodelay;
-        client_max_body_size 1000m;                           
-        proxy_pass              http://$CONTAINERNAME5:8080/bimserver/;          
-        proxy_redirect          http://$CONTAINERNAME5:8080 http://localhost;                                       
-        proxy_read_timeout      300;                                       
-                                                                           
-        proxy_set_header        Host \$host;                                
-        proxy_set_header        X-Real-IP \$remote_addr;              
-        proxy_set_header        X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto \$scheme;                 
-        proxy_set_header        Upgrade \$http_upgrade;                     
-        proxy_set_header        Connection \"upgrade\";                      
-    }
-    
 }" > yun2inf.conf
 
 #Create docker network
@@ -219,7 +192,7 @@ docker run -d --name "$CONTAINERNAME1"\
 	-e "POSTGRES_PASSWORD=$DBPASSWORD"\
 	-e "POSTGRES_DB=$DBNAME"\
 	-v "spatempdb_volume:/var/lib/postgresql/data"\
-	kartoza/postgis:17-3.5
+	kartoza/postgis:18-3.6
 
 echo '------------------------------------------------------'
 echo 'Trying to start FROST-Server Container ...'
@@ -252,7 +225,7 @@ docker run -d --name "$CONTAINERNAME2"\
 	-e "auth_db_conn_idle_max=10"\
 	-e "auth_db_conn_idle_min=-1"\
     -e "plugins.openApi.enable=true"\
-	fraunhoferiosb/frost-server:2.6
+	fraunhoferiosb/frost-server:2.7.2
 
 echo '------------------------------------------------------'
 echo 'Trying to start grafana container now ...'
@@ -262,7 +235,7 @@ docker run -d --name "$CONTAINERNAME3"\
     -e GF_FEATURE_TOGGLES_ENABLE=publicDashboards\
 	--network "yun2inf"\
     -p $GPORT:3000\
-    grafana/grafana-oss:12.0.2-ubuntu
+    grafana/grafana-oss:13.0.1-ubuntu
 
 docker cp ../grafana/defaults.ini "$CONTAINERNAME3":/usr/share/grafana/conf/defaults.ini
 docker restart "$CONTAINERNAME3"
@@ -275,36 +248,27 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.10
+    chenkianwee/yun2inf:0.0.11a
 
 docker restart "$CONTAINERNAME4"
 
 echo '------------------------------------------------------'
-echo 'Trying to start bimserver container now ...'
+echo 'Trying to start nginx container now ...'
 echo '------------------------------------------------------'
 docker run -d --name "$CONTAINERNAME5"\
     -h "$CONTAINERNAME5"\
-	--network "yun2inf"\
-    -p $BPORT:8080\
-    chenkianwee/tomcat-bimserver:9.0.106-1.5.187
-
-echo '------------------------------------------------------'
-echo 'Trying to start nginx container now ...'
-echo '------------------------------------------------------'
-docker run -d --name "$CONTAINERNAME6"\
-    -h "$CONTAINERNAME6"\
 	--network "yun2inf"\
     -p $NPORT:80\
     -p 443:443\
     -v "y2i:/yun2inf_project/www/static/"\
     -v "letsencrypt:/etc/letsencrypt"\
     -v "/var/log/nginx:/var/log/nginx"\
-    nginx:1.28-alpine-slim
+    nginx:1.30-alpine-slim
 
-docker cp yun2inf.conf "$CONTAINERNAME6":/etc/nginx/conf.d/nginx.conf
-docker cp ../nginx/security_header.conf "$CONTAINERNAME6":/etc/nginx/security_header.conf
-docker exec -it "$CONTAINERNAME6" rm /etc/nginx/conf.d/default.conf
-docker restart "$CONTAINERNAME6"
+docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
+docker cp ../nginx/security_header.conf "$CONTAINERNAME5":/etc/nginx/security_header.conf
+docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf
+docker restart "$CONTAINERNAME5"
 mv yun2inf.conf ../nginx/yun2inf.conf
 
 #wait for abit before reconfiguring the FROST-server

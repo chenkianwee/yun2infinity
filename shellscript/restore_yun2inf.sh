@@ -89,23 +89,12 @@ echo 'Enter Port to listen to for the yun2inf_proj Container.'
 read -p "(default=8000): " YPORT
 YPORT=${YPORT:-8000}
 #---------------------------------------------------------
-# BIMSERVER
-#---------------------------------------------------------
-echo
-echo 'Enter bimserver Container Name'
-read -p "(default=bimserver): " CONTAINERNAME5
-CONTAINERNAME5=${CONTAINERNAME5:-bimserver}
-echo
-echo 'Enter HTTP Port for bimserver'
-read -p "(default=8888): " BPORT
-BPORT=${BPORT:-8888}
-#---------------------------------------------------------
 # NGINX
 #---------------------------------------------------------
 echo
 echo 'Enter nginx Container Name'
-read -p "(default=yun2inf_nginx): " CONTAINERNAME6
-CONTAINERNAME6=${CONTAINERNAME6:-yun2inf_nginx}
+read -p "(default=yun2inf_nginx): " CONTAINERNAME5
+CONTAINERNAME6=${CONTAINERNAME5:-yun2inf_nginx}
 echo
 echo 'Enter HTTP Port for nginx'
 read -p "(default=80): " NPORT
@@ -131,8 +120,6 @@ echo 'Container Name4:' $CONTAINERNAME4
 echo 'YPort: ' $YPORT
 echo 'Container Name5:' $CONTAINERNAME5
 echo 'BPort: ' $BPORT
-echo 'Container Name6:' $CONTAINERNAME6
-echo 'NPort: ' $NPORT
 echo '--------------------------------'
 #=======================================================================
 # CONFIGURE THE REVERSE PROXY OF NGINX
@@ -194,22 +181,7 @@ server {
         proxy_set_header        Connection \$connection_upgrade;            
         proxy_set_header        Host \$http_host;                           
         proxy_pass              http://grafana;                           
-        }  
-        
-    location /bimserver/ {                                                 
-        #limit_req zone=myzone burst=10 nodelay;
-        client_max_body_size 1000m;                           
-        proxy_pass              http://$CONTAINERNAME5:8080/bimserver/;          
-        proxy_redirect          http://$CONTAINERNAME5:8080 http://localhost;                                       
-        proxy_read_timeout      300;                                       
-                                                                           
-        proxy_set_header        Host \$host;                                
-        proxy_set_header        X-Real-IP \$remote_addr;              
-        proxy_set_header        X-Forwarded-For \$proxy_add_x_forwarded_for;
-        proxy_set_header        X-Forwarded-Proto \$scheme;                 
-        proxy_set_header        Upgrade \$http_upgrade;                     
-        proxy_set_header        Connection \"upgrade\";                      
-    }
+        } 
     
 }" > yun2inf.conf
 
@@ -313,19 +285,10 @@ docker run -d --name "$CONTAINERNAME4"\
 docker restart "$CONTAINERNAME4"
 
 echo '------------------------------------------------------'
-echo 'Trying to start bimserver container now ...'
+echo 'Trying to start nginx container now ...'
 echo '------------------------------------------------------'
 docker run -d --name "$CONTAINERNAME5"\
     -h "$CONTAINERNAME5"\
-	--network "yun2inf"\
-    -p $BPORT:8080\
-    chenkianwee/tomcat-bimserver:9.0.76-1.5.184
-
-echo '------------------------------------------------------'
-echo 'Trying to start nginx container now ...'
-echo '------------------------------------------------------'
-docker run -d --name "$CONTAINERNAME6"\
-    -h "$CONTAINERNAME6"\
 	--network "yun2inf"\
     -p $NPORT:80\
     -p 443:443\
@@ -334,10 +297,10 @@ docker run -d --name "$CONTAINERNAME6"\
     -v "/var/log/nginx:/var/log/nginx"\
     nginx:1.24-alpine3.17-slim
 
-docker cp yun2inf.conf "$CONTAINERNAME6":/etc/nginx/conf.d/nginx.conf
-docker cp ../nginx/security_header.conf "$CONTAINERNAME6":/etc/nginx/security_header.conf
-docker exec -it "$CONTAINERNAME6" rm /etc/nginx/conf.d/default.conf
-docker restart "$CONTAINERNAME6"
+docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
+docker cp ../nginx/security_header.conf "$CONTAINERNAME5":/etc/nginx/security_header.conf
+docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf
+docker restart "$CONTAINERNAME5"
 mv yun2inf.conf ../nginx/yun2inf.conf
 
 echo '------------------------------------------------------'
