@@ -1,0 +1,32 @@
+name: Build and Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Prepare Release Artifact
+        run: |
+          # Create a directory for the filtered output
+          mkdir release_package
+          
+          # Use rsync to copy everything except the excluded folder
+          # Replace 'folder_to_exclude' with the actual folder name
+          rsync -av --exclude manual/* ./ release_package/
+          
+          # Compress the filtered directory
+          cd release_package
+          zip -r ../release-artifact.zip .
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release-artifact.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
