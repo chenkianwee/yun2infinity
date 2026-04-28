@@ -67,4 +67,4 @@ presentation
 # exclude PyCharm files
 .idea/
 
-jupyterbook/yun2inf_book/_build
+jupyterbook/yun2inf_book/_build/
