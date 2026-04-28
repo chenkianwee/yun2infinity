@@ -4,7 +4,7 @@
 #-----------------------------------------------------------
 echo '------------------------------------------------------'
 echo 'This will help you setup your Yun2inf Docker Network'
-echo '6 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)BIMServer 6)nginx'
+echo '5 containers: 1) Database Container 2) FROST-Server Container 3) Grafana Container 4)yun2inf_proj 5)nginx'
 echo '------------------------------------------------------'
 
 #---------------------------------------------------------
@@ -69,7 +69,7 @@ echo 'Enter Port to listen to for the grafana Container.'
 read -p "(default=3000): " GPORT
 GPORT=${GPORT:-3000}
 #---------------------------------------------------------
-# YUN2INF LANDING PAGE
+# YUN2INF CESIUM VIEWER
 #---------------------------------------------------------
 echo
 echo 'Enter yun2inf_django_gunicorn Container Name'
@@ -134,35 +134,43 @@ server {
     error_log           /var/log/nginx/host.error.log;  
     
     location / {                                                                                                                                                                                           
-        #limit_req zone=myzone burst=10 nodelay;                                                                                                                                                           
+        # limit_req zone=myzone burst=10 nodelay;
+        root                    /var/www/yun2inf_html;
+        index                   index.html;                                                                                                                                                       
+        # proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;                                                                                                                                
+        # proxy_set_header       X-Forwarded-Proto \$scheme;                                                                                                                                                 
+    }
+
+    location /csviewer/ {                                                                                                                                                                                           
+        # limit_req zone=myzone burst=10 nodelay;                                                                                                                                                     
         proxy_pass              http://$CONTAINERNAME4:8000;                                                                                                                                                  
         proxy_set_header        HOST \$host;                                                                                                                                                                
-        #proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;                                                                                                                                
-        #proxy_set_header       X-Forwarded-Proto \$scheme;                                                                                                                                                 
-    } 
+        # proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;                                                                                                                                
+        # proxy_set_header       X-Forwarded-Proto \$scheme;                                                                                                                                                 
+    }
     
     location /static {                                                                                                                                                                                     
         autoindex       on;                                                                                                                                                                                
         alias           /yun2inf_project/www/static;                                                                                                                                                       
     } 
-    
+
     location /frost/ {                                                                                                                                                                                     
-        #limit_req zone=myzone burst=10 nodelay;                                                                                                                                                               
+        # limit_req zone=myzone burst=10 nodelay;                                                                                                                                                            
         proxy_pass              http://$CONTAINERNAME2:8080/FROST-Server/;                                                                                                                                           
         proxy_redirect          http://$CONTAINERNAME2:8080 http://localhost;                                                                                                                                        
-        proxy_read_timeout      240;                                                                                                                                                                       
+        proxy_read_timeout      240;                                                                                                                                                          
                                                                                                                                                                                                            
         proxy_set_header        Host \$host;                                                                                                                                                                
-        #proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;                                                                                                                                
-        #proxy_set_header       X-Forwarded-Proto \$scheme;                                                                                                                                                 
+        # proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;                                                                                                                                
+        # proxy_set_header       X-Forwarded-Proto \$scheme;                                                                                                                                                 
     }
     
     location /grafana/ {                                                   
-        #limit_req zone=myzone burst=10 nodelay;                           
+        # limit_req zone=myzone burst=10 nodelay;                           
         proxy_set_header        Host \$http_host;                           
         proxy_pass              http://grafana;                           
-        #proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;
-        #proxy_set_header       X-Forwarded-Proto \$scheme;                 
+        # proxy_set_header       X-Forwarded-For \$proxy_add_x_forwarded_for;
+        # proxy_set_header       X-Forwarded-Proto \$scheme;                 
     }                                                                      
                                                                            
     # Proxy Grafana Live WebSocket connections.                            
@@ -248,7 +256,7 @@ docker run -d --name "$CONTAINERNAME4"\
 	--network "yun2inf"\
     -p $YPORT:8000\
     -v "y2i:/yun2inf_project/www/static/"\
-    chenkianwee/yun2inf:0.0.11a
+    chenkianwee/yun2inf:0.0.12
 
 docker restart "$CONTAINERNAME4"
 
@@ -265,13 +273,15 @@ docker run -d --name "$CONTAINERNAME5"\
     -v "/var/log/nginx:/var/log/nginx"\
     nginx:1.30-alpine-slim
 
+docker exec -it -u root "$CONTAINERNAME5" mkdir /var/www/
+docker cp ../jupyterbook/yun2inf_book/_build/html "$CONTAINERNAME5":/var/www/yun2inf_html
 docker cp yun2inf.conf "$CONTAINERNAME5":/etc/nginx/conf.d/nginx.conf
 docker cp ../nginx/security_header.conf "$CONTAINERNAME5":/etc/nginx/security_header.conf
 docker exec -it "$CONTAINERNAME5" rm /etc/nginx/conf.d/default.conf
 docker restart "$CONTAINERNAME5"
 mv yun2inf.conf ../nginx/yun2inf.conf
 
-#wait for abit before reconfiguring the FROST-server
+# wait for abit before reconfiguring the FROST-server
 echo '------------------------------------------------------'
 echo 'Configuring the database container ... '
 echo '------------------------------------------------------'

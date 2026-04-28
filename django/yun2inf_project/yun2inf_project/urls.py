@@ -18,7 +18,6 @@ Including another URLconf
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('yun2inf_book.urls')),
-    # path('csviewer/', include('csviewer.urls')),
+    path('csviewer/', include('csviewer.urls')),
     # path("admin/", admin.site.urls),
 ]
