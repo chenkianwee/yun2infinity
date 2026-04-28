@@ -19,7 +19,7 @@ jobs:
           
           # Use rsync to copy everything except the excluded folder
           # Replace 'folder_to_exclude' with the actual folder name
-          rsync -av --exclude manual/ ./ release_package/
+          rsync -av --exclude manual/ --exclude release_package/ --exclude .github/ --exclude .git/ --exclude .gitignore  ./ release_package/
           
           # Compress the filtered directory
           cd release_package
