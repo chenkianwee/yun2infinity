@@ -58,13 +58,12 @@ Temporary Items
 
 #exclude build files 
 dist
-geomie3d.egg-info
 
 #exclude the user manual and presentation folder
-user_manual
 presentation
 
 # exclude PyCharm files
 .idea/
 
 jupyterbook/yun2inf_book/_build/
+manual/_build/

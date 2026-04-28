@@ -1,0 +1,53 @@
+version: 1
+project:
+  title: Yun2Infinity User Manual
+  authors:
+    - name: Kian Wee Chen
+  github: executablebooks/jupyter-book
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: docs/010/010intro.md
+    - title: Installation
+      children:
+        - file: docs/020/020installation.md
+    - title: Tutorials
+      children:
+        - file: docs/030/030.md
+    - title: How-Tos
+      children:
+        - file: docs/040/040postgres.md
+        - file: docs/040/041particle.md
+        - file: docs/040/042python.md
+        - file: docs/040/043citydb.md
+        - file: docs/040/044import_citygml.md
+        - file: docs/040/045grafana.md
+        - file: docs/040/046cesium3d.md
+        - file: docs/040/047analysis.md
+        - file: docs/040/048ssl_cert.md
+        - file: docs/040/049wfs.md
+        - file: docs/040/0410expgltf.md
+        - file: docs/040/0411maintain.md
+        - file: docs/040/0412update.md
+        - file: docs/040/0413deploy.md
+        - file: docs/040/0414stapi_eg.md
+    - title: Integration References
+      children:
+        - file: docs/050/050integration.md
+        - file: docs/050/051docker_image.md
+        - file: docs/050/052webhooks.md
+        - file: docs/050/053integrate3.md
+        - file: docs/050/054containerize.md
+        - file: docs/050/055grafana.md
+        - file: docs/050/056nginx.md
+        - file: docs/050/057replicate.md
+        - file: docs/050/058auth.md
+        - file: docs/050/059bimserver.md
+        - file: docs/050/0510cesiumjs.md
+        - file: docs/050/0511rpi.md
+site:
+  options:
+    folders: true
+  template: book-theme
