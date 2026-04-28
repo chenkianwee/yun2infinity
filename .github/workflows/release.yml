@@ -13,20 +13,24 @@ jobs:
 
       - name: Prepare Release Artifact
         run: |
+          ZIP_NAME="${{ github.event.repository.name }}-${{ github.event.release.tag_name }}.zip"
           # Create a directory for the filtered output
           mkdir release_package
           
           # Use rsync to copy everything except the excluded folder
           # Replace 'folder_to_exclude' with the actual folder name
-          rsync -av --exclude manual/* ./ release_package/
+          rsync -av --exclude manual/ ./ release_package/
           
           # Compress the filtered directory
           cd release_package
-          zip -r ../release-artifact.zip .
+          zip -r "../$ZIP_NAME" .
+
+          # Store the filename in the GITHUB_ENV so it can be accessed in other steps
+          echo "ARTIFACT_NAME=$ZIP_NAME" >> $GITHUB_ENV
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: release-artifact.zip
+          files: ${{ env.ARTIFACT_NAME }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
