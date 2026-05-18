@@ -1,5 +1,5 @@
 # Initialising 3DCityDB
-Refer to [here](https://3dcitydb-docs.readthedocs.io) for the full documentation of 3DCityDB.
+Refer to [here](https://docs.3dcitydb.org/1.3/) for the full documentation of 3DCityDB.
 
 1. Get into the spatempdb container (or whatever name you have specified for you database container) with this command.
     ```
