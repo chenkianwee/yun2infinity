@@ -20,12 +20,11 @@ project:
         - file: docs/02/01postgres.md
         - file: docs/02/02python.md
         - file: docs/02/03grafana.md
-        - file: docs/02/04cesium3d.md
-        - file: docs/02/05analysis.md
-        - file: docs/02/06maintain.md
-        - file: docs/02/07update.md
-        - file: docs/02/08deploy.md
-        - file: docs/02/09stapi_eg.md
+        - file: docs/02/04analysis.md
+        - file: docs/02/05maintain.md
+        - file: docs/02/06update.md
+        - file: docs/02/07deploy.md
+        - file: docs/02/08stapi_eg.md
     - file: docs/03/01integration.md
       children:
         - file: docs/03/02docker_image.md
@@ -47,6 +46,7 @@ project:
         - file: docs/04/05ssl_cert.md
         - file: docs/04/06wfs.md
         - file: docs/04/07expgltf.md
+        - file: docs/04/08cesium3d.md
 
 site:
   options:
