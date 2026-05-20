@@ -20,11 +20,19 @@ I am using [Docker](https://www.docker.com/) for running the database. So you wi
     ```
 2. Unzip the file with this command.
     ```
-    $ unzip yun2infinity-xxxx.zip
+    $ unzip yun2infinity-xxxx.zip -d yun2infinity-xxxx
     ```
     a. If unzip is not installed on your machine. Install it with this command.
     ```
     $ sudo apt-get install unzip
+    ```
+
+## Build the jupyter-book for the main page
+1. Make changes to the .md files accordingly and build the jupyterbook with these commands
+    ```
+    cd yun2infinity_<x.x.x>/jupyterbook/yun2inf_book
+
+    jupyter book build --html
     ```
 
 ## Setup Yun2Infinity
@@ -61,6 +69,12 @@ I am using [Docker](https://www.docker.com/) for running the database. So you wi
 4. We will check if the database has been successfully installed. Type in this command. You should see 5 containers running.
     ```
     $ sudo docker ps
+    ```
+
+### Install Timescaledb to improve database performance
+1. Go to shellscript directory. Follow the instruction accordingly to install timescaledb into your database.
+    ```
+    sudo sh install_tsdb.sh
     ```
 
 ### Check if FROST-Server is successfully configured

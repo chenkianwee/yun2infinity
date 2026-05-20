@@ -24,7 +24,6 @@ project:
         - file: docs/02/05maintain.md
         - file: docs/02/06update.md
         - file: docs/02/07deploy.md
-        - file: docs/02/08stapi_eg.md
     - file: docs/03/01integration.md
       children:
         - file: docs/03/02docker_image.md
